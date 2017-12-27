@@ -79,15 +79,17 @@ class CartController extends Controller
             file_put_contents($proofFilePathPdf, $imp);
 
         $prod_layout = Session::get('prod_layout');
-        if ($prod_layout == 'fbc' || $prod_layout == 'fbc6' || $prod_layout == 'srbc' || $prod_layout == 'srbc6' || $prod_layout == 'cbc' || $prod_layout == 'cbc6' || $prod_layout == 'dsbc' || $prod_layout == 'dsbc6' || $prod_layout == 'arhsbc') {
+        
+        if ($prod_layout == 'sbc' || $prod_layout == 'abc' || $prod_layout == 'pbc') {
             switch (Session::get('qty')) {
-                case '100': $quantity = 100; $price = .5224; break; // $52.24
-                case '250': $quantity = 250; $price = .27524; break; // $68.81
-                case '500': $quantity = 500; $price = .15492; break; // $77.46
-                case '1000': $quantity = 1000; $price = .09279; break; // $92.79
-                default: $quantity = 500; $price = .15492; // 12/4/17  
+                case '100': $quantity = 100; break;
+                case '250': $quantity = 250; break;
+                case '500': $quantity = 500; break;
+                case '1000': $quantity = 1000; break;
+                default: $quantity = 250;
             }
         }
+        dd(Session::get('qty'));
         if ($prod_layout == 'psrbc' || $prod_layout == 'psrbc6') {
             switch (Session::get('qty')) {
                 case '100': $quantity = 100; $price = .9484; break; // $94.84
@@ -115,38 +117,7 @@ class CartController extends Controller
             }
         }
 
-        if ($prod_layout == 'env' || $prod_layout == 'env6' || $prod_layout == 'cenv' || $prod_layout == 'cenv6' || $prod_layout == 'dsenv' || $prod_layout == 'dsenv6' || $prod_layout == 'arhsenv') {
-            switch (Session::get('qty')) {
-                case '100': $quantity = 100; $price = .7642; break; // $76.42
-                case '250': $quantity = 250; $price = .5305; break; // $132.63
-                case '500': $quantity = 500; $price = .41622; break; // $208.11
-                case '1000': $quantity = 1000; $price = .35908; break; // $359.08
-                default: $quantity = 500; $price = .41622; // 12/6/17  
-            }
-        }
-
-        if ($prod_layout == 'lh' || $prod_layout == 'lh6' || $prod_layout == 'dslh' || $prod_layout == 'dslh6' || $prod_layout == 'clh' || $prod_layout == 'clh6' || $prod_layout == 'arhslh') { // Letterhead
-            switch (Session::get('qty')) {
-                case '100': $quantity = 100; $price = .618; break; // $61.80
-                case '250': $quantity = 250; $price = .36348; break; // $90.87
-                case '500': $quantity = 500; $price = .2492; break; // $124.60
-                case '1000': $quantity = 1000; $price = .19205; break; // $192.05
-                default: $quantity = 500; $price = .2492; // 12/4/17
-            }
-        }
-
-        if ($prod_layout == 'opbcl' || $prod_layout == 'opbco' || $prod_layout == 'opbmo' || $prod_layout == 'opbsu') { // Process Brochure
-            switch (Session::get('qty')) {
-                case '100': $quantity = 100; $price = 2.0462; break; // $204.62
-                case '250': $quantity = 250; $price = 1.4962; break; // $374.05
-                case '500': $quantity = 500; $price = 1.19618; break; // $598.09
-                // case '1000': $quantity = 1000; $price = .135; break; // $135
-                default: $quantity = 250; $price = 1.4962; // 12/2/17
-            }
-        }
-      // $product = new \App\Product;
-      // dd(Session::get('imagepath'));
-            Cart::add($request->id, $request->name, $quantity, $price, [
+            Cart::add($request->id, $request->name, $quantity, [
                 'proofPath' => $proofFilePath,
                 'name' => Session::get('name'),
                 'title' => Session::get('title'),
