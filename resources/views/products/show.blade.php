@@ -85,7 +85,7 @@
         {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
         <div class="col-sm-10 control-text move-down">
           @if ($product->id == 101 || $product->id == 102 || $product->id == 103)
-            {!! Form::select("title", $titles, null, ['class' => 'form-control text-muted', 'placeholder' => 'Approved Titles Listed']) !!}
+            {!! Form::select("title", $titles, null, ['class' => 'form-control', 'placeholder' => 'Only Approved Titles Are Listed', 'style' => 'color:#8e8e92']) !!}
           @else
             {{-- {!! Form::text("title", null, ['class' => 'form-control', 'placeholder' => 'Title  (Used for Business Card Only)']) !!} --}}
             {!! Form::select('title', $titles, null, ['class' => 'form-control', 'placeholder' => 'Approved Titles Listed (Used for Business Card Only)']) !!}

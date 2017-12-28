@@ -170,7 +170,7 @@ class ProductController extends Controller
 
         Session::put('prod_description', strip_tags($request->prod_description));
         Session::put('address2', $request->address2);
-        // Session::put('title', $request->title);
+        // Session::put('qty', $request->qty);
 
         // $titles = Title::pluck('id', 'type', 'title');
         return back()->withInput();

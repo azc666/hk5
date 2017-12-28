@@ -79,8 +79,10 @@ class CartController extends Controller
             file_put_contents($proofFilePathPdf, $imp);
 
         $prod_layout = Session::get('prod_layout');
-        
-        if ($prod_layout == 'sbc' || $prod_layout == 'abc' || $prod_layout == 'pbc') {
+
+
+        if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+ // dd(Session::get('prod_layout'));
             switch (Session::get('qty')) {
                 case '100': $quantity = 100; break;
                 case '250': $quantity = 250; break;
@@ -89,35 +91,17 @@ class CartController extends Controller
                 default: $quantity = 250;
             }
         }
-        dd(Session::get('qty'));
-        if ($prod_layout == 'psrbc' || $prod_layout == 'psrbc6') {
+
+        if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
             switch (Session::get('qty')) {
-                case '100': $quantity = 100; $price = .9484; break; // $94.84
-                case '250': $quantity = 250; $price = .39664; break; // $99.16
-                case '500': $quantity = 500; $price = .21626; break; // $108.13
-                case '1000': $quantity = 1000; $price = .12412; break; // $124.12
-                default: $quantity = 500; $price = .21626; // 12/4/17
-            }
-        }
-        if ($prod_layout == 'lbl' || $prod_layout == 'lbl6' || $prod_layout == 'clbl' || $prod_layout == 'clbl6' || $prod_layout == 'dslbl' || $prod_layout == 'dslbl6' || $prod_layout == 'arhslbl') {
-            switch (Session::get('qty')) {
-                case '100': $quantity = 100; $price = .7194; break; // $71.94
-                case '250': $quantity = 250; $price = .345; break; // $86.25
-                case '500': $quantity = 500; $price = .2242; break; // $112.10
-                case '1000': $quantity = 1000; $price = .1613; break; // $161.30
-                default: $quantity = 500; $price = .2242; // 12/2/17  
+                case '4': $quantity = 4; break;
+                case '8': $quantity = 8; break;
+                default: $quantity = 4; 
             }
         }
 
-        if ($prod_layout == 'cnp' || $prod_layout == 'cnp6' || $prod_layout == 'np' || $prod_layout == 'np6' || $prod_layout == 'dsnp' || $prod_layout == 'dsnp6' || $prod_layout == 'arhsnp') {
-            switch (Session::get('qty')) {
-                case '4': $quantity = 4; $price = 17.3475; break; // $69.39
-                case '8': $quantity = 8; $price = 10.20375; break; // $81.63
-                default: $quantity = 4; $price = 17.3475; // 12/4/17     
-            }
-        }
-
-            Cart::add($request->id, $request->name, $quantity, [
+        $price = 0;
+            Cart::add($request->id, $request->name, $quantity, $price, [
                 'proofPath' => $proofFilePath,
                 'name' => Session::get('name'),
                 'title' => Session::get('title'),
@@ -232,7 +216,7 @@ class CartController extends Controller
                 
         if ($request->qty > 0) {
             //dd($request->title);
-          Cart::update($request->rowId, ['qty' => $request->qty, 'price' => $price]);
+          Cart::update($request->rowId, ['qty' => $request->qty]);
             //dd(Cart::get($request->rowId)->options->title);
             //Cart::update($request->rowId, ['title' => 'testtitle']);
             //Session::put('rowId', '');
