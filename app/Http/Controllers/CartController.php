@@ -80,9 +80,7 @@ class CartController extends Controller
 
         $prod_layout = Session::get('prod_layout');
 
-
         if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
- // dd(Session::get('prod_layout'));
             switch (Session::get('qty')) {
                 case '100': $quantity = 100; break;
                 case '250': $quantity = 250; break;
@@ -100,8 +98,15 @@ class CartController extends Controller
             }
         }
 
-        
-
+        if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
+            switch (Session::get('qty')) {
+                case '24': $quantity = 24; break;
+                case '28': $quantity = 28; break;
+                case '54': $quantity = 54; break;
+                case '58': $quantity = 58; break;
+                default: $quantity = 24; 
+            }
+        }
 
         $price = 0;
             Cart::add($request->id, $request->name, $quantity, $price, [
@@ -149,81 +154,37 @@ class CartController extends Controller
     {
 
         $prod_layout = $request->prod_layout;
-        if ($prod_layout == 'fbc' || $prod_layout == 'fbc6' || $prod_layout == 'srbc' || $prod_layout == 'srbc6' || $prod_layout == 'cbc' || $prod_layout == 'cbc6' || $prod_layout == 'dsbc' || $prod_layout == 'dsbc6' || $prod_layout == 'arhsbc') {
-            switch ($request->qty) {
-                case '100': $quantity = 100; $price = .5224; break; // $52.24
-                case '250': $quantity = 250; $price = .27524; break; // $68.81
-                case '500': $quantity = 500; $price = .15492; break; // $77.46
-                case '1000': $quantity = 1000; $price = .09279; break; // $92.79
-                default: $quantity = 01; $price = .00; // 12/4/17   
-            }
-        }
-//dd($quantity);
-        if ($prod_layout == 'psrbc' || $prod_layout == 'psrbc6') {
-            switch ($request->qty) {
-                case '100': $quantity = 100; $price = .9484; break; // $94.84
-                case '250': $quantity = 250; $price = .39664; break; // $99.16
-                case '500': $quantity = 500; $price = .21626; break; // $108.13
-                case '1000': $quantity = 1000; $price = .12412; break; // $124.12
-                default: $quantity = 500; $price = .21626; // 12/4/17  
-            }
-        }
-
-        if ($prod_layout == 'lbl' || $prod_layout == 'lbl6' || $prod_layout == 'clbl' || $prod_layout == 'clbl6' || $prod_layout == 'dslbl' || $prod_layout == 'dslbl6' || $prod_layout == 'arhslbl') {
-            switch ($request->qty) {
-                case '100': $quantity = 100; $price = .7194; break; // $71.94
-                case '250': $quantity = 250; $price = .345; break; // $86.25
-                case '500': $quantity = 500; $price = .2242; break; // $112.10
-                case '1000': $quantity = 1000; $price = .1613; break; // $161.30
-                default: $quantity = 01; $price = .00;  // 12/2/17 
-            }
-        }
-        
-        if ($prod_layout == 'cnp' || $prod_layout == 'cnp6' || $prod_layout == 'np' || $prod_layout == 'np6' || $prod_layout == 'dsnp' || $prod_layout == 'dsnp6' || $prod_layout == 'arhsnp') {
-            switch ($request->qty) {
-                case '4': $quantity = 4; $price = 17.3475; break; // $69.39
-                case '8': $quantity = 8; $price = 10.20375; break; // $81.63
-                default: $quantity = 4; $price = 17.35; // 12/4/17
-            }
-        }
-
-         if ($prod_layout == 'lh' || $prod_layout == 'lh6' || $prod_layout == 'dslh' || $prod_layout == 'dslh6' || $prod_layout == 'clh' || $prod_layout == 'clh6' || $prod_layout == 'arhslh') { // Letterhead
-            switch ($request->qty) {
-                case '100': $quantity = 100; $price = .618; break; // $61.80
-                case '250': $quantity = 250; $price = .36348; break; // $90.87
-                case '500': $quantity = 500; $price = .2492; break; // $124.60
-                case '1000': $quantity = 1000; $price = .19205; break; // $192.05
-                default: $quantity = 500; $price = .2492; // 12/4/17   
-            }
-        }
-
-        if ($prod_layout == 'env' || $prod_layout == 'env6' || $prod_layout == 'cenv' || $prod_layout == 'cenv6' || $prod_layout == 'dsenv' || $prod_layout == 'dsenv6' || $prod_layout == 'arhsenv') {
-            switch ($request->qty) {
-                case '100': $quantity = 100; $price = .7642; break; // $76.42
-                case '250': $quantity = 250; $price = .5305; break; // $132.63
-                case '500': $quantity = 500; $price = .41622; break; // $208.11
-                case '1000': $quantity = 1000; $price = .35908; break; // $359.08
-                default: $quantity = 500; $price = .41622; // 12/6/17   
-            }
-        }
-
-        if ($prod_layout == 'opbcl' || $prod_layout == 'opbco' || $prod_layout == 'opbmo' || $prod_layout == 'opbsu') { // Process Brochure
-            switch ($request->qty) {
-                case '100': $quantity = 100; $price = 2.0462; break; // $204.62
-                case '250': $quantity = 250; $price = 1.4962; break; // $374.05
-                case '500': $quantity = 500; $price = 1.19618; break; // $598.09
-                // case '1000': $quantity = 1000; $price = .135; break; // $135
-                default: $quantity = 250; $price = 1.4962; // 12/4/17   
-            }
-        }
                 
         if ($request->qty > 0) {
-            //dd($request->title);
+
+            if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+                switch ($request->qty) {
+                    case '100': $bcfyi_qty = '100 Business Cards'; break;
+                    case '250': $bcfyi_qty = '250 Business Cards'; break;
+                    case '500': $bcfyi_qty = '500 Business Cards'; break;
+                    default: $bcfyi_qty = '250 Business Cards'; 
+                }
+            }
+            if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
+                switch ($request->qty) {
+                    case '24': $bcfyi_qty = '250 BCs + 4 FYI Pads'; break;
+                    case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
+                    case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
+                    case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
+                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                }
+            } 
+            if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
+                switch ($request->qty) {
+                    case '4': $bcfyi_qty = '4 FYI Pads'; break;
+                    case '8': $bcfyi_qty = '8 FYI Pads'; break;
+                    default: $bcfyi_qty = '4 FYI Pads'; 
+                }
+            }
+
           Cart::update($request->rowId, ['qty' => $request->qty]);
-            //dd(Cart::get($request->rowId)->options->title);
-            //Cart::update($request->rowId, ['title' => 'testtitle']);
-            //Session::put('rowId', '');
-            return redirect('cart')->withSuccessMessage('The quantity has been updated to ' . $request->qty . '.');  
+ 
+          return redirect('cart')->withSuccessMessage('The quantity has been updated to ' . $bcfyi_qty . '.');
         } else {
             return redirect('cart')->withErrorMessage('The quantity remained unchanged');  
         }

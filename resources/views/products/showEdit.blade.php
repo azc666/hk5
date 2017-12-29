@@ -74,6 +74,62 @@
         </div> {{-- close <div class="row"> --}}      
     @endif
 
+        {{-- //////////////////// Combo BC FYI Pads /////////////////// --}}    
+    @if ($request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106)
+    <div class="bcfyi_background">
+       <div class="bcfyi_bc_name">
+            {{ $request->name }}
+        </div>
+        <div class="bcfyi_bc_title">
+            {!! $request->title ?: '<br>' !!}
+        </div>
+        <div class="bcfyi_bc_address">
+            Holland & Knight LLP<br>
+            @if ($request->address2)
+                {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} , {{ $request->state }}  {{ $request->zip }}
+            @else 
+                {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}  {{ $request->zip }}
+            @endif
+            <br>            
+            @if ($phone != null)
+                {{ $phone }} <br>
+            @endif    
+            <strong>{{ $request->email }}</strong>
+        </div>
+
+
+       <div class="bcfyi_fyi_name">
+            {!! $request->name ?: '<br><br><br><br>' !!}
+        </div>
+
+        {{-- <div class="fyi_title">
+            {!! $request->title ?: '<br>' !!}
+        </div> --}}
+
+        <div class="bcfyi_fyi_address_line1">
+            Holland & Knight LLP
+        </div>
+
+        <div class="bcfyi_fyi_address_line2">
+            @if ($request->address2)
+                {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} , {{ $request->state }}  {{ $request->zip }}
+            @else 
+                {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}  {{ $request->zip }}
+            @endif
+
+            <br>
+            
+            @if ($phone != null)
+                {{ $phone }} <br>
+            @endif    
+
+            <strong>{{ $request->email }}</strong>
+
+        </div>
+    {{-- </div> --}}  {{-- close backgound --}}
+    {{-- </div> --}} {{-- close <div class="row"> --}}      
+    @endif
+
     </div> {{-- close row --}}
 </div>  {{-- close container --}}
 
