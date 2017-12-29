@@ -179,40 +179,47 @@ class ProductController extends Controller
 
     public function showEdit(Request $request, Product $product)
     {   
+        if ($request->id == 101 || $request->id == 104 || $request->id == 107) {
+            $titles = Title::where('type', 'S')->orderBy('title')->pluck('title', 'title');
+        }
+        if ($request->id == 102 || $request->id == 105 || $request->id == 108) {
+            $titles = Title::where('type', 'A')->orderBy('title')->pluck('title', 'title');
+        }
+        if ($request->id == 103 || $request->id == 106 || $request->id == 109) {
+            $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
+        }
+
         $numb = $request->phone;
         $numbfax = $request->fax;
         $numbcell = $request->cell;
 
+
         $phone = '';
         if (($request->phone) && ($request->fax || $request->cell)) {
-            if ($request->prod_id == 39 || $request->prod_id == 40 || $request->prod_id == 41 || $request->prod_id == 42 || $request->prod_id == 43) {
-                $phone .= Phone::phoneNumber($numb) . ' &#124; ';
-            } else {
-                $phone .= Phone::phoneNumber($numb) . ' &#8226; ';
-            }              
+            $phone .= 'T ' . Phone::phoneNumber($numb) . ' | ';             
+        } elseif (empty($request->fax) && empty($request->cell)) {
+            $phone .= 'T ' . Phone::phoneNumber($numb);
         }
-        elseif (empty($request->fax) && empty($request->cell)) {
-            $phone .= Phone::phoneNumber($numb);
-        }  
-        if ($request->fax) {
-            $phone .= 'Fax ' .  Phone::phoneNumber($numbfax);
-        } 
+
+        if ($request->cell) {
+            $phone .= 'M ' .  Phone::phoneNumber($numbcell);
+        }
+
         if (($request->cell) && ($request->fax)) {
-            if ($request->prod_id == 39 || $request->prod_id == 40 || $request->prod_id == 41 || $request->prod_id == 42 || $request->prod_id == 43) {
-                $phone .= ' &#124; Cell ' . Phone::phoneNumber($numbcell);
-            } else {
-                $phone .= ' &#8226; Cell ' . Phone::phoneNumber($numbcell);
-            }
+            $phone .= ' | F ' . Phone::phoneNumber($numbfax);
+        } elseif ($request->fax && ($request->phone)) {
+            $phone .= 'F ' . Phone::phoneNumber($numbfax);
+        } elseif ($request->fax) {
+            $phone .= 'F ' . Phone::phoneNumber($numbfax);
         }
-        elseif ($request->cell && ($request->phone)) {
-            $phone .= 'Cell ' . Phone::phoneNumber($numbcell);
-        }
-        elseif ($request->cell) {
-            $phone .= 'Cell ' . Phone::phoneNumber($numbcell);
-        }
+
+        if ((!$request->phone) && (!$request->fax && !$request->cell)) {
+            $phone = null; 
+        } 
+
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
         $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
-        $request->merge(['cell' => Phone::phoneNumber($numbcell)]);
+        $request->merge(['cell' => Phone::phoneNumber($numbcell)]); 
 
         $data = [];
 
@@ -226,9 +233,8 @@ class ProductController extends Controller
         }
 
 ///////////////////////// Business Cards ////////////////////////        
-        if ($request->prod_id == 1 || $request->prod_id == 2 || $request->prod_id == 3 || $request->prod_id == 4 || $request->prod_id == 10 || $request->prod_id == 11 || $request->prod_id == 12 || $request->prod_id == 13 || $request->prod_id == 7 || $request->prod_id == 16 || $request->prod_id == 27 || $request->prod_id == 28 || $request->prod_id == 29 || $request->prod_id == 30 || $request->prod_id == 31 || $request->prod_id == 32 || $request->prod_id == 39 || $request->prod_id == 40) { 
-
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
+        if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103) {
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -250,8 +256,8 @@ class ProductController extends Controller
             ]);
         }
 
-//////////////////////////// Note Pads /////////////////////////////        
-        if ($request->prod_id == 19 || $request->prod_id == 20 || $request->prod_id == 21 || $request->prod_id == 22 || $request->prod_id == 33 || $request->prod_id == 34 || $request->prod_id == 41) { 
+/////////////////////// FYI Pads ///////////////////////        
+        if ($request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109) { 
             $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
@@ -273,81 +279,10 @@ class ProductController extends Controller
                 'watermark_text_alpha' => 0.075,
             ]);
         }
-        
-///////////////////////// Letterhead ////////////////////////////////         
-        if ($request->prod_id == 8 || $request->prod_id == 17 || $request->prod_id == 5 || $request->prod_id == 14 || $request->prod_id == 37 || $request->prod_id == 38 || $request->prod_id == 43) {  
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
-                'mode'                 => '',
-                'format'               => array(392,517.6),
-                'default_font_size'    => '12',
-                'default_font'         => 'sans-serif',
-                'margin_left'          => 0,
-                'margin_right'         => 0,
-                'margin_top'           => 0,
-                'margin_bottom'        => 0,
-                'margin_header'        => 0,
-                'margin_footer'        => 0,
-                'orientation'          => 'P',
-                'title'                => 'Laravel mPDF',
-                'author'               => '',
-                'watermark'            => 'PROOF',
-                'show_watermark'       => true,
-                'watermark_font'       => 'sans-serif',
-                'display_mode'         => 'fullpage',
-                'watermark_text_alpha' => 0.075,
-            ]);
-        }
-
-/////////////////////////// Envelope /////////////////////////         
-        if ($request->prod_id == 9 || $request->prod_id == 18 || $request->prod_id == 6 || $request->prod_id == 15 || $request->prod_id == 35 || $request->prod_id == 36 || $request->prod_id == 42) { 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
-                'mode'                 => '',
-                'format'               => array(392, 170.4),
-                'default_font_size'    => '12',
-                'default_font'         => 'sans-serif',
-                'margin_left'          => 0,
-                'margin_right'         => 0,
-                'margin_top'           => 0,
-                'margin_bottom'        => 0,
-                'margin_header'        => 0,
-                'margin_footer'        => 0,
-                'orientation'          => 'P',
-                'title'                => 'Laravel mPDF',
-                'author'               => '',
-                'watermark'            => 'PROOF',
-                'show_watermark'       => true,
-                'watermark_font'       => 'sans-serif',
-                'display_mode'         => 'fullpage',
-                'watermark_text_alpha' => 0.075,
-            ]);
-        }
-
-////////////////////// Our Process Brochures /////////////////////        
-        if ($request->prod_id == 23 || $request->prod_id == 24 || $request->prod_id == 25 || $request->prod_id == 26) {  
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
-                'mode'                 => '',
-                'format'               => array(392, 1035.2),
-                'default_font_size'    => '24',
-                'default_font'         => 'sans-serif',
-                'margin_left'          => 0,
-                'margin_right'         => 0,
-                'margin_top'           => 0,
-                'margin_bottom'        => 0,
-                'margin_header'        => 0,
-                'margin_footer'        => 0,
-                'orientation'          => 'P',
-                'title'                => 'Laravel mPDF',
-                'author'               => '',
-                'watermark'            => 'PROOF',
-                'show_watermark'       => true,
-                'watermark_font'       => 'sans-serif',
-                'display_mode'         => 'fullpage',
-                'watermark_text_alpha' => 0.075,
-            ]);
-        }
 
         File::delete($pathToWhereJpgShouldBeStored);
         File::delete($pathToPdf);
+        
         $pdf->save($pathToPdf);
 
         $im = new \Imagick($pathToPdf);
@@ -355,7 +290,17 @@ class ProductController extends Controller
 
         file_put_contents($pathToWhereJpgShouldBeStored, $im);
 
-        $titles = Title::pluck('id', 'type', 'title');
+        // $titles = Title::pluck('title', 'title');
+
+        if ($request->prod_id == 101 || $request->prod_id == 104 || $request->prod_id == 107) {
+            $titles = Title::where('type', 'S')->orderBy('title')->pluck('title', 'title');
+        }
+        if ($request->prod_id == 102 || $request->prod_id == 105 || $request->prod_id == 108) {
+            $titles = Title::where('type', 'A')->orderBy('title')->pluck('title', 'title');
+        }
+        if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 109) {
+            $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
+        }
 
         return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'titles'));
 

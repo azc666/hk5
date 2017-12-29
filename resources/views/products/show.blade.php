@@ -16,10 +16,6 @@
 
     <br>
     <h5>Hover over the Template or Proof to magnify. <br> Click the Template or Proof to display a PDF in a new tab. <br>
-
-   {{--  @if ($product->id == 23 || $product->id == 24 || $product->id == 25 || $product->id == 26)
-        Click <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" target="_blank">here </a>to display the 8 page brochure template.
-    @endif --}}
     </h5>
 
       @if (file_exists('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf'))
@@ -27,51 +23,30 @@
 
         <h5><small><i>&nbsp;&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Proof&nbsp;&nbsp;</i></small></h5>
       @else
-       {{--  @if ($product->id == 23 || $product->id == 24 || $product->id == 25 || $product->id == 26)
           <div>
-            <a href="{{ url(substr_replace($product->slug, 'pdf', -3)) }}" target="_blank"><img src="{{ $product->slug }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{$product->slug}}"></a>
+            <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" target="_blank"><img src="{{ $product->imagePath }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{$product->imagePath}}"></a>
             <h5><small><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5>
           </div>
-        @else --}}
-          <div>
-              <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" target="_blank"><img src="{{ $product->imagePath }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{$product->imagePath}}"></a>
-              <h5><small><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5>
-          </div>
         @endif
-      {{-- @endif --}}
 
       <br>
 
-     {{--  @if (strpos($product->prod_layout,'opb') === false)
-        <p class="description text-muted">{!! nl2br($product->description) !!}</p>
-      <br><br>
-      @endif --}}
-      
     </div>
 
     <div class="col-md-7">
       <br>
-  {{-- @if ($product->id == 23 || $product->id == 24 || $product->id == 25 || $product->id == 26)
-    <p class="description text-muted">{!! nl2br($product->description) !!}</p>
-    <br>
-  @endif --}}
 
   <h4>Your Location: {{ Auth::user()->username }}  {{ Auth::user()->loc_name }}</h4>
   <h5>Enter the data for your {{strip_tags($product->prod_name)}}. <br> 
 
-  {{-- @if ($product->id == 23 || $product->id == 24 || $product->id == 25 || $product->id == 26)
-      Your data is shown on page 7 and page 8 of the brochure.<br>
-  @endif --}}
-
   Create or Update your proof before adding the product to your cart.</h5>
-  {{--  <br> --}}
     
       <div class="panel panel-primary space-above">
       <div class="panel-body">
       
   {!! Form::open(['route' => 'showData', 'method' => 'POST', 'class' => 'form-horizontal', 'data-parsley-validate' => '']) !!}
 
-{{--  //////////////////////// BC FYI //////////////////////////// --}}
+{{--  //////////////////// BC FYI //////////////////// --}}
   @if ($product->id == 101 || $product->id == 102 ||  $product->id == 103 || $product->id == 104 || $product->id == 105 || $product->id == 106 || $product->id == 107 || $product->id == 108 || $product->id == 109) 
     <div class="form-group">
         {!! Form::label('name', 'Name:', ['class' => 'col-sm-2 control-label']) !!}
@@ -87,7 +62,6 @@
           @if ($product->id == 101 || $product->id == 102 || $product->id == 103)
             {!! Form::select("title", $titles, null, ['class' => 'form-control', 'placeholder' => 'Only Approved Titles Are Listed', 'style' => 'color:#8e8e92']) !!}
           @else
-            {{-- {!! Form::text("title", null, ['class' => 'form-control', 'placeholder' => 'Title  (Used for Business Card Only)']) !!} --}}
             {!! Form::select('title', $titles, null, ['class' => 'form-control', 'placeholder' => 'Approved Titles Listed (Used for Business Card Only)']) !!}
           @endif
         </div>
@@ -100,16 +74,6 @@
         {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
       </div>
     </div>
-
-    {{-- @if ($product->id == 2 || $product->id == 3 || $product->id == 11 ||  $product->id == 12 || $product->id == 7 || $product->id == 16) --}}
-     {{-- Display Community Field on Sales Rep Items --}}
-      {{-- <div class="form-group">
-          {!! Form::label('community', 'Community:', ['class' => 'move-down col-sm-2 control-label']) !!}
-        <div class="col-sm-10 control-text move-down">
-            {!! Form::text('community', null, ['placeholder' => 'Community Name (Optional)', 'class' => 'form-control']) !!}
-        </div>
-      </div>
-    @endif --}}
 
     <div class="form-group">
         {!! Form::label('address1', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}
@@ -144,7 +108,8 @@
           {!! Form::text('zip', null, ['class' => 'form-control', 'placeholder' => 'Zip']) !!}
       </div>
     </div>
-<div class="col-xs-12" style="height:15px;"></div>
+
+  <div class="col-xs-12" style="height:15px;"></div>
     <div class="form-group">
         {!! Form::label('phone', 'Phone:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-4 control-text move-down">
@@ -191,6 +156,7 @@
             ]) !!}
         </div>
     </div>
+
   @endif 
 {{-- @endif --}}
 <div class="col-xs-12" style="height:15px;"></div>
@@ -221,10 +187,12 @@
     </div>
     <div class="col-xs-4">
 
-      @if ($product->id == 103 || $product->id == 106 || $product->id == 109)
+      @if ($product->id == 101 || $product->id == 104 || $product->id == 107)
+        <a href="{{ url('/staff') }}" class="btn btn-danger" role="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      @elseif ($product->id == 102 || $product->id == 105 || $product->id == 108)
+        <a href="{{ url('/associate') }}" class="btn btn-danger" role="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      @elseif ($product->id == 103 || $product->id == 106 || $product->id == 109)
         <a href="{{ url('/partner') }}" class="btn btn-danger" role="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-      @else
-        <a href="{{ url('/categories/' . session('catId')) }}" class="btn btn-danger" role="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
       @endif
 
     </div>  

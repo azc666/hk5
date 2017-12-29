@@ -148,7 +148,7 @@
                             <input type="hidden" name="_method" value="get">
                             <input type="hidden" name="rowId" value={{$item->rowId}}>
                             <input type="hidden" name="qty" value={{$item->qty}}>
-                            <input type="hidden" name="price" value={{$item->price}}>
+                            {{-- <input type="hidden" name="price" value={{$item->price}}> --}}
                             <input type="hidden" name="name" value="{{$item->options->name}}">
                             <input type="hidden" name="title" value="{{$item->options->title}}">
                             <input type="hidden" name="email" value="{{$item->options->email}}">
@@ -161,7 +161,7 @@
                             <input type="hidden" name="phone" value="{{$item->options->phone}}">
                             <input type="hidden" name="fax" value="{{$item->options->fax}}">
                             <input type="hidden" name="cell" value="{{$item->options->cell}}">
-                            <input type="hidden" name="license" value="{{$item->options->license}}">
+                            {{-- <input type="hidden" name="license" value="{{$item->options->license}}"> --}}
                             <input type="hidden" name="specialInstructions" value="{{$item->options->specialInstructions}}">
                             <input type="hidden" name="prod_name" value="{{ $item->options->prod_name }}">
                             {{ Session::put('prod_name', $item->options->prod_name) }}

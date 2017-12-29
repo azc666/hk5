@@ -20,11 +20,14 @@ use Carbon\Carbon;
 
 class EditController extends Controller
 {
+
     public function show(Request $request, Product $product, Category $category)
-    {
+    { 
         Session::put('prod_id', $product->id);
 
-        return view('products.edit', [$item->rowId], compact('product', 'category', 'request'));
+        
+
+        return view('products.edit', [$item->rowId], compact('product', 'category', 'request', 'titles'));
     }
 
     public function update(Request $request, Product $product)
@@ -56,7 +59,7 @@ class EditController extends Controller
             'title' => Session::get('title'),
             'email' => Session::get('email'),
             'proofPath' => $proofFilePath,
-            'community' => Session::get('community'),
+            // 'community' => Session::get('community'),
             'address1' => Session::get('address1'),
             'address2' => Session::get('address2'),
             'city' => Session::get('city'),
@@ -65,7 +68,7 @@ class EditController extends Controller
             'phone' => Session::get('phone'),
             'fax' => Session::get('fax'),
             'cell' => Session::get('cell'),
-            'license' => Session::get('license'),
+            // 'license' => Session::get('license'),
             'specialInstructions' => Session::get('specialInstructions'),
             'prod_name' => strip_tags(Session::get('prod_name')),
             'prod_id' => $request->prod_id,
