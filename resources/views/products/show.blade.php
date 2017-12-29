@@ -62,7 +62,7 @@
           @if ($product->id == 101 || $product->id == 102 || $product->id == 103)
             {!! Form::select("title", $titles, null, ['class' => 'form-control', 'placeholder' => 'Only Approved Titles Are Listed', 'style' => 'color:#8e8e92']) !!}
           @else
-            {!! Form::select('title', $titles, null, ['class' => 'form-control', 'placeholder' => 'Approved Titles Listed (Used for Business Card Only)']) !!}
+            {!! Form::select('title', $titles, null, ['class' => 'form-control', 'placeholder' => 'Only Approved Titles Are Listed (Used for Business Card Only)', 'style' => 'color:#8e8e92']) !!}
           @endif
         </div>
       </div>

@@ -66,8 +66,8 @@
 
                             <td>
                                 {{ strip_tags($item->name) }}
-                                <br>
-                                 <div class="text-muted">
+                                <br><br>
+                                 <div class="text-muted move-up">
                                     {!! nl2br($item->options->prod_description) !!} 
                                  </div>                         
                             </td>   
@@ -91,6 +91,8 @@
                         @if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI')  
                             {!! Form::select('qty', array('Select Quantity', '4' => '4 Pads', '8' => '8 Pads'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                         @endif
+
+                        
                         
                         <p>
                             {{-- {!! Form::hidden('rowId', $item->rowId) !!} --}}

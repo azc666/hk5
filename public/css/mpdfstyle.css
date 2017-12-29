@@ -133,6 +133,88 @@
     font-size: 29pt;
 }
 
+.bcfyi_background {
+    background-image: url('/assets/mpdf/bcfyi_template.jpg');
+    background-size:100%;
+    background-repeat:no-repeat;
+    padding-bottom: 0;
+    padding-top: 0;
+    min-height: 100%;
+    height: 100%;
+}
+
+.bcfyi_bc_name {
+    position: relative;
+    float:left;
+    text-align: left;
+    font-family: helveticaneue;
+    /*font-family: helveticaNeueLTStd-Lt;*/
+    line-height: 145%;
+    margin-left: 38mm;
+    padding-top: 71mm;
+    font-size: 36pt;
+}
+
+.bcfyi_bc_title {
+    /*position: relative; */
+    float:left;
+    text-align: left;
+    font-family: helveticaneueltcn;
+    line-height: 145%;
+    margin-left: 38mm;
+    font-size: 30pt;
+}
+
+.bcfyi_bc_address {
+    position: relative;
+    /*float: right;*/
+    text-align: right;
+    margin-right: 106mm;
+    /*margin-bottom: 0;
+    padding-bottom: 0;*/
+    padding-top: 1mm;
+    font-family: helveticaneuelt;
+    color: rgb(0,63,133);
+    line-height: 107%;
+    font-size: 30pt;
+}
+
+.bcfyi_fyi_name {
+    position: relative;
+    text-align: left;
+    font-family: helveticaneue;
+    line-height: 125%;
+    margin-left: 37mm;
+    /*margin-bottom: 0;*/
+    padding-top: 183mm;
+    font-size: 40pt;
+    /*clear: both;*/
+}
+
+.bcfyi_fyi_address_line1 {
+    position: absolute; 
+    text-align: right;
+    font-family: helveticaneue;
+    color: rgb(0,63,133);
+    line-height: 125%;
+    /*margin-bottom: 0;*/
+    padding-top: 32mm;
+    padding-right: 39mm;
+    font-size: 32pt;
+    /*clear: both;*/
+}
+
+.bcfyi_fyi_address_line2 {
+    position: relative; 
+    text-align: right;
+    font-family: helveticaneuecn;
+    color: rgb(0,63,133);
+    line-height: 115%;
+    padding-top: 1mm;
+    padding-right: 39mm;
+    font-size: 30pt;
+}
+
 .cbc_background {
     background-image: url('/assets/mpdf/cbc_template.jpg');
     background-size:100%;

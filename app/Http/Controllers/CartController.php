@@ -100,6 +100,9 @@ class CartController extends Controller
             }
         }
 
+        
+
+
         $price = 0;
             Cart::add($request->id, $request->name, $quantity, $price, [
                 'proofPath' => $proofFilePath,
