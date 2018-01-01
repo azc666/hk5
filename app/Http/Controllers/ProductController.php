@@ -77,9 +77,9 @@ class ProductController extends Controller
         } elseif (empty($request->fax) && empty($request->cell)) {
             $phone .= 'T ' . Phone::phoneNumber($numb);
         }
-
+// dd(Auth::user()->username);
         if ($request->cell) {
-            $phone .= 'M ' .  Phone::phoneNumber($numbcell);
+            $phone .= 'M ' .  Phone::cellNumber($numbcell);
         }
 
         if (($request->cell) && ($request->fax)) {
@@ -96,7 +96,7 @@ class ProductController extends Controller
 
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
         $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
-        $request->merge(['cell' => Phone::phoneNumber($numbcell)]); 
+        $request->merge(['cell' => Phone::cellNumber($numbcell)]); 
 
         $data = [];
 

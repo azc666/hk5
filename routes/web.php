@@ -2,6 +2,7 @@
 
 use \App\User;
 use \App\Order;
+use App\Title;
 
 Route::get('/', 'UserController@show')->name('home');
 
@@ -51,9 +52,11 @@ Route::patch('editcart', 'EditController@update')->name('editcart');
 Route::post('cartorder', 'CartOrderController@show')->name('cartorder');
 
 Route::get('myorders', 'MyOrdersController@index')->name('myorders');
-Route::get('user.myordersdata', 'BookingController@myordersData')->name('myorders.data');
+// Route::get('user.myordersdata', 'BookingController@myordersData')->name('myorders.data');
 // Route::get('showConfirmedOrder', 'MyOrdersController@show')->name('showConfirmedOrder');
 Route::post('showConfirmedOrder', 'MyOrdersController@show')->name('showConfirmedOrder');
+
+Route::get ('titles', 'MyTitlesController@index')->name('titles');
 
 Route::get('carousel', function () {
     return view('carousel');

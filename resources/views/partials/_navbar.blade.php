@@ -46,6 +46,8 @@
                 {{-- <li><a href="#">Something else here</a></li> --}}
                 <li class="divider"></li>
                 <li><a href="{{ route('login') }}">Login as another user</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ route('titles') }}">Titles Maintenance</a></li>
               </ul>                
             </li>
 @endif

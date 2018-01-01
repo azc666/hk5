@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Title extends Model
 {
+    protected $table="titles";
+
     protected $fillable = [
-        'type', 'title',
+        'id', 'type', 'title', 'action',
     ];
 
     protected $guarded = [];

@@ -45,6 +45,25 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+    $(document).ready(function(){
+      $('#mytitles-table').DataTable();
+    } );
+      // {
+      //   "columnDefs": [
+      //     {
+      //       "targets": [3],
+      //       "visible": false,
+      //     }
+      //   ],
+      //   stateSave: true,
+      //   "type": [[ 1, "asc" ]],
+      // dom: 'Bfrtip',
+      // buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
+//     });
+// });
+</script>
+
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
