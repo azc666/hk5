@@ -59,7 +59,7 @@
                         </td>
 
                         <td>
-                            {{ strip_tags($item->name) }}
+                            <strong>{{ strip_tags($item->name) }}</strong>
                             <br><br>
                              <div class="text-muted move-up">
                                 {!! nl2br($item->options->prod_description) !!} 

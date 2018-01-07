@@ -35,6 +35,7 @@ class ProductController extends Controller
             $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
         }
         return view('products.show', [$product->id], compact('product', 'category', 'request', 'titles'));
+
     }
 
     public function index(Product $products)
@@ -96,19 +97,22 @@ class ProductController extends Controller
 
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
         $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
-        $request->merge(['cell' => Phone::cellNumber($numbcell)]); 
+        $request->merge(['cell' => Phone::cellNumber($numbcell)]);
+
+        // $categories = App\Category::all(); 
 
         $data = [];
 
         if (file_exists('assets/mpdf/temp/' . Auth::user()->username)) {
             $pathToPdf = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.pdf';
             $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
+            $email = strtolower($request->email);
         } else {
             mkdir('assets/mpdf/temp/' . Auth::user()->username);
             $pathToPdf = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.pdf';
             $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
         }
-        
+        // Session::put('email', strtolower($request->email));
 ///////////////////// Business Cards ///////////////////////
         if ($request->id == 101 || $request->id == 102 || $request->id == 103) {
             $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation'), [
@@ -255,7 +259,7 @@ class ProductController extends Controller
             $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
         }
 
-///////////////////////// Business Cards ////////////////////////        
+//////////////// Business Cards /////////////////        
         if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103) {
             $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation'), [
                 'mode'                 => '',
@@ -303,7 +307,7 @@ class ProductController extends Controller
             ]);
         }
 
-        ////////////////////// Combo BC FYI Pads //////////////////////
+        ////////////// Combo BC FYI Pads ////////////
         if ($request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106) { 
             $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
                 'mode'                 => '',
@@ -348,7 +352,6 @@ class ProductController extends Controller
         if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 109) {
             $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
         }
-
         return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'titles'));
 
     }

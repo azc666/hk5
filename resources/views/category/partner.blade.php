@@ -49,7 +49,7 @@
         <div class="thumbnail">
             <img src="assets/partner/pbc_display.jpg" class="img-responsive" alt="...">
             <div class="caption">
-                <br><br><br><br>
+                {{-- <br><br><br><br> --}}
                 <h3> Business Cards </h3><br>
                 {{-- <p class="description text-muted"> Select a Business Card.<br><br></p> --}}
                 <p>

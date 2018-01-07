@@ -47,20 +47,52 @@
           {!! Form::text('name', Session::get('name'), ['class' => 'form-control', 'placeholder' => 'Name']) !!}
       </div>
     </div>
-
-    @if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103 || $request->prod_id == 104 || $request->prod_id || $request->prod_id == 105 || $request->prod_id == 106)
+              {{-- /////// Staff Titles /////// --}}
+    @if ($request->prod_id == 101 || $request->prod_id == 104) 
       <div class="form-group">
-        
         {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
         <div class="col-sm-10 control-text move-down">
-          
-          @if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103)
-            {!! Form::select("title", $titles, null, ['class' => 'form-control', 'placeholder' => 'Only Approved Titles Are Listed', 'style' => 'color:#8e8e92']) !!}
-            {{-- @php
-              dd('testes');
-            @endphp --}}
+          @if ($request->prod_id == 101)
+            {!! Form::select("title", $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+              'data-parsley-required'         => 'true',
+              'data-parsley-required-message' => 'this field is required',
+            ]) !!}
           @else
-            {!! Form::select('title', $titles, null, ['class' => 'form-control', 'placeholder' => 'Approved Titles Listed (Used for Business Card Only)']) !!}
+            {!! Form::select('title', $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed (Used for Business Card Only)',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+              'data-parsley-required'         => 'true',
+              'data-parsley-required-message' => 'this field is required',
+            ]) !!}
+          @endif
+        </div>
+      </div>
+    @endif
+                            {{-- /////// Assoc & Partner Titles /////// --}}
+    @if ($request->prod_id == 102 || $request->prod_id == 103 || $request->prod_id == 105 || $request->prod_id == 106) 
+      <div class="form-group">
+        {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        <div class="col-sm-10 control-text move-down">
+          @if ($request->prod_id == 102 || $request->prod_id == 103)
+            {!! Form::select("title", $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+            ]) !!}
+          @else
+            {!! Form::select('title', $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed (Used for Business Card Only)',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+            ]) !!}
           @endif
         </div>
       </div>

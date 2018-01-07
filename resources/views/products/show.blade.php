@@ -55,14 +55,53 @@
       </div>
     </div>
 
-    @if ($product->id == 101 || $product->id == 102 || $product->id == 103 || $product->id == 104 || $product->id == 105 || $product->id == 106)
+          {{-- /////// Staff Titles /////// --}}
+    @if ($product->id == 101 || $product->id == 104) 
       <div class="form-group">
         {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
         <div class="col-sm-10 control-text move-down">
-          @if ($product->id == 101 || $product->id == 102 || $product->id == 103)
-            {!! Form::select("title", $titles, null, ['class' => 'form-control', 'placeholder' => 'Only Approved Titles Are Listed', 'style' => 'color:#8e8e92']) !!}
+          @if ($product->id == 101)
+            {!! Form::select("title", $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+              'data-parsley-required'         => 'true',
+              'data-parsley-required-message' => 'this field is required',
+            ]) !!}
           @else
-            {!! Form::select('title', $titles, null, ['class' => 'form-control', 'placeholder' => 'Only Approved Titles Are Listed (Used for Business Card Only)', 'style' => 'color:#8e8e92']) !!}
+            {!! Form::select('title', $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed (Used for Business Card Only)',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+              'data-parsley-required'         => 'true',
+              'data-parsley-required-message' => 'this field is required',
+            ]) !!}
+          @endif
+        </div>
+      </div>
+    @endif
+
+            {{-- /////// Assoc & Partner Titles /////// --}}
+    @if ($product->id == 102 || $product->id == 103 || $product->id == 105 || $product->id == 106) 
+      <div class="form-group">
+        {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
+        <div class="col-sm-10 control-text move-down">
+          @if ($product->id == 102 || $product->id == 103)
+            {!! Form::select("title", $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+            ]) !!}
+          @else
+            {!! Form::select('title', $titles, null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'Only Approved Titles Are Listed (Used for Business Card Only)',
+              'data-parsley-trigger'          => 'input',
+              'style'                         => 'color:#8e8e92',
+            ]) !!}
           @endif
         </div>
       </div>
@@ -71,9 +110,20 @@
     <div class="form-group">
       {!! Form::label('email', 'Email:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text move-down">
-        {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+        {{-- @if (1+1==2) --}}
+          {{-- {!! Form::email('email', Session::get('email'), ['class' => 'form-control', 'placeholder' => 'Email']) !!} --}}
+        {{-- @else --}}
+          {!! Form::email('email', null, [
+            'class' => 'form-control',
+            'placeholder' => 'Use lowercase letters and a valid email address',
+            ]) !!}
+        {{-- @endif --}}
       </div>
     </div>
+
+    @php
+      // dd($request->email);
+    @endphp
 
     <div class="form-group">
         {!! Form::label('address1', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}
@@ -218,7 +268,7 @@
     {!! Form::hidden('imagePath', $product->imagePath) !!}
     {!! Form::hidden('loc_name', Auth::user()->loc_name) !!}
     {{-- <input type="hidden" name="address2" value= " {{ $request->address2 }} "> --}}
-  
+    {{-- {!! Session::put('email', strtolower($request->email)) !!} --}}
   <div class="row text-center">
  <br>
     <div class="col-xs-4">
@@ -247,7 +297,6 @@
       {{-- <input type="hidden" name="prod_id" value="{{ $product->id }}"> --}}
       <input type="hidden" name="name" value="{{ $product->prod_name }}">
       <input type="hidden" name="price" value="{{ $product->price }}">
-      <input type="hidden" name="community" value= " {{ $request->community }} ">
       {!! Session::put('prod_layout', $product->prod_layout) !!}
       {{-- <input type="hidden" name="email" value="{{ $request->email }}"> --}}
       <input type="hidden" name="quantity" value="{!! $product->quantity !!}">

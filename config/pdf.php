@@ -2,14 +2,14 @@
 return [
     'custom_font_path' => base_path('/resources/fonts/'), // don't forget the trailing slash!
     'custom_font_data' => [
-        'helveticaneueltstd' => [
+        'helveticaneueltstdlt' => [
             'R'  => 'HelveticaNeueLTStd-Lt.ttf',    // regular font
-            // 'B'  => 'ExampleFont-Bold.ttf',       // optional: bold font
+            'B'  => 'HelveticaNeueLTStd-Md.ttf',       // optional: bold font
             // 'I'  => 'ExampleFont-Italic.ttf',     // optional: italic font
             // 'BI' => 'ExampleFont-Bold-Italic.ttf' // optional: bold-italic font
         ],
-        'helveticaneueltcn' => [
-            'R'  => 'HelveticaNeue-LightCond.ttf',    // regular font
+        'helveticaneueltstdmd' => [
+            'R'  => 'HelveticaNeueLTStd-Md.ttf',    // regular font
             // 'B'  => 'ExampleFont-Bold.ttf',       // optional: bold font
             // 'I'  => 'ExampleFont-Italic.ttf',     // optional: italic font
             // 'BI' => 'ExampleFont-Bold-Italic.ttf' // optional: bold-italic font
