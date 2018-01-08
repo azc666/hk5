@@ -68,7 +68,7 @@
 
     <div class="input-group move-down">
         <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Your Reply Email:</span>
-        {{ Form::email('contactus_email', Auth::user()->email_a, ['class' => 'form-control', 'placeholder' => 'Your Email', 'required' => '']) }}
+        {{ Form::email('contactus_email', Auth::user()->email_a, ['class' => 'form-control', 'placeholder' => 'Your Reply Email', 'required' => '']) }}
     </div>
 
     <div class="input-group move-down">
