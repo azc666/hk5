@@ -45,29 +45,30 @@
     @endif
         
     <div class="panel-body">
-
+        <div class="text-center"> Edit fields as appropriate. All fields are required.
+        </div>
 @if (Auth::check())
         
     {!! Form::open(['data-parsley-validate' => '', 'route' => 'sendContactus', 'method' => 'post']) !!}
 
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;HK Location #:</span>
-        {{ Form::text('loc_num', $user->loc_num, ['class' => 'form-control', 'placeholder' => 'i.e. 20', 'required' => '', 'unique' => '']) }}
+        {{ Form::text('loc_num', Auth::user()->loc_num, ['class' => 'form-control', 'placeholder' => 'i.e. 20', 'required' => '', 'unique' => '']) }}
     </div>
 
     <div class="input-group move-down">
         <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;HK Location Name:</span>
-        {{ Form::text('loc_name', $user->loc_name, ['class' => 'form-control', 'placeholder' => 'i.e. Tampa', 'required' => '', 'unique' => '']) }}
+        {{ Form::text('loc_name', Auth::user()->loc_name, ['class' => 'form-control', 'placeholder' => 'i.e. Tampa', 'required' => '', 'unique' => '']) }}
     </div>
 
     <div class="input-group move-down">
         <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Your Name:</span>
-        {{ Form::text('contactus_name', null, ['class' => 'form-control', 'placeholder' => 'Your Name', 'required' => '']) }}
+        {{ Form::text('contactus_name', Auth::user()->contact_a, ['class' => 'form-control', 'placeholder' => 'Your Name', 'required' => '']) }}
     </div>
 
     <div class="input-group move-down">
-        <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Your Email:</span>
-        {{ Form::email('contactus_email', null, ['class' => 'form-control', 'placeholder' => 'Your Email', 'required' => '']) }}
+        <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Your Reply Email:</span>
+        {{ Form::email('contactus_email', Auth::user()->email_a, ['class' => 'form-control', 'placeholder' => 'Your Email', 'required' => '']) }}
     </div>
 
     <div class="input-group move-down">
