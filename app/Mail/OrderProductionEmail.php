@@ -32,7 +32,7 @@ class OrderProductionEmail extends Mailable
     public function build()
     {
         return $this->view('emails.orderProduction')
-            ->subject('ARH Order Portal Production Email')
-            ->from('support@arhorderportal.com');
+            ->subject('HK Order Portal Production Email')
+            ->from('support@hkorderportal.com');
     }
 }

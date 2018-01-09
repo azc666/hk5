@@ -40,7 +40,9 @@
           {{-- <div class="thumbnail"> --}}
          <div class="col-sm-6 col-md-6">     
               <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
-              <h5 class="pull-right move-up"><small><i>{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5></a> 
+              {{-- <h5 class="pull-right move-up"><small><i>{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5> --}}
+              <h5><small><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5>
+            {{-- </a>  --}}
         </div>
         <div class="col-sm-6 col-md-6">
              

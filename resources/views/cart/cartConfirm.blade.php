@@ -42,16 +42,18 @@
                         <th class="table-image"></th>
                         <th>&nbsp;Product</th>
                         <th>Quantity</th>
-                        <th>Price</th>
-                        <th class="column-spacer"></th>
+                        {{-- <th>Price</th> --}}
+                        {{-- <th class="column-spacer"></th> --}}
                         <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach (Cart::content() as $item)
+                    @php
+                        $prod_layout = $item->options->prod_layout;
+                    @endphp
                     <tr>
-
                         <td class="table-image">
                             <a href="{{ url(substr_replace($item->options->proofPath, 'pdf', -3)) }}" target="_blank"><img src="/{{ $item->options->proofPath }}" style="max-width:300px;" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
                         </td>
@@ -115,8 +117,8 @@
 
                         </td>
 
-                        <td>${{ number_format($item->subtotal, 2) }}</td>
-                        <td class=""></td>
+                        {{-- <td>${{ number_format($item->subtotal, 2) }}</td> --}}
+                        {{-- <td class=""></td> --}}
 
                         <td>
                         <form action="{{ url('cart', [$item->rowId]) }}" method="POST" class="side-by-side">
@@ -156,16 +158,16 @@
                     </tr>
                     @endforeach
 
-                    <tr>
+                    {{-- <tr>
                         <td class="table-image"></td>
                         <td></td>
                         <td class="small-caps table-bg" style="text-align: right">Subtotal</td>
                         <td style="text-align: right">${{ Cart::instance('default')->subtotal() }}</td>
                         <td></td>
                         <td></td>
-                    </tr>
+                    </tr> --}}
 
-                    <tr>
+                    {{-- <tr>
                         <td class="table-image"></td>
                         <td></td>
                         <td class="small-caps table-bg" style="text-align: right">Packaging &amp; Handling</td>
@@ -177,31 +179,31 @@
                             } else {
                                 $ph = 6.5; 
                             }
-                        @endphp
+                        @endphp --}}
                             {{-- Cart::instance('default')->subtotal() <= 250 ? $ph = 4.5 : 6.5;
                         @endphp --}}
-                        <td style="text-align: right">${{ number_format($ph, 2) }}</td>
+                    {{--     <td style="text-align: right">${{ number_format($ph, 2) }}</td>
                         <td></td>
                         <td></td>
-                    </tr>
+                    </tr> --}}
 
-                    <tr>
+                   {{--  <tr>
                         <td class="table-image"></td>
                         <td></td>
                         <td class="small-caps table-bg" style="text-align: right">Sales Tax (7%)</td>
                         <td style="text-align: right">${{ number_format(Cart::instance('default')->tax() + ($ph * .07), 2) }}</td>
                         <td></td>
                         <td></td>
-                    </tr>
+                    </tr> --}}
 
-                    <tr class="border-bottom">
+                    {{-- <tr class="border-bottom">
                         <td class="table-image"></td>
                         <td style="padding: 30px;"></td>
                         <td class="small-caps table-bg" style="text-align: right"><strong>*Your Total</strong></td>
                         <td class="table-bg" style="text-align: right">${{ number_format(Cart::total() + $ph + ($ph * .07), 2) }}</td>
                         <td class="column-spacer"></td>
                         <td></td>
-                    </tr>
+                    </tr> --}}
 
                 </tbody>
             </table>
@@ -224,7 +226,7 @@
                         {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
                     @endif
 
-                    <p><small>*UPS charges will be computed and added to your total upon shipping.</small></p>
+                    {{-- <p><small>*UPS charges will be computed and added to your total upon shipping.</small></p> --}}
 
                 <form action="{{ route('cartorder') }}" method="POST">
                     <div class="container">
@@ -232,7 +234,7 @@
                             <div class="col-lg-10 col-md-10 col-sm-10">
                                 <div class="thumbnail">
                                     <p class="move-down">
-                                        <input type="checkbox" name="confirm" >&nbsp;&nbsp;I have reviewed the Proof(s) and/or the data of my cart item(s) and confirm that it is correct. Unless I have specifically instructed to the contrary, I understand that production will commence upon submission, products without an online proofing option excluded.  
+                                        <input type="checkbox" name="confirm" >&nbsp;&nbsp;I have reviewed the Proof(s) of my cart item(s) and confirm that it is correct. Unless I have specifically instructed to the contrary, I understand that production will commence upon submission, and will be shipped without delay.  
                                     </p>
                                 </div>
                             </div>    

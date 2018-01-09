@@ -60,12 +60,12 @@ class CartOrderController extends Controller
 
         <div class="col-sm-12 col-md-12 col-lg-12">
 
-            <img src="https://arhorderportal.com/assets/ARH_Logo.jpg" style="max-width:300px;" alt="ARH Logo" class="img-responsive move-right move-down"><br>
+            <img src="https://hkorderportal.com/assets/HKheader2.png" style="max-width:500px;" alt="HK Logo" class="img-responsive move-right move-down"><br>
 
             <div class="thumbnail">
                 <div class="caption">
                     <h3 class="move-up">Order Confirmation Receipt</h3>
-                    <p> <strong>BC' . Auth::user()->loc_num . '&nbsp;&nbsp;&nbsp;' . Auth::user()->loc_name. '&nbsp;&nbsp;&nbsp;' . date("m/d/Y") . '&nbsp;&nbsp;&nbsp; Confirmation: ' . $confirmation . '</strong></p>
+                    <p> <strong>HK' . Auth::user()->loc_num . '&nbsp;&nbsp;&nbsp;' . Auth::user()->loc_name. '&nbsp;&nbsp;&nbsp;' . date("m/d/Y") . '&nbsp;&nbsp;&nbsp; Confirmation: ' . $confirmation . '</strong></p>
                     <h5 class="move-up">Thank You. Your order has been placed. This confirmation has been emailed to admin: ' . Auth::user()->contact_a . ' ( <a href="mailto:' . Auth::user()->email_a . '">' . Auth::user()->email_a . '</a> ).</h5>
                     <h5 class="move-up">Your order will be shipped to:</h5>
                     <strong>' . Auth::user()->loc_name . '</strong><br>
@@ -84,7 +84,7 @@ class CartOrderController extends Controller
                     
                     $cartOrder .= $address_s;
 
-                    $cartOrder .= '<p class="move-down"><small>*UPS charges will be computed and added to your total upon shipping.</small></p>
+                    $cartOrder .= '<p class="move-down"></p>
                 </div>    
             </div>
         </div>  
@@ -95,8 +95,8 @@ class CartOrderController extends Controller
                     <th class="table-image"></th>
                     <th>&nbsp;Product</th>
                     <th>Quantity</th>
-                    <th>Price</th>
-                    <th class="column-spacer"></th>
+                    
+                    
                     <th></th>
                 </tr>
             </thead>';
@@ -116,14 +116,12 @@ class CartOrderController extends Controller
             <div class="' . $item->options->phone . '">
             <div class="' . $item->options->fax . '">
             <div class="' . $item->options->cell . '">
-            <div class="' . $item->options->license . '">
-            <div class="' . $item->options->community . '">
             <div class="' . $item->options->specialInstructions . '">
             <td class="table-image">
             <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank"><img src="' . url($item->options->proofPath) . '"width=200px" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
             </td>
 
-            <td>' . strip_tags($item->name) . '
+            <td><strong>' . strip_tags($item->name) . '</strong>
             <br>' . nl2br($item->options->prod_description) . '
             </td>
 
@@ -137,57 +135,18 @@ class CartOrderController extends Controller
                 <h5 class="move-up">Special Instructions:</h5>' . $item->options->specialInstructions . '</div>';
             }
                     
-            $cartOrder .= '</div>
-            </td>
-            <td>$' . number_format($item->subtotal, 2) . '</td>
-            <td class=""></td>
+            // $cartOrder .= '</div>
+            // </td>
+            // <td>$' . number_format($item->subtotal, 2) . '</td>
+            // <td class=""></td>
                        
-            </tr>';
+            // </tr>';
         }
 
-        $cartOrder .= '<tr>
-            <td class="table-image"></td>
-            <td></td>
-            <td class="small-caps table-bg" style="text-align: right">Subtotal</td>
-            <td style="text-align: right">$' . Cart::instance('default')->subtotal() . '</td>
-            <td></td>
-            <td></td>
-        </tr>
-
-        <tr>
-            <td class="table-image"></td>
-            <td></td>
-            <td class="small-caps table-bg" style="text-align: right">P&amp;H</td>';
-
-            $ph = 0;
-            if (Cart::instance('default')->subtotal() <= 250) {
-                $ph = 4.5;
-            } else {
-                $ph = 6.5; 
-            }
+        
             
-            $cartOrder .= '<td style="text-align: right">$' . number_format($ph, 2) . '</td>
-            <td></td>
-            <td></td>
-        </tr>
+            $cartOrder .= '
 
-        <tr>
-            <td class="table-image"></td>
-            <td></td>
-            <td class="small-caps table-bg" style="text-align: right">Sales Tax (7%)</td>
-            <td style="text-align: right">$' . number_format(Cart::instance('default')->tax() + ($ph * .07), 2) . '</td>
-            <td></td>
-            <td></td>
-        </tr>
-
-        <tr class="border-bottom">
-            <td class="table-image"></td>
-            <td style="padding: 30px;"></td>
-            <td class="small-caps table-bg" style="text-align: right"><strong>*Your Total</strong></td>
-            <td class="table-bg" style="text-align: right">$' . number_format(Cart::total() + $ph + ($ph * .07), 2) . '</td>
-            <td class="column-spacer"></td>
-            <td></td>
-        </tr>
 
         </tbody>
         </table>';
@@ -198,7 +157,7 @@ class CartOrderController extends Controller
             </div> <!-- end container -->
         <div class="container">';
 
-//////////////////////  SAVE THE ORDER TO DB  ///////////////////////////////////        
+//////////////////////  SAVE THE ORDER TO DB  //////////////////        
 
         Session::put('cartOrder', $cartOrder);
         $order->cart = $cartOrder;
@@ -207,13 +166,11 @@ class CartOrderController extends Controller
         $order->address_s = $address_s;
         $order->confirmation = $confirmation;
         $order->subtotal = Cart::subtotal();
-        $order->pack = number_format($ph, 2);
-        $order->tax = number_format(Cart::tax() + ($ph * .07), 2);
-        $order->total = number_format(Cart::total() + $ph + ($ph * .07), 2);
+        
         Session::put('confirmation', $confirmation);
         Auth::user()->orders()->save($order);
 
-//////////////////////  CREATE $cartOrderProduction  /////////////////////////////
+//////////////  CREATE $cartOrderProduction  /////////////
 
         $cartOrderProduction .= '';
 
@@ -227,7 +184,7 @@ class CartOrderController extends Controller
                     </tr>
                 </thead>';
             $cartOrderProduction .= 
-            '<tr><td>Franchise </td><td>' . Auth::User()->loc_name . '</td></tr>
+            '<tr><td>Location </td><td>' . Auth::User()->loc_name . '</td></tr>
             <tr><td>Order_Type_o </td><td>' . strip_tags($item_prod->name) . '</tr>
             <tr><td>Quantity_o </td><td>' . $item_prod->qty . '</tr>
             <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
@@ -241,8 +198,6 @@ class CartOrderController extends Controller
             <tr><td>City_o </td><td>' . $item_prod->options->city. '</tr>
             <tr><td>State_o </td><td>' . $item_prod->options->state . '</tr>
             <tr><td>Zip_o </td><td>' . $item_prod->options->zip . '</tr>
-            <tr><td>License_o </td><td>' . $item_prod->options->license . '</tr>
-            <tr><td>Community_o </td><td>' . $item_prod->options->community . '</tr>
             <tr><td>SP_Instructions_o </td><td>' . $item_prod->options->specialInstructions . '</tr>
             <tr><td>Admin Contact </td><td>' . Auth::User()->contact_a . '</tr>
             <tr><td>Shipping Contact </td><td>' . Auth::User()->contact_s . '</tr>

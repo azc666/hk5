@@ -16,8 +16,23 @@
         
 <div class="row body-background">   
 
+    <div class="col-sm-3 col-md-4">
+        <br>
+        <div class="thumbnail">
+            <img src="assets/staff/sbc_display.jpg" class="img-responsive" alt="Select a Business Card">
+            <div class="caption">
+                {{-- <br><br><br><br> --}}
+                <h3> Business Cards </h3><br>
+                {{-- <p class="description text-muted"> Select a Business Card.<br><br></p> --}}
+                <p>
+                    <a href="{!! url("/categories/4") !!}" class="btn btn-primary btn-block" role="button"> Select Business Cards </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="col-sm-4 col-md-4">
-    <br>
+        <br>
         <div class="thumbnail">
             <img src="assets/staff/sfyi_display.jpg" class="img-responsive" alt="Select an FYI Pad">
             <div class="caption">
@@ -31,7 +46,7 @@
     </div>
 
     <div class="col-sm-4 col-md-4">
-    <br>
+        <br>
         <div class="thumbnail">
             <img src="assets/staff/sbcfyi_display.jpg" class="img-responsive" alt="Select a Combo">
             <div class="caption">
@@ -39,21 +54,6 @@
                 {{-- <p class="description text-muted"> Select a Combo.<br><br></p> --}}
                 <p>
                     <a href="{!! url("/categories/6") !!}" class="btn btn-primary btn-block" role="button"> Select Combo FYI Pads & BCs </a>
-                </p>
-            </div>
-        </div>
-    </div>
-
-        <div class="col-sm-3 col-md-4">
-    <br>
-        <div class="thumbnail">
-            <img src="assets/staff/sbc_display.jpg" class="img-responsive" alt="Select a Business Card">
-            <div class="caption">
-                {{-- <br><br><br><br> --}}
-                <h3> Business Cards </h3><br>
-                {{-- <p class="description text-muted"> Select a Business Card.<br><br></p> --}}
-                <p>
-                    <a href="{!! url("/categories/4") !!}" class="btn btn-primary btn-block" role="button"> Select Business Cards </a>
                 </p>
             </div>
         </div>

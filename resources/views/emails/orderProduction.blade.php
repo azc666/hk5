@@ -12,9 +12,13 @@
 <div class="container">
     <div class="col-md-12">
         <br>
-        <img src="https://arhorderportal.com/assets/ARH_Logo.jpg" style="max-width:300px;" alt="ARH Logo" class="img-responsive move-right move-down"><br>
+        {{-- <img src="https://hkhorderportal.com/assets/HKheader2.png" style="max-width:500px;" alt="HK Logo" class="img-responsive move-right move-down"><br> --}}
+        {{ Html::image('assets/HKheader2.png', 'HK Logo', [
+                    'style' => 'max-width:500px',
+                    'class' => 'img-responsive move-right move-down'
+                ]) }}
         <h3 class="move-up">Production Order Details</h3>
-        <strong><p class="move-up">BC{{ Auth::user()->loc_num }}&nbsp;&nbsp;&nbsp;{{ Auth::user()->loc_name }}<br>Conf: {{Session::get('confirmation')}}&nbsp;&nbsp;&nbsp;Order Date: {{ date("m/d/Y h:i:s A") }}</strong></p>
+        <strong><p class="move-up">HK{{ Auth::user()->loc_num }}&nbsp;&nbsp;&nbsp;{{ Auth::user()->loc_name }}<br>Conf: {{Session::get('confirmation')}}&nbsp;&nbsp;&nbsp;Order Date: {{ date("m/d/Y h:i:s A") }}</strong></p>
         <br>
         {!! $cartOrderProduction !!} 
     </div>
