@@ -35,7 +35,7 @@ class OrderConfirmEmail extends Mailable
     {
         return $this->view('emails.orderConfirm')
             ->subject('HK Order Portal Email Confirmation')
-            ->from('support@hkorderportal.com')
+            ->from('support@g-d.com')
             //->bcc('support@arhorderportal.com')
             ->bcc('azc666@gmail.com');
             ;

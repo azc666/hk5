@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <h4>Hi {{ Session::get('contactus_name') }},<br><br>
-                Thank you for contacting {{ Html::mailto('support@hkorderportal.com') }}. </h4>
+                Thank you for contacting {{ Html::mailto('support@g-d.com') }}. </h4>
 
                 <h5>Your support request has been received and we will get back to you ASAP!</h5>
                 <br>
@@ -47,7 +47,7 @@
 
         <strong>Questions about this Support Request should be directed to:</strong><br>
         Order Portal Admin, Graphics + Design<br>
-        {{ Html::mailto('support@hkorderportal.com') }} <br>
+        {{ Html::mailto('support@g-d.com') }} <br>
         <a href="{{ url('http://www.g-d.com') }}" title="G+D Support">www.g-d.com</a> <br>
         Ph: 813-254-9444 <br>
         Fax: 813-254-9445 <br><br><br>
