@@ -37,7 +37,7 @@ class OrderConfirmEmail extends Mailable
             ->subject('HK Order Portal Email Confirmation')
             ->from('support@hkorderportal.com')
             //->bcc('support@arhorderportal.com')
-            // ->bcc('azc99@me.com');
+            ->bcc('azc666@gmail.com');
             ;
     }
 }
