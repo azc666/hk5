@@ -64,8 +64,8 @@
                         <td> --}}
 
                          <td>
-                             {{ strip_tags($item->name) }}
-                             <br>
+                             <strong>{{ strip_tags($item->name) }}<strong>
+                             <br><br>
                              <div class="text-muted">
                                 {!! nl2br($item->options->prod_description) !!} 
                              </div>
@@ -73,11 +73,72 @@
 
                         <td>
 
+                        {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!}
+                        
+                        @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC')
+                            {!! Form::select('qty', array('Select Quantity', '100' => '100', '250' => '250', '500' => '500'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
+                        @endif
+                        
+                        @if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI')  
+                            {!! Form::select('qty', array('Select Quantity', '4' => '4 Pads', '8' => '8 Pads'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
+                        @endif
+
+                        @if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI')  
+                            {!! Form::select('qty', array('Select Quantity', '24' => '250 BCs + 4 Pads', '28' => '250 BCs + 8 Pads', '54' => '500 BCs + 4 Pads', '58' => '500 BCs + 8 Pads',), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
+                        @endif
+                        
+                        &nbsp;&nbsp;
+                        
+                        @php    
+                            $bcfyi_qty = $item->qty;
+                            if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
+                                switch ($item->qty) {
+                                    case '24': $bcfyi_qty = '250 BCs + 4 FYI Pads'; break;
+                                    case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
+                                    case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
+                                    case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
+                                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                                }
+                            } 
+                            if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
+                                switch ($item->qty) {
+                                    case '4': $bcfyi_qty = '4 FYI Pads'; break;
+                                    case '8': $bcfyi_qty = '8 FYI Pads'; break;
+                                    default: $bcfyi_qty = '4 FYI Pads'; 
+                                }
+                            }
+                            if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+                                switch ($item->qty) {
+                                    case '100': $bcfyi_qty = '100 Business Cards'; break;
+                                    case '250': $bcfyi_qty = '250 Business Cards'; break;
+                                    case '500': $bcfyi_qty = '500 Business Cards'; break;
+                                    default: $bcfyi_qty = '250 Business Cards'; 
+                                }
+                            }
+                        @endphp
+
+                        {!! Form::label('quantity', $bcfyi_qty, ['class' => 'quantity']) !!}
+                        
+                        <p>
+                            {{-- {!! Form::hidden('rowId', $item->rowId) !!} --}}
+                            {{-- {{ $rowId = $item->rowId }} --}}
+                            <input type="hidden" name="rowId" value={{$item->rowId}}>
+                            <input type="hidden" name="prod" value={{$item->options->prod_name}}>
+                            <input type="hidden" name="_method" value="PATCH">
+                            <input type="hidden" name="title" value="{{Cart::get($item->rowId)->options->title}}">
+                            <input type="hidden" name="prod_id" value="{{$item->options->prod_id}}">
+                            <input type="hidden" name="prod_layout" value="{{$item->options->prod_layout}}">
+                            <input type="submit" class="btn btn-success btn-xs move-down" value="Update Quantity">
+                        </p>
+                        {!! Form::close() !!}
+
+                        {{-- <br>  --}} 
+
                         {{-- {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!} --}}
 
                         {{-- {!! Form::label('quantity', $item->qty . ' &nbsp;&nbsp;&nbsp; ', ['class' => 'quantity']) !!} --}}
 
-                         {!! $item->qty . ' &nbsp;&nbsp;&nbsp; ' !!}
+                         {{-- {!! $item->qty . ' &nbsp;&nbsp;&nbsp; ' !!} --}}
 
                         
                         {{-- {!! Form::select('qty', array('Select Quantity', '100' => '100 / $50', '250' => '250 / $75', '500' => '500 / $90', '1000' => '1000 / $120'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!} --}}

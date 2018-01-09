@@ -182,11 +182,20 @@ class CartController extends Controller
                 }
             }
 
+// dd($request->qty);
           Cart::update($request->rowId, ['qty' => $request->qty]);
  
-          return redirect('cart')->withSuccessMessage('The quantity has been updated to ' . $bcfyi_qty . '.');
+            if ($_SERVER['HTTP_REFERER'] == 'http://hk5.test/cart/cartConfirm') {
+                return redirect('cart/cartConfirm')->withSuccessMessage('The quantity has been updated to ' . $bcfyi_qty . '.');
+            } else {
+                return redirect('cart/')->withSuccessMessage('The quantity has been updated to ' . $bcfyi_qty . '.');
+            }
         } else {
-            return redirect('cart')->withErrorMessage('The quantity remained unchanged');  
+            if ($_SERVER['HTTP_REFERER'] == 'http://hk5.test/cart/cartConfirm') {
+                return redirect('cart/cartConfirm')->withErrorMessage('The quantity remained unchanged'); 
+            } else {
+                return redirect('cart/')->withErrorMessage('The quantity remained unchanged');
+            }
         }
         
     }
