@@ -128,21 +128,21 @@
     <div class="form-group">
         {!! Form::label('address1', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text move-down">
-          {!! Form::text('address1', null, ['class' => 'form-control', 'placeholder' => 'Address 1']) !!}
+          {!! Form::text('address1', Auth::user()->loc_address1, ['class' => 'form-control', 'placeholder' => 'Address 1']) !!}
       </div>
     </div>
 
     <div class="form-group">
         {!! Form::label('address2', 'Address2:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text move-down">
-          {!! Form::text('address2', null, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
+          {!! Form::text('address2', Auth::user()->loc_address2, ['class' => 'form-control', 'placeholder' => 'Address 2 (Optional)']) !!}
       </div>
     </div>
 
     <div class="form-group">
         {!! Form::label('city', 'City:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text move-down">
-          {!! Form::text('city', null, ['class' => 'form-control', 'placeholder' => 'City']) !!}
+          {!! Form::text('city', Auth::user()->loc_city, ['class' => 'form-control', 'placeholder' => 'City']) !!}
       </div>
     </div>
 
@@ -151,11 +151,11 @@
     <div class="form-group">
         {!! Form::label('state', 'State:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-4 control-text move-down">
-          {!! Form::text('state', null, ['class' => 'form-control', 'placeholder' => 'State']) !!}
+          {!! Form::text('state', Auth::user()->loc_state, ['class' => 'form-control', 'placeholder' => 'State']) !!}
       </div>
       {!! Form::label('zip', 'Zip:&nbsp;&nbsp;&nbsp;', ['class' => 'move-down col-sm-2 control-label-zip']) !!}
       <div class="col-sm-4 control-text-zip move-down">
-          {!! Form::text('zip', null, ['class' => 'form-control', 'placeholder' => 'Zip']) !!}
+          {!! Form::text('zip', Auth::user()->loc_zip, ['class' => 'form-control', 'placeholder' => 'Zip']) !!}
       </div>
     </div>
 

@@ -84,6 +84,8 @@ class CartOrderController extends Controller
                     
                     $cartOrder .= $address_s;
 
+                    $cartOrder .= '<p><small>Most orders ship within 2-3 working days. <br> Please allow 1-2 weeks for engraved Partner Cards.</small></p>';
+
                     $cartOrder .= '<p class="move-down"></p>
                 </div>    
             </div>
@@ -121,13 +123,15 @@ class CartOrderController extends Controller
             <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank"><img src="' . url($item->options->proofPath) . '"width=200px" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
             </td>
 
-            <td><strong>' . strip_tags($item->name) . '</strong>
+            <td><strong>' . strip_tags($item->name) . '</strong><br>
             <br>' . nl2br($item->options->prod_description) . '
             </td>
 
             <td>';
 
-            $cartOrder .= '<span class = "quantity">' . $item->qty . ' &nbsp;&nbsp;&nbsp; ';
+            $cartOrder .= '<span class = "quantity"><strong>' . Session::get('qty_text') . '</strong> &nbsp;&nbsp;&nbsp; ';
+
+
             $cartOrder .= '<br><br>';
 
             if ( $item->options->specialInstructions ) {

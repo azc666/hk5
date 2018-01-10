@@ -73,6 +73,7 @@
 
                         <td>
 
+                            <td>
                         {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!}
                         
                         @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC')
@@ -115,8 +116,9 @@
                                     default: $bcfyi_qty = '250 Business Cards'; 
                                 }
                             }
+                        Session::put('qty_text', $bcfyi_qty);
                         @endphp
-
+                        
                         {!! Form::label('quantity', $bcfyi_qty, ['class' => 'quantity']) !!}
                         
                         <p>
@@ -132,7 +134,7 @@
                         </p>
                         {!! Form::close() !!}
 
-                        {{-- <br>  --}} 
+                        {{-- <br>   --}}
 
                         {{-- {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!} --}}
 
@@ -287,7 +289,7 @@
                         {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
                     @endif
 
-                    {{-- <p><small>*UPS charges will be computed and added to your total upon shipping.</small></p> --}}
+                    <p><small>Most orders ship within 2-3 working days. <br> Please allow 1-2 weeks for engraved Partner Cards.</small></p>
 
                 <form action="{{ route('cartorder') }}" method="POST">
                     <div class="container">
