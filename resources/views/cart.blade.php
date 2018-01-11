@@ -60,6 +60,8 @@
 
                         <td>
                             <strong>{{ strip_tags($item->name) }}</strong>
+                            <br>{!! $item->options->name !!} 
+                            <br>{!! $item->options->email !!} 
                             <br><br>
                              <div class="text-muted move-up">
                                 {!! nl2br($item->options->prod_description) !!} 
@@ -70,7 +72,7 @@
                         {!! Form::open(['route' => ['cart', 'method' => 'PATCH']]) !!}
                         
                         @if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC')
-                            {!! Form::select('qty', array('Select Quantity', '100' => '100', '250' => '250', '500' => '500'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
+                            {!! Form::select('qty', array('Select Quantity', '250' => '250', '500' => '500'), ['class' => 'quantity move-down'], ['style' => 'font-size:12px']) !!}
                         @endif
                         
                         @if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI')  
@@ -103,7 +105,6 @@
                             }
                             if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
                                 switch ($item->qty) {
-                                    case '100': $bcfyi_qty = '100 Business Cards'; break;
                                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                                     case '500': $bcfyi_qty = '500 Business Cards'; break;
                                     default: $bcfyi_qty = '250 Business Cards'; 

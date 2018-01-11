@@ -123,8 +123,10 @@ class CartOrderController extends Controller
             <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank"><img src="' . url($item->options->proofPath) . '"width=200px" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
             </td>
 
-            <td><strong>' . strip_tags($item->name) . '</strong><br>
-            <br>' . nl2br($item->options->prod_description) . '
+            <td><strong>' . strip_tags($item->name) . '</strong>
+            <br>' . $item->options->name . 
+            '<br>' . $item->options->email .
+            '<br><br>' . nl2br($item->options->prod_description) . '
             </td>
 
             <td>';

@@ -82,7 +82,6 @@ class CartController extends Controller
 
         if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
             switch (Session::get('qty')) {
-                case '100': $quantity = 100; break;
                 case '250': $quantity = 250; break;
                 case '500': $quantity = 500; break;
                 case '1000': $quantity = 1000; break;
@@ -159,7 +158,6 @@ class CartController extends Controller
 
             if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
                 switch ($request->qty) {
-                    case '100': $bcfyi_qty = '100 Business Cards'; break;
                     case '250': $bcfyi_qty = '250 Business Cards'; break;
                     case '500': $bcfyi_qty = '500 Business Cards'; break;
                     default: $bcfyi_qty = '250 Business Cards'; 
