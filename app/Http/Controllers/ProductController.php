@@ -99,7 +99,16 @@ class ProductController extends Controller
         $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
         $request->merge(['cell' => Phone::cellNumber($numbcell)]);
 
-        // $categories = App\Category::all(); 
+        // $categories = App\Category::all();
+
+        $HKName = '';
+        if (Auth::user()->loc_num == 32) {
+            $HKName = 'Holland & Knight México, SC';
+        } elseif (Auth::user()->loc_num == 34) {           
+            $HKName = 'Holland & Knight Columbia SAS';
+        } else {
+            $HKName = 'Holland & Knight LLP';
+        }
 
         $data = [];
 
@@ -115,7 +124,7 @@ class ProductController extends Controller
         // Session::put('email', strtolower($request->email));
 ///////////////////// Business Cards ///////////////////////
         if ($request->id == 101 || $request->id == 102 || $request->id == 103) {
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -139,7 +148,7 @@ class ProductController extends Controller
 
 ////////////////////// FYI Pads //////////////////////
         if ($request->id == 107 || $request->id == 108 || $request->id == 109) { 
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -163,7 +172,7 @@ class ProductController extends Controller
 
 ////////////////////// Combo BC FYI Pads //////////////////////
         if ($request->id == 104 || $request->id == 105 || $request->id == 106) { 
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -248,6 +257,15 @@ class ProductController extends Controller
         $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
         $request->merge(['cell' => Phone::phoneNumber($numbcell)]); 
 
+        $HKName = '';
+        if (Auth::user()->loc_num == 32) {
+            $HKName = 'Holland & Knight México, SC';
+        } elseif (Auth::user()->loc_num == 34) {           
+            $HKName = 'Holland & Knight Columbia SAS';
+        } else {
+            $HKName = 'Holland & Knight LLP';
+        }
+
         $data = [];
 
         if (file_exists('assets/mpdf/temp/' . Auth::user()->username)) {
@@ -261,7 +279,7 @@ class ProductController extends Controller
 
 //////////////// Business Cards /////////////////        
         if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103) {
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -285,7 +303,7 @@ class ProductController extends Controller
 
 /////////////////////// FYI Pads ///////////////////////        
         if ($request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109) { 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -309,7 +327,7 @@ class ProductController extends Controller
 
         ////////////// Combo BC FYI Pads ////////////
         if ($request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106) { 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',

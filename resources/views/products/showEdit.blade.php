@@ -20,11 +20,11 @@
         </div>
         @if ($request->address2)
             <div class="bc_address_line1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @else
             <div class="bc_address_line1_1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @endif   
         <div class="bc_address_line2">
@@ -55,11 +55,11 @@
         </div> --}}
         @if ($request->address2)
             <div class="fyi_address_line1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @else
             <div class="fyi_address_line1_1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @endif
         <div class="fyi_address_line2">
@@ -91,11 +91,11 @@
         </div>
         @if ($request->address2 && $request->email && $phone != null)
             <div class="bcfyi_bc_address_line1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @else
             <div class="bcfyi_bc_address_line1_1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @endif
         <div class="bcfyi_bc_address_line2">       
@@ -121,11 +121,11 @@
         </div> --}}
         @if ($request->address2 && $request->email && $phone != null)
             <div class="bcfyi_fyi_address_line1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @else
             <div class="bcfyi_fyi_address_line1_1">
-                Holland & Knight LLP
+                {{ $HKName }}
             </div>
         @endif  
         <div class="bcfyi_fyi_address_line2">

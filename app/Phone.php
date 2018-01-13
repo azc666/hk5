@@ -15,6 +15,8 @@ class Phone
                
             if (Auth::user()->username == 'HK34') {
                 $numb = '+' . substr($numb, 0, 2) . '.' . substr($numb, 2, 1) . '.' . substr($numb, 3, 3) . '.' . substr($numb, 6, 4);
+            } elseif (Auth::user()->username == 'HK32') {
+                $numb = '+' . substr($numb, 0, 2) . '.' . substr($numb, 2, 2) . '.' . substr($numb, 3, 4) . '.' . substr($numb, 7, 4);
             } else {
                 $numb = substr($numb, 0, 3) . '.' . substr($numb, 3, 3) . '.' . substr($numb, 6, 4); 
             }
@@ -31,6 +33,8 @@ class Phone
                
             if (Auth::user()->username == 'HK34') {
                 $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 3) . '.' . substr($numbcell, 5, 3) . '.' . substr($numbcell, 8, 4);
+            } elseif (Auth::user()->username == 'HK32') {
+                $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 2) . '.' . substr($numbcell, 3, 4) . '.' . substr($numbcell, 7, 4);
             } else {
                 $numbcell = substr($numbcell, 0, 3) . '.' . substr($numbcell, 3, 3) . '.' . substr($numbcell, 6, 4); 
             }

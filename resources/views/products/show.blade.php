@@ -174,6 +174,17 @@
               'data-parsley-minlength'        =>'10',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
             ]) !!}
+          @elseif (Auth::user()->username == 'HK32')
+            {!! Form::text('phone', null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'xx.xx.xxxx.xxxx',
+              'data-parsley-trigger'          => 'input',
+              'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
+              'data-parsley-maxlength'        =>'16',
+              'data-parsley-maxlength-message'=>'Phone numbers should have exactly 12 digits.',
+              'data-parsley-minlength'        =>'12',
+              'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
+            ]) !!}
           @else
             {!! Form::text('phone', null, [
               'class'                         => 'form-control', 
@@ -199,6 +210,17 @@
               'data-parsley-maxlength-message'=>'Phone numbers should have exactly 10 digits.',
               'data-parsley-minlength'        =>'10',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
+            ]) !!}
+          @elseif (Auth::user()->username == 'HK32')
+            {!! Form::text('fax', null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'xx.xx.xxxx.xxxx',
+              'data-parsley-trigger'          => 'input',
+              'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
+              'data-parsley-maxlength'        =>'14',
+              'data-parsley-maxlength-message'=>'Phone numbers should have exactly 12 digits.',
+              'data-parsley-minlength'        =>'10',
+              'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
             ]) !!}
           @else
             {!! Form::text('fax', null, [
@@ -230,6 +252,17 @@
               'data-parsley-maxlength-message'=>'Cell numbers should have exactly 12 digits.',
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Cell numbers should have exactly 12 digits.',
+            ]) !!}
+          @elseif (Auth::user()->username == 'HK32')
+            {!! Form::text('cell', null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'xx.xx.xxxx.xxxx',
+              'data-parsley-trigger'          => 'input',
+              'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
+              'data-parsley-maxlength'        =>'16',
+              'data-parsley-maxlength-message'=>'Cell numbers should have exactly 14 digits.',
+              'data-parsley-minlength'        =>'12',
+              'data-parsley-minlength-message'=>'Cell numbers should have exactly 14 digits.',
             ]) !!}
           @else
             {!! Form::text('cell', null, [
