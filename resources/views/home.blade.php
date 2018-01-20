@@ -40,7 +40,13 @@
         @if (Auth::check())
             <div class="col-md-6">
                 <div class="thumbnail">
-                      <img src="assets/partner/pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
+                    @if (Auth::user()->username == 'HK32')
+                        <img src="assets/partner/mexico_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
+                    @elseif (Auth::user()->username == 'HK34')
+                        <img src="assets/partner/bogota_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
+                    @else 
+                        <img src="assets/partner/pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
+                    @endif    
                     <div class="caption text-center">
                         <a
                            href="{{ Auth::check() ? url('/partner') : '#'}}">
@@ -54,7 +60,13 @@
         @if (Auth::check())
             <div class="col-md-6">
                 <div class="thumbnail">
+                    @if (Auth::user()->username == 'HK32')
+                        <img src="assets/associate/mexico_abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
+                    @elseif (Auth::user()->username == 'HK34')
+                        <img src="assets/associate/bogota_abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
+                    @else  
                       <img src="assets/associate/abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
+                    @endif  
                     <div class="caption text-center">
                         <a
                            href="{{ Auth::check() ? url('/associate') : '#'}}">
@@ -68,7 +80,13 @@
         @if (Auth::check())
             <div class="col-md-6">
                 <div class="thumbnail">
-                      <img src="assets/staff/sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+                    @if (Auth::user()->username == 'HK32')
+                        <img src="assets/staff/mexico_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+                    @elseif (Auth::user()->username == 'HK34')
+                        <img src="assets/staff/bogota_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+                    @else
+                        <img src="assets/staff/sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+                    @endif
                     <div class="caption text-center">
                         <a
                            href="{{ Auth::check() ? url('/staff') : '#'}}">

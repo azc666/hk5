@@ -47,7 +47,8 @@
           {!! Form::text('name', Session::get('name'), ['class' => 'form-control', 'placeholder' => 'Name']) !!}
       </div>
     </div>
-              {{-- /////// Staff Titles /////// --}}
+
+    {{-- /////// Staff Titles /////// --}}
     @if ($request->prod_id == 101 || $request->prod_id == 104) 
       <div class="form-group">
         {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
@@ -74,7 +75,8 @@
         </div>
       </div>
     @endif
-                            {{-- /////// Assoc & Partner Titles /////// --}}
+
+    {{-- /////// Assoc & Partner Titles /////// --}}
     @if ($request->prod_id == 102 || $request->prod_id == 103 || $request->prod_id == 105 || $request->prod_id == 106) 
       <div class="form-group">
         {!! Form::label('title', 'Title:', ['class' => 'move-down col-sm-2 control-label']) !!}
@@ -141,9 +143,11 @@
 
     <div class="col-xs-12" style="height:15px;"></div>
     <div class="form-group">
-        {!! Form::label('phone', 'Phone:', ['class' => 'move-down col-sm-2 control-label']) !!}
+      {!! Form::label('phone', 'Phone:', ['class' => 'move-down col-sm-2 control-label']) !!}
         <div class="col-sm-4 control-text move-down">
-           @if (Auth::user()->username == 'HK34')
+
+          {{-- Bogotá --}}
+          @if (Auth::user()->username == 'HK34')
             {!! Form::text('phone', Session::get('phone'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.x.xxx.xxxx',
@@ -154,6 +158,8 @@
               'data-parsley-minlength'        =>'10',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
             ]) !!}
+
+          {{-- México --}}
           @elseif (Auth::user()->username == 'HK32')
             {!! Form::text('phone', Session::get('phone'), [
               'class'                         => 'form-control', 
@@ -165,6 +171,7 @@
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
             ]) !!}
+
           @else
             {!! Form::text('phone', Session::get('phone'), [
               'class'                         => 'form-control', 
@@ -178,8 +185,11 @@
               ]) !!}
             @endif
       </div>
-        {!! Form::label('fax', 'Fax:', ['class' => 'move-down col-sm-2 control-label-zip']) !!}
+
+      {!! Form::label('fax', 'Fax:', ['class' => 'move-down col-sm-2 control-label-zip']) !!}
         <div class="col-sm-4 control-text-zip move-down">
+          
+          {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
             {!! Form::text('fax', Session::get('fax'), [
               'class'                         => 'form-control', 
@@ -191,6 +201,8 @@
               'data-parsley-minlength'        =>'10',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
             ]) !!}
+          
+          {{-- México --}}
           @elseif (Auth::user()->username == 'HK32')
             {!! Form::text('fax', Session::get('fax'), [
               'class'                         => 'form-control', 
@@ -202,6 +214,7 @@
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
             ]) !!}
+
           @else
             {!! Form::text('fax', Session::get('fax'), [
               'class'                         => 'form-control', 
@@ -221,7 +234,9 @@
  <div class="col-xs-12" style="height:15px;"></div>
     <div class="form-group">
       {!! Form::label('cell', 'Cell:', ['class' => 'col-sm-2 control-label move-down']) !!}
-      <div class="col-sm-4 control-text move-down">
+        <div class="col-sm-4 control-text move-down">
+
+          {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
             {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
@@ -233,6 +248,8 @@
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Cell numbers should have exactly 12 digits.',
             ]) !!}
+          
+          {{-- México --}}
           @elseif (Auth::user()->username == 'HK32')
             {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
@@ -244,6 +261,7 @@
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Cell numbers should have exactly 12 digits.',
             ]) !!}
+            
           @else
             {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 

@@ -20,9 +20,6 @@ Route::post('profile', 'UserController@editProfile')->name('editProfile');
 Route::get('contactus', 'UserController@showContactus')->name('showContactus');
 Route::post('contactus', 'UserController@sendContactus')->name('sendContactus');
 
-// Route::get('franchise', 'CategoryController@showFranchiseCategories')->name('franchise');
-// Route::get('corporate', 'CategoryController@showCorporateCategories')->name('corporate');
-// Route::get('designStudio', 'CategoryController@showDesignStudioCategories')->name('designStudio');
 Route::get('staff', 'CategoryController@showStaffCategories')->name('staff');
 Route::get('associate', 'CategoryController@showAssociateCategories')->name('associate');
 Route::get('partner', 'CategoryController@showPartnerCategories')->name('partner');

@@ -30,22 +30,46 @@
 @foreach($category->products->sortBy('prod_name')->chunk(3) as $productChunk)
         
   <div class="row body-background">   
-    {{-- {{ $category->products->count() }} --}}
     @if ($category->products->count())
 
       @foreach($productChunk as $product)
 
         <div class="col-sm-6 col-md-12">
           <br><br>
-          {{-- <div class="thumbnail"> --}}
          <div class="col-sm-6 col-md-6">     
+            @php
+            if (Auth::user()->username == 'HK32') {
+              $product->id == 103 ? $imagePath  = '/assets/partner/mexico_pbc.jpg' : '';
+              $product->id == 109 ? $imagePath  = '/assets/partner/mexico_pfyi.jpg' : '';
+              $product->id == 106 ? $imagePath  = '/assets/partner/mexico_pbcfyi.jpg' : '';
+              $product->id == 102 ? $imagePath  = '/assets/associate/mexico_abc.jpg' : '';
+              $product->id == 108 ? $imagePath  = '/assets/associate/mexico_afyi.jpg' : '';
+              $product->id == 105 ? $imagePath  = '/assets/associate/mexico_abcfyi.jpg' : '';
+              $product->id == 101 ? $imagePath  = '/assets/staff/mexico_sbc.jpg' : '';
+              $product->id == 107 ? $imagePath  = '/assets/staff/mexico_sfyi.jpg' : '';
+              $product->id == 104 ? $imagePath  = '/assets/staff/mexico_sbcfyi.jpg' : '';
+            } elseif (Auth::user()->username == 'HK34') {
+              $product->id == 103 ? $imagePath  = '/assets/partner/bogota_pbc.jpg' : '';
+              $product->id == 109 ? $imagePath  = '/assets/partner/bogota_pfyi.jpg' : '';
+              $product->id == 106 ? $imagePath  = '/assets/partner/bogota_pbcfyi.jpg' : '';
+              $product->id == 102 ? $imagePath  = '/assets/associate/bogota_abc.jpg' : '';
+              $product->id == 108 ? $imagePath  = '/assets/associate/bogota_afyi.jpg' : '';
+              $product->id == 105 ? $imagePath  = '/assets/associate/bogota_abcfyi.jpg' : '';
+              $product->id == 101 ? $imagePath  = '/assets/staff/bogota_sbc.jpg' : '';
+              $product->id == 107 ? $imagePath  = '/assets/staff/bogota_sfyi.jpg' : '';
+              $product->id == 104 ? $imagePath  = '/assets/staff/bogota_sbcfyi.jpg' : '';
+            }
+            @endphp  
+
+            @if (Auth::user()->username == 'HK32' || Auth::user()->username == 'HK34')
+              <a href="{{ url(substr_replace($imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $imagePath }}" class="img-responsive dropshadow" alt="..."></a>
+           @else
               <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
-              {{-- <h5 class="pull-right move-up"><small><i>{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5> --}}
+           @endif        
+
               <h5><small><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5>
-            {{-- </a>  --}}
         </div>
         <div class="col-sm-6 col-md-6">
-             
               <div class="caption">
                 <h3> {!! $product->prod_name !!} </h3><br>
                 <p class="description text-muted">{!! nl2br($product->description) !!}</p>
@@ -53,8 +77,7 @@
                 <p><a href="{{ url("/products/$product->id") }}" class="btn btn-primary btn-block" role="button">Enter Your Product Data</a></p>
               </div>
         </div>
-          </div>
-        {{-- </div> --}}
+        </div>
       
       @endforeach
 

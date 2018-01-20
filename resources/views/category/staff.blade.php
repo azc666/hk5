@@ -19,11 +19,15 @@
     <div class="col-sm-3 col-md-4">
         <br>
         <div class="thumbnail">
-            <img src="assets/staff/sbc_display.jpg" class="img-responsive" alt="Select a Business Card">
+            @if (Auth::user()->username == 'HK32')
+                <img src="assets/staff/mexico_sbc_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @elseif (Auth::user()->username == 'HK34')
+                <img src="assets/staff/bogota_sbc_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @else
+                <img src="assets/staff/sbc_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @endif
             <div class="caption">
-                {{-- <br><br><br><br> --}}
                 <h3> Business Cards </h3><br>
-                {{-- <p class="description text-muted"> Select a Business Card.<br><br></p> --}}
                 <p>
                     <a href="{!! url("/categories/4") !!}" class="btn btn-primary btn-block" role="button"> Select Business Cards </a>
                 </p>
@@ -34,10 +38,15 @@
     <div class="col-sm-4 col-md-4">
         <br>
         <div class="thumbnail">
-            <img src="assets/staff/sfyi_display.jpg" class="img-responsive" alt="Select an FYI Pad">
+            @if (Auth::user()->username == 'HK32')
+                <img src="assets/staff/mexico_sfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @elseif (Auth::user()->username == 'HK34')
+                <img src="assets/staff/bogota_sfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @else
+                <img src="assets/staff/sfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @endif
             <div class="caption">
                 <h3> FYI Pads </h3><br>
-                {{-- <p class="description text-muted"> Select an FYI Pad. <br><br></p> --}}
                 <p>
                     <a href="{!! url("/categories/5") !!}" class="btn btn-primary btn-block" role="button"> Select FYI Pads </a>
                 </p>
@@ -48,10 +57,15 @@
     <div class="col-sm-4 col-md-4">
         <br>
         <div class="thumbnail">
-            <img src="assets/staff/sbcfyi_display.jpg" class="img-responsive" alt="Select a Combo">
+            @if (Auth::user()->username == 'HK32')
+                <img src="assets/staff/mexico_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @elseif (Auth::user()->username == 'HK34')
+                <img src="assets/staff/bogota_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @else
+                <img src="assets/staff/sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+            @endif
             <div class="caption">
                 <h3> Combo FYI Pads & BCs </h3><br>
-                {{-- <p class="description text-muted"> Select a Combo.<br><br></p> --}}
                 <p>
                     <a href="{!! url("/categories/6") !!}" class="btn btn-primary btn-block" role="button"> Select Combo FYI Pads & BCs </a>
                 </p>

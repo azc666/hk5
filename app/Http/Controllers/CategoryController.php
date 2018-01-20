@@ -21,22 +21,9 @@ class CategoryController extends Controller
         $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
 
         File::delete([$pathToPdf, $pathToWhereJpgShouldBeStored]);
-        return view('category.show', compact('category', 'request'));
-    }
 
-    // public function showFranchiseCategories(Category $category, Request $request, Product $product)
-    // {
-    //     session(['catId' => $category->id, 'catName' => $category->cat_name]);
-
-    //     return view('category.franchise', compact('category', 'request', 'categories', 'product'));
-    // }
-
-    // public function showCorporateCategories(Category $category, Request $request, Product $product)
-    // {
-    //     session(['catId' => $category->id, 'catName' => $category->cat_name]);
-       
-    //     return view('category.corporate', compact('category', 'request', 'categories', 'product'));
-    // }
+        return view('category.show', compact('category', 'request', 'product'));
+}
 
     public function showStaffCategories(Category $category, Request $request, Product $product)
     {
@@ -55,7 +42,7 @@ class CategoryController extends Controller
     public function showPartnerCategories(Category $category, Request $request, Product $product)
     {
         session(['catId' => $category->id, 'catName' => $category->cat_name]);
-       
+
         return view('category.partner', compact('category', 'request', 'categories', 'product'));
     }
 

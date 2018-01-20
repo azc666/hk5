@@ -290,7 +290,11 @@
                         {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
                     @endif
 
-                    <p><small>Most orders ship within 2-3 working days. <br> Please allow 1-2 weeks for engraved Partner Cards.</small></p>
+                    <p><small>
+                        An Email confirmation will be sent to the admin: {{ Auth::user()->contact_a }} ({{ Html::mailto(Auth::user()->email_a) }}).
+                        <br>Most orders ship within 2-3 working days. 
+                        <br> Please allow 1-2 weeks for engraved Partner Cards.
+                    </small></p>
 
                 <form action="{{ route('cartorder') }}" method="POST">
                     <div class="container">

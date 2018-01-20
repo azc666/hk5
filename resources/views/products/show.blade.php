@@ -24,7 +24,51 @@
         <h5><small><i>&nbsp;&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Proof&nbsp;&nbsp;</i></small></h5>
       @else
           <div>
-            <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" target="_blank"><img src="{{ $product->imagePath }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{$product->imagePath}}"></a>
+            
+            @php
+            if (Auth::user()->username == 'HK32') {
+              $product->id == 103 ? $imagePath  = '/assets/partner/mexico_pbc.jpg' : '';
+              $product->id == 109 ? $imagePath  = '/assets/partner/mexico_pfyi.jpg' : '';
+              $product->id == 106 ? $imagePath  = '/assets/partner/mexico_pbcfyi.jpg' : '';
+              $product->id == 102 ? $imagePath  = '/assets/associate/mexico_abc.jpg' : '';
+              $product->id == 108 ? $imagePath  = '/assets/associate/mexico_afyi.jpg' : '';
+              $product->id == 105 ? $imagePath  = '/assets/associate/mexico_abcfyi.jpg' : '';
+              $product->id == 101 ? $imagePath  = '/assets/staff/mexico_sbc.jpg' : '';
+              $product->id == 107 ? $imagePath  = '/assets/staff/mexico_sfyi.jpg' : '';
+              $product->id == 104 ? $imagePath  = '/assets/staff/mexico_sbcfyi.jpg' : '';
+            } elseif (Auth::user()->username == 'HK34') {
+              $product->id == 103 ? $imagePath  = '/assets/partner/bogota_pbc.jpg' : '';
+              $product->id == 109 ? $imagePath  = '/assets/partner/bogota_pfyi.jpg' : '';
+              $product->id == 106 ? $imagePath  = '/assets/partner/bogota_pbcfyi.jpg' : '';
+              $product->id == 102 ? $imagePath  = '/assets/associate/bogota_abc.jpg' : '';
+              $product->id == 108 ? $imagePath  = '/assets/associate/bogota_afyi.jpg' : '';
+              $product->id == 105 ? $imagePath  = '/assets/associate/bogota_abcfyi.jpg' : '';
+              $product->id == 101 ? $imagePath  = '/assets/staff/bogota_sbc.jpg' : '';
+              $product->id == 107 ? $imagePath  = '/assets/staff/bogota_sfyi.jpg' : '';
+              $product->id == 104 ? $imagePath  = '/assets/staff/bogota_sbcfyi.jpg' : '';
+            }
+            @endphp  
+
+            @if (Auth::user()->username == 'HK32' || Auth::user()->username == 'HK34')
+              <a href="{{ url(substr_replace($imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $imagePath }}" class="img-responsive dropshadow" alt="..."></a>
+           @else
+              <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
+           @endif 
+
+{{-- 
+
+
+            @if (Auth::user()->username == 'HK32')
+              <a href="{{ url(substr_replace($imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $imagePath }}" class="img-responsive dropshadow" alt="..."></a>
+           @elseif (Auth::user()->username == 'HK34')  
+
+           @else
+              <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
+           @endif  --}}
+
+            {{-- <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" target="_blank"><img src="{{ $product->imagePath }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{$product->imagePath}}"></a> --}}
+
+
             <h5><small><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5>
           </div>
         @endif
@@ -161,45 +205,53 @@
 
   <div class="col-xs-12" style="height:15px;"></div>
     <div class="form-group">
-        {!! Form::label('phone', 'Phone:', ['class' => 'move-down col-sm-2 control-label']) !!}
+      {!! Form::label('phone', 'Phone:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-4 control-text move-down">
-           @if (Auth::user()->username == 'HK34')
-            {!! Form::text('phone', null, [
-              'class'                         => 'form-control', 
-              'placeholder'                   => 'xx.x.xxx.xxxx',
-              'data-parsley-trigger'          => 'input',
-              'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
-              'data-parsley-maxlength'        =>'14',
-              'data-parsley-maxlength-message'=>'Phone numbers should have exactly 10 digits.',
-              'data-parsley-minlength'        =>'10',
-              'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
-            ]) !!}
-          @elseif (Auth::user()->username == 'HK32')
-            {!! Form::text('phone', null, [
-              'class'                         => 'form-control', 
-              'placeholder'                   => 'xx.xx.xxxx.xxxx',
-              'data-parsley-trigger'          => 'input',
-              'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
-              'data-parsley-maxlength'        =>'16',
-              'data-parsley-maxlength-message'=>'Phone numbers should have exactly 12 digits.',
-              'data-parsley-minlength'        =>'12',
-              'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
-            ]) !!}
-          @else
-            {!! Form::text('phone', null, [
-              'class'                         => 'form-control', 
-              'placeholder'                   => '123.123.1234',
-              'data-parsley-trigger'          => 'input',
-              'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
-              'data-parsley-maxlength'        =>'14',
-              'data-parsley-maxlength-message'=>'Phone numbers should have exactly 10 digits.',
-              'data-parsley-minlength'        =>'10',
-              'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
-              ]) !!}
-            @endif
+
+        {{-- Bogotá --}}
+        @if (Auth::user()->username == 'HK34') 
+          {!! Form::text('phone', null, [
+            'class'                         => 'form-control', 
+            'placeholder'                   => 'xx.x.xxx.xxxx',
+            'data-parsley-trigger'          => 'input',
+            'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
+            'data-parsley-maxlength'        =>'14',
+            'data-parsley-maxlength-message'=>'Phone numbers should have exactly 10 digits.',
+            'data-parsley-minlength'        =>'10',
+            'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
+          ]) !!}
+
+        {{-- México --}}
+        @elseif (Auth::user()->username == 'HK32')
+          {!! Form::text('phone', null, [
+            'class'                         => 'form-control', 
+            'placeholder'                   => 'xx.xx.xxxx.xxxx',
+            'data-parsley-trigger'          => 'input',
+            'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
+            'data-parsley-maxlength'        =>'16',
+            'data-parsley-maxlength-message'=>'Phone numbers should have exactly 12 digits.',
+            'data-parsley-minlength'        =>'12',
+            'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
+          ]) !!}
+
+        @else
+          {!! Form::text('phone', null, [
+            'class'                         => 'form-control', 
+            'placeholder'                   => '123.123.1234',
+            'data-parsley-trigger'          => 'input',
+            'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
+            'data-parsley-maxlength'        =>'14',
+            'data-parsley-maxlength-message'=>'Phone numbers should have exactly 10 digits.',
+            'data-parsley-minlength'        =>'10',
+            'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
+          ]) !!}
+        @endif
       </div>
+
       {!! Form::label('fax', 'Fax:', ['class' => 'move-down col-sm-2 control-label-zip']) !!}
-      <div class="col-sm-4 control-text-zip move-down">
+        <div class="col-sm-4 control-text-zip move-down">
+          
+          {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
             {!! Form::text('fax', null, [
               'class'                         => 'form-control', 
@@ -211,17 +263,20 @@
               'data-parsley-minlength'        =>'10',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 10 digits.',
             ]) !!}
+
+          {{-- México --}}  
           @elseif (Auth::user()->username == 'HK32')
             {!! Form::text('fax', null, [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xx.xxxx.xxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
-              'data-parsley-maxlength'        =>'14',
+              'data-parsley-maxlength'        =>'16',
               'data-parsley-maxlength-message'=>'Phone numbers should have exactly 12 digits.',
-              'data-parsley-minlength'        =>'10',
+              'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Phone numbers should have exactly 12 digits.',
             ]) !!}
+
           @else
             {!! Form::text('fax', null, [
               'class'                         => 'form-control', 
@@ -238,10 +293,11 @@
     </div>
 <div class="col-xs-12" style="height:15px;"></div>
 
-  {{-- closes <div class="form-inline"> --}}
     <div class="form-group">
-        {!! Form::label('cell', 'Cell:', ['class' => 'col-sm-2 control-label move-down']) !!}
+      {!! Form::label('cell', 'Cell:', ['class' => 'col-sm-2 control-label move-down']) !!}
         <div class="col-sm-4 control-text move-down">
+
+          {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
             {!! Form::text('cell', null, [
               'class'                         => 'form-control', 
@@ -253,6 +309,8 @@
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Cell numbers should have exactly 12 digits.',
             ]) !!}
+
+          {{-- México --}}
           @elseif (Auth::user()->username == 'HK32')
             {!! Form::text('cell', null, [
               'class'                         => 'form-control', 
@@ -264,6 +322,7 @@
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Cell numbers should have exactly 14 digits.',
             ]) !!}
+
           @else
             {!! Form::text('cell', null, [
               'class'                         => 'form-control', 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Notifications\Notifiable;
 use App\Mail\ContactusEmail;
 use Illuminate\Http\Request;
 use App\User;
