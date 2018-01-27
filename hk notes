@@ -8,4 +8,22 @@ FYI template has weak top border
 removed qty 100
 added name and email in cart etc.
 
+password reset enmails
+/Volumes/Code/sites/hk5/resources/views/vendor/notifications/email.blade.php:
+   46  {{ $salutation }}
+   47  @else
+   48: Regards,<br>{{ config('app.name') }}
+   49  @endif
+   50  
 
+/Volumes/Code/sites/hk5/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email.blade.php:
+   46  {{ $salutation }}
+   47  @else
+   48: Regards,<br>{{ config('app.name') }}
+   49  @endif
+   50  
+
+/Volumes/Code/sites/hk5/vendor/laravel/framework/src/Illuminate/Notifications/Messages/SimpleMessage.php:
+
+
+APP_URL=http://hk5.test

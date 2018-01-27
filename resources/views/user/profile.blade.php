@@ -54,7 +54,7 @@
 
     <div class="input-group move-down">
         <span class="input-group-addon"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"  data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Admin Contact Email:</span>
-        {{ Form::email('email_a', $user->email_a, ['class' => 'form-control', 'placeholder' => 'Admin Contact Email', 'required' => '', 'data-parsley-type' => 'email']) }}
+        {{ Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'Admin Contact Email', 'required' => '', 'data-parsley-type' => 'email']) }}
     </div>
 
     <div class="input-group move-down">

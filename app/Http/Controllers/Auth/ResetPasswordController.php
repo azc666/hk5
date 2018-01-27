@@ -37,9 +37,9 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        if (!Auth::user()) {
-            return redirect('/home');
-        }
+        // if (!Auth::user()) {
+        //     return redirect('/home');
+        // }
 
         $this->middleware('guest');
     }

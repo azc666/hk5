@@ -126,7 +126,7 @@
                     <h4> Administrative Contact Info </h4>
                     <div class="inner">
                         Contact: {{ Auth::user()->contact_a }}<br>
-                        Email: {{ Auth::user()->email_a }} <br>
+                        Email: {{ Auth::user()->email }} <br>
                         Phone: {{ Auth::user()->phone_a }}<br>
                         Fax: {{ Auth::user()->fax_a }}<br>
                         Cell: {{ Auth::user()->cell_a }}<br>

@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\CanResetPassword;
-// use Illuminate\Auth\Passwords\CanResetPassword;
+//use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email_a', 'password', 'loc_name', 'loc_num',
+        'username', 'email', 'password', 'loc_name', 'loc_num',
     ];
 
     /**
@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     // public function getEmailForPasswordReset() 
     // {
-    //     return $this->email_a;
+    //     return $this->email;
     // }
 
     public function orders()      

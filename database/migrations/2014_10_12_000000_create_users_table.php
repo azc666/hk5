@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('loc_state');
             $table->string('loc_zip');
             $table->string('contact_a');
-            $table->string('email_a');
+            $table->string('email');
             $table->string('phone_a');
             $table->string('fax_a');
             $table->string('cell_a');

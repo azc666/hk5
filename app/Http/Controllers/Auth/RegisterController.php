@@ -51,7 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => 'required|max:255|unique:users',
-            'email_a' => 'required|email|max:255',
+            'email' => 'required|email|max:255',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -67,7 +67,7 @@ class RegisterController extends Controller
         // return User::create([
         //     // 'username' => 'usernameeee',
         //     'username' => $data['username'],
-        //     'email_a' => $data['email'],
+        //     'email' => $data['email'],
         //     'password' => bcrypt($data['password']),
         // ]);
         return view('auth/register');
@@ -78,7 +78,7 @@ class RegisterController extends Controller
         
         $user = \App\User::create([
         'username' => $request->username,
-        'email_a' =>  $request->email_a,
+        'email' =>  $request->email,
         'loc_name' =>  $request->loc_name,
         'loc_num' =>  $request->loc_num,
         'password' => bcrypt($request->password),

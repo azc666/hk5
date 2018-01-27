@@ -39,7 +39,7 @@
 
         <div class="input-group move-down">
             <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Admin Email:</span>
-            {{ Form::email('email_a', null, ['class' => 'form-control', 'placeholder' => 'Admin Email', 'required' => '']) }}
+            {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Admin Email', 'required' => '']) }}
         </div>
 
          <div class="input-group move-down">
@@ -108,11 +108,11 @@
                             <label for="email" class="col-md-4 control-label">Admin Email Address</label>
 
                             <div class="col-md-6">
-                                <input id="email_a" type="email" class="form-control" name="email_a" value="{{ old('email_a') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
-                                @if ($errors->has('email_a'))
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email_a') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>

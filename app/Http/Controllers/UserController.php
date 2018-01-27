@@ -37,7 +37,7 @@ class UserController extends Controller
 
         $user->loc_name = $request->loc_name;
         $user->contact_a = $request->contact_a;
-        $user->email_a = $request->email_a;
+        $user->email = $request->email;
         $user->phone_a = $request->phone_a;
         $user->fax_a = $request->fax_a;
         $user->cell_a = $request->cell_a;

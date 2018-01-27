@@ -1,12 +1,23 @@
 @extends('layouts/main')
 
+@section('title')
+   Reset Your Password
+@endsection
+
 @section('content')
-hola
 <div class="container">
+
+<h2 class="move-up">Reset Your Password</h2>
+<div class="row body-background">
     <div class="row">
+    <br>
+
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+            <div class="panel panel-default move-down">
+                <div class="panel-heading text-center">
+                    <strong>Reset Your Password</strong>
+                    <br>Enter the username from the location requesting the password reset <i>(possibly HK something)</i>, and then enter and confirm your new password. You will automatically be logged in. Please remember your updated password.
+                </div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -15,60 +26,59 @@ hola
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
-                        {{ csrf_field() }}
+                <br>
+                {!! Form::open(['data-parsley-validate' => '', 'route' => 'password.request', 'method' => 'post']) !!} 
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                {!! Form::hidden('token', $token) !!}
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
+                <div class="input-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                    <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Username:</span>
+                    {{ Form::text('username', null, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Username', 'value' => $username or old('username'), 'required' => '', 'unique' => '', 'autofocus' => '']) }}
+                </div> 
+                <br>   
 
-                            <div class="col-md-6">
-                                <input id="username" type="username" class="form-control" name="username" value="{{ $username or old('username') }}" required autofocus>
+                    @if ($errors->has('username'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('username') }}</strong>
+                        </span>
+                    @endif
 
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                <div class="move-down input-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;New Password:</span>
+                    {{ Form::password('password', [
+                        'id' => 'password', 
+                        'class' => 'form-control', 
+                        'placeholder' => 'New Password', 
+                        'required' => '']) }}
+                </div> 
+                <br>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                <div class="move-down input-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">                           
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Password Confirm:</span>
+                    {{ Form::password('password_confirmation', [
+                        'id' => 'password-confirm', 
+                        'class' => 'form-control', 
+                        'placeholder' => 'New Password Confirm', 
+                        'required' => '']) }}
+                </div> 
+                <br>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                    @if ($errors->has('password_confirmation'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                        </span>
+                    @endif
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                {{ Form::submit('Reset Password', ['class' => 'col-md-5 btn btn-primary btn-block move-down']) }}
+                <br>
+                {!! Form::close() !!}  
 
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Reset Password
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -66,7 +66,7 @@ class CartOrderController extends Controller
                 <div class="caption">
                     <h3 class="move-up">Order Confirmation Receipt</h3>
                     <p> <strong>HK' . Auth::user()->loc_num . '&nbsp;&nbsp;&nbsp;' . Auth::user()->loc_name. '&nbsp;&nbsp;&nbsp;' . date("m/d/Y") . '&nbsp;&nbsp;&nbsp; Confirmation: ' . $confirmation . '</strong></p>
-                    <h5 class="move-up">Thank You. Your order has been placed. This confirmation has been emailed to admin: ' . Auth::user()->contact_a . ' ( <a href="mailto:' . Auth::user()->email_a . '">' . Auth::user()->email_a . '</a> ).</h5>
+                    <h5 class="move-up">Thank You. Your order has been placed. This confirmation has been emailed to admin: ' . Auth::user()->contact_a . ' ( <a href="mailto:' . Auth::user()->email . '">' . Auth::user()->email . '</a> ).</h5>
                     <h5 class="move-up">Your order will be shipped to:</h5>
                     <strong>' . Auth::user()->loc_name . '</strong><br>
                     Attn: ' . Auth::user()->contact_s . '<br>';
@@ -215,7 +215,7 @@ class CartOrderController extends Controller
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
 
 
-        \Mail::to(Auth::user()->email_a)->send(new OrderConfirmEmail($cartOrderEmail));
+        \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
        
         // \Mail::to('support@arhorderportal.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
