@@ -46,12 +46,6 @@ class CartOrderController extends Controller
         </head>
         <body> ';
 
-        // $cartOrder .= ' <!DOCTYPE html>
-        // <html>
-        // <head>
-        //     <meta name="keywords" content="parker2">
-        // </head>';
-
         $cartOrder .= '<div class="container">';
             
         $cartOrder .= '<div class="row body-background">';
@@ -106,6 +100,7 @@ class CartOrderController extends Controller
         $cartOrder .= '<tbody>';
 
         foreach (Cart::content() as $item) {
+            $prod_layout = $item->options->prod_layout;
             $cartOrder .= '<tr>
             <div class="' . $item->options->name . '">
             <div class="' . $item->options->title . '">
@@ -130,8 +125,37 @@ class CartOrderController extends Controller
             </td>
 
             <td>';
+// dd(Session::get('qty_text'));
 
-            $cartOrder .= '<span class = "quantity"><strong>' . Session::get('qty_text') . '</strong> &nbsp;&nbsp;&nbsp; ';
+            // @php    
+            $bcfyi_qty = $item->qty;
+            if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
+                switch ($item->qty) {
+                    case '24': $bcfyi_qty = '250 BCs + 4 FYI Pads'; break;
+                    case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
+                    case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
+                    case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
+                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                }
+            } 
+            if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
+                switch ($item->qty) {
+                    case '4': $bcfyi_qty = '4 FYI Pads'; break;
+                    case '8': $bcfyi_qty = '8 FYI Pads'; break;
+                    default: $bcfyi_qty = '4 FYI Pads'; 
+                }
+            }
+            if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+                switch ($item->qty) {
+                    case '250': $bcfyi_qty = '250 Business Cards'; break;
+                    case '500': $bcfyi_qty = '500 Business Cards'; break;
+                    default: $bcfyi_qty = '250 Business Cards'; 
+                }
+            }
+        // Session::put('qty_text', $bcfyi_qty);
+                        // @endphp
+
+            $cartOrder .= '<span class = "quantity"><strong>' . $bcfyi_qty . '</strong> &nbsp;&nbsp;&nbsp; ';
 
 
             $cartOrder .= '<br><br>';

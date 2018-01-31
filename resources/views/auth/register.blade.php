@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 @extends('layouts/main')
 
 @section('title')
@@ -72,17 +71,6 @@
         ]) !!}
         </div>
 
-
-        {{-- <div class="input-group move-down">
-            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Password:</span>
-            {{ Form::password('password', null, ['class' => 'form-control', 'placeholder' => 'Password', 'required' => '', 'parsley-trigger' => 'change', 'id' => 'password']) }}
-        </div> --}}
-
-        {{-- <div class="input-group move-down">
-            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true" data-toggle="tooltip" title="This field is required"></i>&nbsp;&nbsp;Confirm Password:</span>
-            {{ Form::password('password_confirm', null, ['class' => 'form-control', 'placeholder' => 'Confirm Password', 'required' => '', 'data-parsley-equalto' => 'password', 'parsley-trigger' => 'change', 'placeholder' => 'Re-Type Password']) }}
-        </div> --}}
-
     <br>
     {{ Form::submit('Create New User', ['class' => 'col-md-5 btn btn-success pull-left move-down']) }}
  {{-- <br> --}}
@@ -90,64 +78,7 @@
 
 {{-- &nbsp; --}}
 <a href="/" class="col-md-5 btn btn-danger pull-right move-down" role="button"> Reject Changes and Return Home </a>
-                        {{-- <div class="form-group{{ $errors->has('loc_num') ? ' has-error' : '' }}">
-                            <label for="loc_num" class="col-md-4 control-label">Username</label>
 
-                            <div class="col-md-6">
-                                <input id="loc_num" type="text" class="form-control" loc_num="loc_num" value="{{ old('loc_num') }}" required autofocus>
-
-                                @if ($errors->has('loc_num'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('loc_num') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> --}}
-
-                        {{-- <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Admin Email Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> --}}
-
-                        {{-- <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> --}}
-
-                        {{-- <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div> --}}
-
-                        {{-- <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
                 </div>
             </div>
         </div>

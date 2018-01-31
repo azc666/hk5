@@ -60,7 +60,11 @@ Route::get('carousel', function () {
 });
 
 Route::get('phpinfo', function () {
-    return view('phpinfo');
+    if (Auth::check()) {
+       return view('phpinfo'); 
+    } else {
+        return view('home');
+    } 
 });
 
 // Registration Routes...
