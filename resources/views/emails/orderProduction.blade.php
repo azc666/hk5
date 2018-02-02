@@ -19,6 +19,13 @@
                 ]) }}
         <h3 class="move-up">Production Order Details</h3>
         <strong><p class="move-up">HK{{ Auth::user()->loc_num }}&nbsp;&nbsp;&nbsp;{{ Auth::user()->loc_name }}<br>Conf: {{Session::get('confirmation')}}&nbsp;&nbsp;&nbsp;Order Date: {{ date("m/d/Y h:i:s A") }}</strong></p>
+        {{-- <br>
+        <a href="{{ route('showConfirmedOrder') }}">{{Session::get('confirmation')}}</a> --}}
+      {{--   <br>
+        @php
+            $confirmOrder = App\Order::where('confirmation', Session::get('confirmation'))->first();
+        @endphp
+        {{ $confirmOrder }} --}}
         <br>
         {!! $cartOrderProduction !!} 
     </div>

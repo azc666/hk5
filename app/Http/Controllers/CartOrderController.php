@@ -237,17 +237,20 @@ class CartOrderController extends Controller
             }
 
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
-
+        // $showOrder = $request->confirm;
+        $confirmOrder = Order::where('confirmation', Session::get('confirmation'))->first();
+        
+        // $displayOrder = App\Order::cart->where('confirm', Session::get('confirmation'));
 
         \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
        
         // \Mail::to('support@arhorderportal.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
-        \Mail::to('azc99@me.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
+        \Mail::to('tmann999@gmail.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
         Cart::destroy();
 
-        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation')); 
+        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder')); 
         }  else {
         return redirect('/cart/cartConfirm')->withErrorMessage('Please confirm your data entry before placing your order.');
         }

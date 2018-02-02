@@ -39,7 +39,7 @@
             @endif 
         </div>   
         <div class="bc_email">
-            {{ $request->email = strtolower($request->email) }}
+            {{ strtolower($HKEmail) }}
         </div>
     </div> {{-- close background class --}}
     @endif
@@ -110,7 +110,7 @@
             @endif    
         </div>
         <div class="bcfyi_bc_email">
-            {{ $request->email = strtolower($request->email) }}
+            {{ strtolower($HKEmail) }}
         </div>
 
        <div class="bcfyi_fyi_name">
@@ -156,7 +156,7 @@
 {!! Session::put('qty', $request->qty) !!}
 {!! Session::put('name', $request->name) !!}
 {!! Session::put('title', $request->title) !!}
-{!! Session::put('email', strtolower($request->email)) !!}
+{!! Session::put('email', strtolower($HKEmail)) !!}
 {!! Session::put('address1', $request->address1) !!}
 {!! Session::put('address2', $request->address2) !!}
 {!! Session::put('city', $request->city) !!}

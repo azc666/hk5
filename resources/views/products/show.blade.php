@@ -154,9 +154,7 @@
     <div class="form-group">
       {!! Form::label('email', 'Email:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text move-down">
-        {{-- @if (1+1==2) --}}
-          {{-- {!! Form::email('email', Session::get('email'), ['class' => 'form-control', 'placeholder' => 'Email']) !!} --}}
-        {{-- @else --}}
+
           {!! Form::email('email', null, [
             'class' => 'form-control',
             'placeholder' => 'Use lowercase letters and a valid email address',
@@ -164,10 +162,6 @@
         {{-- @endif --}}
       </div>
     </div>
-
-    @php
-      // dd($request->email);
-    @endphp
 
     <div class="form-group">
         {!! Form::label('address1', 'Address1:', ['class' => 'move-down col-sm-2 control-label']) !!}

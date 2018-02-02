@@ -78,7 +78,7 @@ class ProductController extends Controller
         } elseif (empty($request->fax) && empty($request->cell)) {
             $phone .= 'T ' . Phone::phoneNumber($numb);
         }
-// dd(Auth::user()->username);
+
         if ($request->cell) {
             $phone .= 'M ' .  Phone::cellNumber($numbcell);
         }
@@ -110,12 +110,11 @@ class ProductController extends Controller
             $HKName = 'Holland & Knight LLP';
         }
 
-        // $imagePath = '';
-        // switch (Auth::user()->loc_num == 32) {
-        //     case $product->prod_layout == 'pbc':
-        //         $imagePath = '/assets/partner/mexico_pbc.jpg';
-        //         break;
-        // }
+        $HKEmail = '';
+        $string = $request->email;
+        $pattern = '^\@(.*)$^';
+        $replacement = '@hklaw.com';
+        $HKEmail = preg_replace($pattern, $replacement, $string);
 
         $data = [];
 
@@ -131,7 +130,7 @@ class ProductController extends Controller
 
 ///////////////////// Business Cards ///////////////////////
         if ($request->id == 101 || $request->id == 102 || $request->id == 103) {
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -155,7 +154,7 @@ class ProductController extends Controller
 
 ////////////////////// FYI Pads //////////////////////
         if ($request->id == 107 || $request->id == 108 || $request->id == 109) { 
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -179,7 +178,7 @@ class ProductController extends Controller
 
 ////////////////////// Combo BC FYI Pads //////////////////////
         if ($request->id == 104 || $request->id == 105 || $request->id == 106) { 
-            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath'), [
+            $pdf = PDF::loadView('products.showData', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -273,6 +272,12 @@ class ProductController extends Controller
             $HKName = 'Holland & Knight LLP';
         }
 
+        $HKEmail = '';
+        $string = $request->email;
+        $pattern = '^\@(.*)$^';
+        $replacement = '@hklaw.com';
+        $HKEmail = preg_replace($pattern, $replacement, $string);
+
         $data = [];
 
         if (file_exists('assets/mpdf/temp/' . Auth::user()->username)) {
@@ -286,7 +291,7 @@ class ProductController extends Controller
 
 //////////////// Business Cards /////////////////        
         if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103) {
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'phoneValidation', 'HKName', 'imagePath', 'HKEmail'), [
                 'mode'                 => '',
                 'format'               => array(266, 152.4),    // jpg dimensions (665x381) / 2.5
                 'default_font_size'    => '12',
@@ -310,7 +315,7 @@ class ProductController extends Controller
 
 /////////////////////// FYI Pads ///////////////////////        
         if ($request->prod_id == 107 || $request->prod_id == 108 || $request->prod_id == 109) { 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -334,7 +339,7 @@ class ProductController extends Controller
 
         ////////////// Combo BC FYI Pads ////////////
         if ($request->prod_id == 104 || $request->prod_id == 105 || $request->prod_id == 106) { 
-            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath'), [
+            $pdf = PDF::loadView('products.showEdit', $data, compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'HKName', 'imagePath', 'HKEmail'), [
                 'mode'                 => '',
                 'format'               => array(405.2, 517.6),
                 'default_font_size'    => '12',
@@ -377,7 +382,7 @@ class ProductController extends Controller
         if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 109) {
             $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
         }
-        return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'titles'));
+        return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'titles', 'HKEmail'));
 
     }
 }
