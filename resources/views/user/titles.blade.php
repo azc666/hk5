@@ -49,7 +49,7 @@
 
     <thead>
       <tr>
-        <th>ID</th>
+        {{-- <th>ID</th> --}}
         <th>Type</th>
         <th>Title</th>
         <th class="text-right" width="20%">Action</th>
@@ -63,7 +63,8 @@
         
         @foreach ($titles as $title)
           <tr>
-           <td>{{ $title->id }}</td>
+           
+           {{-- <td>{{ $title->id }}</td> --}}
            <td>{{ $title->type }}</td>
            <td>{{ $title->title }}</td>
            {{-- <td>{{ 'test action' }}</td> --}}

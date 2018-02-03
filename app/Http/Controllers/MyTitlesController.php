@@ -31,7 +31,7 @@ class MyTitlesController extends Controller
             $titles = Auth::user()->title;
         }
 
-        return view('user.titles', compact('titles', 'users'));
+        return view('user.titles', compact('titles', 'users', 'types'));
     }
 
     /**
