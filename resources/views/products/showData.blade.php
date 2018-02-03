@@ -74,7 +74,7 @@
             @endif 
         </div>
         <div class="fyi_email">
-            {{ $request->email = strtolower($request->email) }}
+            {{ strtolower($HKEmail) }}
         </div>
     </div>  {{-- close backgound --}}
         </div> {{-- close <div class="row"> --}}      
@@ -144,7 +144,7 @@
             @endif
         </div>    
         <div class="bcfyi_fyi_email">
-            {{ $request->email = strtolower($request->email) }}
+            {{ strtolower($HKEmail) }}
         </div>
     {{-- </div> --}}  {{-- close backgound --}}
     {{-- </div> --}} {{-- close <div class="row"> --}}      

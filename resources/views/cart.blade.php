@@ -154,9 +154,6 @@
 
                         </td>
 
-                        {{-- <td>${{ number_format($item->subtotal, 2) }}</td> --}}
-                        {{-- <td class=""></td> --}}
-
                         <td>
                         <form action="{{ url('cart', [$item->rowId]) }}" method="POST" class="side-by-side">
                             {!! csrf_field() !!}
@@ -194,50 +191,6 @@
                             {!! Form::close() !!}
                         </tr>
                     @endforeach
-
-                    {{-- <tr>
-                        <td class="table-image"></td>
-                        <td></td>
-                        <td class="small-caps table-bg" style="text-align: right">Subtotal</td>
-                        <td style="text-align: right">${{ Cart::instance('default')->subtotal() }}</td>
-                        <td></td>
-                        <td></td>
-                    </tr> --}}
-
-                    {{-- <tr>
-                        <td class="table-image"></td>
-                        <td></td>
-                        <td class="small-caps table-bg" style="text-align: right">Packaging &amp; Handling</td>
-                        @php
-                            $ph = 0;
-                            if (Cart::instance('default')->subtotal() <= 250) {
-                                $ph = 4.5;
-                            } else {
-                                $ph = 6.5; 
-                            }
-                        @endphp
-                        <td style="text-align: right">${{ number_format($ph, 2) }}</td>
-                        <td></td>
-                        <td></td>
-                    </tr> --}}
-{{-- 
-                    <tr>
-                        <td class="table-image"></td>
-                        <td></td>
-                        <td class="small-caps table-bg" style="text-align: right">Sales Tax (7%)</td>
-                        <td style="text-align: right">${{ number_format(Cart::instance('default')->tax() + ($ph * .07), 2) }}</td>
-                        <td></td>
-                        <td></td>
-                    </tr> --}}
-
-{{--                     <tr class="border-bottom">
-                        <td class="table-image"></td>
-                        <td style="padding: 30px;"></td>
-                        <td class="small-caps table-bg" style="text-align: right"><strong>*Your Total</strong></td>
-                        <td class="table-bg" style="text-align: right">${{ number_format(Cart::total() + $ph + ($ph * .07), 2) }}</td>
-                        <td class="column-spacer"></td>
-                        <td></td>
-                    </tr> --}}
 
                 </tbody>
             </table>
