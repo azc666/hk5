@@ -39,27 +39,8 @@ class MyOrdersController extends Controller
 
     public function show(Order $orders, Request $request)
     {
-        // $order = Order::find($id);
-        // if (Auth::user()->admin == '1') {
-        //     $ordersList = App\Order::all();
-        //     // dd(Auth::user()->admin);
-        // } else {
-        //     $ordersList = Auth::user()->orders;
-        // }
-        // dd($ordersList);
-        // $orders = App\Order::all();
-        // $orders = Auth::user()->orders;
-        // dd($id);
-        // $confirm = $orders->first()->confirmation;
-        //dd($confirm);
-        // $confirmEmail = Order::where('confirmation', $confirm )->first();
-        // $conf = '200-17729-16505';
-        // $conf = Order::where('confirmation', $confirm)->first();
         $showOrder = $request->confirm;
         $confirmEmail = Order::where('confirmation', $showOrder )->first();
-        // echo $confirmEmail->cart;
-        // exit();
-        // $confirm = $orders->confirmation;
         
         return view('user.showConfirmedOrder', compact('showOrder', 'orders', 'confirmEmail', 'ordersList'));
     }

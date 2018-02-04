@@ -82,5 +82,11 @@ h5 a:hover {
     text-decoration: none;
 }
 
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
+
 
 

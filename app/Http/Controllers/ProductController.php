@@ -26,13 +26,13 @@ class ProductController extends Controller
         Session::put('prodId', $product->id);
         
         if ($product->id == 101 || $product->id == 104 || $product->id == 107) {
-            $titles = Title::where('type', 'S')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
         if ($product->id == 102 || $product->id == 105 || $product->id == 108) {
-            $titles = Title::where('type', 'A')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
         if ($product->id == 103 || $product->id == 106 || $product->id == 109) {
-            $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
         return view('products.show', [$product->id], compact('product', 'category', 'request', 'titles'));
 
@@ -59,13 +59,13 @@ class ProductController extends Controller
     public function showData(Request $request, Product $product)
     {   
         if ($request->id == 101 || $request->id == 104 || $request->id == 107) {
-            $titles = Title::where('type', 'S')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
         if ($request->id == 102 || $request->id == 105 || $request->id == 108) {
-            $titles = Title::where('type', 'A')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
         if ($request->id == 103 || $request->id == 106 || $request->id == 109) {
-            $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
 
         $numb = $request->phone;
@@ -222,13 +222,13 @@ class ProductController extends Controller
     public function showEdit(Request $request, Product $product)
     {   
         if ($request->id == 101 || $request->id == 104 || $request->id == 107) {
-            $titles = Title::where('type', 'S')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
         if ($request->id == 102 || $request->id == 105 || $request->id == 108) {
-            $titles = Title::where('type', 'A')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
         if ($request->id == 103 || $request->id == 106 || $request->id == 109) {
-            $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
 
         $numb = $request->phone;
@@ -374,13 +374,13 @@ class ProductController extends Controller
         // $titles = Title::pluck('title', 'title');
 
         if ($request->prod_id == 101 || $request->prod_id == 104 || $request->prod_id == 107) {
-            $titles = Title::where('type', 'S')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Staff')->orderBy('title')->pluck('title', 'title');
         }
         if ($request->prod_id == 102 || $request->prod_id == 105 || $request->prod_id == 108) {
-            $titles = Title::where('type', 'A')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Associate')->orderBy('title')->pluck('title', 'title');
         }
         if ($request->prod_id == 103 || $request->prod_id == 106 || $request->prod_id == 109) {
-            $titles = Title::where('type', 'P')->orderBy('title')->pluck('title', 'title');
+            $titles = Title::where('type', 'Partner')->orderBy('title')->pluck('title', 'title');
         }
         return view('products.edit', compact('product', 'category', 'request', 'numb', 'numbfax', 'numbcell', 'phone', 'titles', 'HKEmail'));
 
