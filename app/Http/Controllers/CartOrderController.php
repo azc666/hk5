@@ -22,6 +22,8 @@ class CartOrderController extends Controller
     public function show(Request $request, Product $product, Category $category)
         
     {
+        $dt_rush = $request->dt_rush;
+        // dd($dt_rush);
         $cartOrderEmail = '';
         $cartOrder = '';
         $cartOrderProduction = '';
@@ -58,13 +60,21 @@ class CartOrderController extends Controller
 
             <div class="thumbnail">
                 <div class="caption">
-                    <h3 class="move-up">Order Confirmation Receipt
-                        <button class="btn btn-primary hidden-print pull-right" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp; Print the Confirmation</button>
-                    </h3>
+                    
                     <p> <strong>HK' . Auth::user()->loc_num . '&nbsp;&nbsp;&nbsp;' . Auth::user()->loc_name. '&nbsp;&nbsp;&nbsp;' . date("m/d/Y") . '&nbsp;&nbsp;&nbsp; Confirmation: ' . $confirmation . '</strong></p>
-                    <h5 class="move-up">Thank You. Your order has been placed. This confirmation has been emailed to admin: ' . Auth::user()->contact_a . ' ( <a href="mailto:' . Auth::user()->email . '">' . Auth::user()->email . '</a> ).</h5>
-                    <h5 class="move-up">Your order will be shipped to:</h5>
-                    <strong>' . Auth::user()->loc_name . '</strong><br>
+                    <h5 class="move-up">Thank You. Your order has been placed. This confirmation has been emailed to admin: ' . Auth::user()->contact_a . ' ( <a href="mailto:' . Auth::user()->email . '">' . Auth::user()->email . '</a> ).</h5>';
+// dd($rushDate);
+                    if ($request->rush == 'no') {
+                        if ($dt_rush == 'ASAP') {
+                            $cartOrder .= '<h4 class="move-up">This is a <strong>RUSH order, with expedited production, and delivery ' . $dt_rush . '</strong><br><br>It will be shipped to:</h4>';
+                        } else {
+                            $cartOrder .= '<h4 class="move-up">This is a <strong>RUSH order, with an expected delivery date of ' . $dt_rush . '</strong><br><br>It will be shipped to:</h4>';
+                        }
+                    } else {
+                        $cartOrder .= '<br><h5 class="move-up">This order will be shipped to:</h5>';
+                    }
+                     
+                    $cartOrder .= '<strong>' . Auth::user()->loc_name . '</strong><br>
                     Attn: ' . Auth::user()->contact_s . '<br>';
 
                     if (Auth::user()->address2_s) {
@@ -101,6 +111,7 @@ class CartOrderController extends Controller
 
         $cartOrder .= '<tbody>';
 
+        // $orderItems = [];
         foreach (Cart::content() as $item) {
             $prod_layout = $item->options->prod_layout;
             $cartOrder .= '<tr>
@@ -115,19 +126,28 @@ class CartOrderController extends Controller
             <div class="' . $item->options->phone . '">
             <div class="' . $item->options->fax . '">
             <div class="' . $item->options->cell . '">
-            <div class="' . $item->options->specialInstructions . '">
-            <td class="table-image">
-            <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank"><img src="' . url($item->options->proofPath) . '"width=200px" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>
-            </td>
+            <div class="' . $item->options->specialInstructions . '">';
 
-            <td><strong>' . strip_tags($item->name) . '</strong>
+            $cartOrder .= '<td class="table-image">';
+            $cartOrderToEmail = $cartOrder;
+            $cartOrder .= '<a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank"><img src="' . url($item->options->proofPath) . '"width=200px" alt="proof" class="img-responsive cart-image move-right dropshadow"></a>';
+            $cartOrder .= '</td>';
+            $cartOrderToEmail .= '</td>';
+
+            $cartOrderToEmail .= '<td><strong>' . strip_tags($item->name) . '</strong>
+            <br>' . $item->options->name . 
+            '<br>' . $item->options->email .
+            '<br><br>' . nl2br($item->options->prod_description) . '
+            Proof: <a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '" target="_blank">' . $item->options->proofPath . '</a>
+            </td>
+            <td>';
+            $cartOrder .= '<td><strong>' . strip_tags($item->name) . '</strong>
             <br>' . $item->options->name . 
             '<br>' . $item->options->email .
             '<br><br>' . nl2br($item->options->prod_description) . '
             </td>
-
             <td>';
-// dd(Session::get('qty_text'));
+// dd($cartOrderToEmail);
 
             // @php    
             $bcfyi_qty = $item->qty;
@@ -167,14 +187,9 @@ class CartOrderController extends Controller
                 <h5 class="move-up">Special Instructions:</h5>' . $item->options->specialInstructions . '</div>';
             }
                     
-            // $cartOrder .= '</div>
-            // </td>
-            // <td>$' . number_format($item->subtotal, 2) . '</td>
-            // <td class=""></td>
-                       
-            // </tr>';
+            // $orderItems->item;
         }
-
+// dd($orderItems);
         
             
             $cartOrder .= '
@@ -241,7 +256,8 @@ class CartOrderController extends Controller
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
         // $showOrder = $request->confirm;
         $confirmOrder = Order::where('confirmation', Session::get('confirmation'))->first();
-        
+        // Post::where('id', $id)->first()
+  // dd($confirmOrder);      
         // $displayOrder = App\Order::cart->where('confirm', Session::get('confirmation'));
 
         \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
@@ -252,7 +268,7 @@ class CartOrderController extends Controller
 
         Cart::destroy();
 
-        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder')); 
+        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder', 'address_s', 'orderItems', 'item', 'cartOrderEmail', 'cartOrderToEmail')); 
         }  else {
         return redirect('/cart/cartConfirm')->withErrorMessage('Please confirm your data entry before placing your order.');
         }

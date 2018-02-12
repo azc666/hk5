@@ -4,7 +4,9 @@
     <title></title>
 </head>
 <body>
-    {{-- <img src="http://arh4.dev/assets/ARH_Logo.jpg" style="max-width:300px;" alt="ARH Logo" class="img-responsive move-right move-down"><br> --}}
+    {{-- <a href="http://google.com" title="">google</a> --}}
+    {{-- {!! $showMyOrder !!} --}}
+    {{-- {{dd($showMyOrder)}} --}}
     {!! $cartOrder !!}
     <div class="thumbnail">
         <div class="caption">

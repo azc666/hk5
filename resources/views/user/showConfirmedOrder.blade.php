@@ -4,13 +4,15 @@
   Order {{ $showOrder }}
 @endsection
 
-<style>
+{{-- <style>
     @media print {
-        a[href]:after {
-            visibility: hidden;
-        }
+    .noprint {display:none !important;}
+    a:link:after, a:visited:after {  
+      display: none;
+      content: "";    
     }
-</style>
+}
+</style> --}}
 
 @section('content')
 
@@ -26,8 +28,8 @@
 
 @endsection
 
-<script>
+{{-- <script>
     function myFunction() {
         window.print();
     }
-</script>
+</script> --}}

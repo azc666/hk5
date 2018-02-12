@@ -194,9 +194,34 @@
 
                 </tbody>
             </table>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="thumbnail">
+            
+                        {!! Form::open(['route' => 'cartConfirm', 'method' => 'POST', 'class' => 'form-horizontal', 'data-parsley-validate' => '']) !!}
+                             {{-- <div class="form-inline"> --}}
+                            <div class="input-group">
+                            <span class="input-group-addon move-down">
+                            {!! Form::checkbox('rush', 'no', false, ['class' => 'move-right', 'style' => 'margin-left:30px']) !!} &nbsp;&nbsp;<strong>RUSH THIS ORDER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>   
+                                
+                            <span class="input-group-addon", style = "text-align:right">
+                            {!! Form::label('rushDate', 'Please ship this order to arrive by:', ['class' => 'move-down']) !!}
+                            </span>
+                            <span class="input-group-addon">
+          {!! Form::date('rushDate', \Carbon\Carbon::now(), ['class' => 'move-left move-up']) !!}
+      </span>
+    </div>
 
-            <a href=" {{ url('cart/cartConfirm') }} " class="btn btn-success btn-md pull-right" style="margin-right:30px">Proceed to Checkout</a>
-
+        <br><span class="move-right" style="margin-left:50px">If "RUSH" is selected, all items in this cart will be produced and shipped on an ASAP expedited basis.</span><br><span class="move-right" style="margin-left:50px">RUSH Partner Business Cards in this cart will have Digital cards produced and shipped while the engraved version is being produced.<br>&nbsp;</span> 
+                </div>
+            </div>    
+        </div>
+    
+    <input type="submit" class="btn btn-success btn-md pull-right move-up" style="margin-right:30px" value="Proceed to Checkout">
+{!! Form::close() !!}
+</div>
             </div>
         </div> <!-- end container -->   
             

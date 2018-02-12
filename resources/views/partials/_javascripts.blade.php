@@ -87,5 +87,11 @@ $(document).ready(function(){
 {{-- Optional mobile plugin (uncomment the line below to enable): --}}
 <script src="/js/jquery.magnify-mobile.js"></script>
 
+<script>
+    function myFunction() {
+        window.print();
+    }
+</script>
+
 
 
