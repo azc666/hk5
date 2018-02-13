@@ -32,9 +32,10 @@ class CartOrderController extends Controller
         $dt = substr($dt->year, -2) . $dt->month . $dt->day . '-' . $dt->hour . $dt->minute . $dt->second;
         $confirmation = Auth::user()->loc_num . '-' . $dt;
         $order = new Order();
-       
-       if ($request->confirm) {
 
+       if ($request->confirm == 'on') {
+// dd($request->confirm);// echo 'hola';
+       // if (1+1==21) {
         $cartOrderEmail = '';
         $cartOrderEmail .= ' <!DOCTYPE html>
         <html>
@@ -270,7 +271,9 @@ class CartOrderController extends Controller
 
         return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder', 'address_s', 'orderItems', 'item', 'cartOrderEmail', 'cartOrderToEmail')); 
         }  else {
-        return redirect('/cart/cartConfirm')->withErrorMessage('Please confirm your data entry before placing your order.');
+// dd('hola');
+        // return view('/cart/cartConfirm')->withErrorMessage('Please confirm your data entry before placing your order.');
+            return redirect('/cart/cartConfirm')->withErrorMessage('Please affirm that you have reviewed your proofs before placing your order.');
         }
     }
 }

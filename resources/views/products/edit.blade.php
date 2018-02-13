@@ -103,7 +103,12 @@
     <div class="form-group">
       {!! Form::label('email', 'Email:', ['class' => 'move-down col-sm-2 control-label']) !!}
       <div class="col-sm-10 control-text move-down">
-        {!! Form::email('email', Session::get('email'), ['class' => 'form-control', 'placeholder' => 'No Data']) !!}
+        {!! Form::email('email', Session::get('email'), [
+          'class'                         => 'form-control', 
+          'placeholder'                   => 'No Data',
+          'data-parsley-required'         => 'true',
+          'data-parsley-required-message' => 'this field is required'
+        ]) !!}
       </div>
     </div>
 

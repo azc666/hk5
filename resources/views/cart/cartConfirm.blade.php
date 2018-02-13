@@ -173,13 +173,13 @@ Order Checkout
                     {{-- <img style='border:1px solid #000000' src="assets/franchise/Photo Sales Rep BC - 60 Yr. Logo.jpg" class="img-responsive" alt="..."> --}}
                     <div class="caption">
 
-                        @if ($request->rush != 'no')
+                        @if (Session::get('rush') != 'no')
                             <h4 class='move-up'>This order will be shipped to:</h4>                           
                         @else
-                            @if ($dt_rush == "ASAP")
+                            @if (Session::get('dt_rush') == "ASAP")
                                 <h4 class='move-up'>This is a <strong>RUSH order, with expedited production, and delivery ASAP</strong><br><br>It will be shipped to:</h4>
                             @else
-                                <h4 class='move-up'>This is a <strong>RUSH order, with an expected delivery date of {{ $dt_rush }}</strong><br><br>It will be shipped to:</h4>
+                                <h4 class='move-up'>This is a <strong>RUSH order, with an expected delivery date of {{ Session::get('dt_rush') }}</strong><br><br>It will be shipped to:</h4>
                             @endif
                         @endif
 
@@ -206,8 +206,8 @@ Order Checkout
                                     <div class="col-lg-10 col-md-10 col-sm-10">
                                         <div class="thumbnail">
                                             <p class="move-down">
-                                                <input type="hidden" name="rush" value="{{ $rush }}">
-                                                <input type="hidden" name="dt_rush" value="{{ $dt_rush }}"> 
+                                                <input type="hidden" name="rush" value="{{ Session::get('rush') }}">
+                                                <input type="hidden" name="dt_rush" value="{{ Session::get('dt_rush') }}"> 
                                                 <input type="checkbox" name="confirm" >&nbsp;&nbsp;I have reviewed the Proof(s) of my cart item(s) and confirm that it is correct. Unless I have specifically instructed to the contrary, I understand that production will commence upon submission, and will be shipped without delay.  
                                             </p>
                                         </div>

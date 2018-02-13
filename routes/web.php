@@ -48,6 +48,7 @@ Route::get('qtyupdate', 'ShoppingcartController@qtyupdate')->name('qtyupdate');
 Route::patch('editcart', 'EditController@update')->name('editcart');
 Route::post('cartorder', 'CartOrderController@show')->name('cartorder');
 Route::post('cartConfirm', 'CartConfirmOrderController@showConfirmOrder')->name('cartConfirm');
+// Route::get('cartConfirm', 'CartConfirmOrderController@showConfirmOrder')->name('cartConfirm');
 
 Route::get('myorders', 'MyOrdersController@index')->name('myorders');
 // Route::get('user.myordersdata', 'BookingController@myordersData')->name('myorders.data');

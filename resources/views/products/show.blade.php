@@ -156,8 +156,10 @@
       <div class="col-sm-10 control-text move-down">
 
           {!! Form::email('email', null, [
-            'class' => 'form-control',
-            'placeholder' => 'Use lowercase letters and a valid email address',
+            'class'                         => 'form-control',
+            'data-parsley-required'         => 'true',
+            'data-parsley-required-message' => 'this field is required',
+            'placeholder'                   => 'Use lowercase letters and a valid email address',
             ]) !!}
         {{-- @endif --}}
       </div>
