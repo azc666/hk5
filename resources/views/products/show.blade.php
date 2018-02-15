@@ -21,7 +21,13 @@
       @if (file_exists('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf'))
         <a href="{{ url('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf') }}" target="_blank"><img src="{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg') }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg')}}"></a>
 
-        <h5><small><i>&nbsp;&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Proof&nbsp;&nbsp;</i></small></h5>
+        <h5><i>&nbsp;&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Proof&nbsp;&nbsp;</i></h5>
+
+<br>
+{{-- <img src="{{ url('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf') }}" /> --}}
+{{-- <button onclick="printImg('{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg') }}')">Print</button> --}}
+<button class="btn btn-primary move-right hidden-print" onclick="printImg('{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg') }}')"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;Print the Proof&nbsp;&nbsp;&nbsp;</button>
+
       @else
           <div>
             
@@ -55,21 +61,8 @@
               <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
            @endif 
 
-{{-- 
 
-
-            @if (Auth::user()->username == 'HK32')
-              <a href="{{ url(substr_replace($imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $imagePath }}" class="img-responsive dropshadow" alt="..."></a>
-           @elseif (Auth::user()->username == 'HK34')  
-
-           @else
-              <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>
-           @endif  --}}
-
-            {{-- <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" target="_blank"><img src="{{ $product->imagePath }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{$product->imagePath}}"></a> --}}
-
-
-            <h5><small><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></small></h5>
+            <h5><i>&nbsp;&nbsp;{!! strip_tags($product->prod_name) !!} Template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></h5>
           </div>
         @endif
 
@@ -423,7 +416,13 @@
         magnifiedHeight: 1000px,
       });
     });
-
+</script>
+<script>
+function printImg(url) {
+  var win = window.open('');
+  win.document.write('<img style="width:600px;" src="' + url + '" onload="window.print();window.close()" />');
+  win.focus();
+}
 </script>
 @endsection
 

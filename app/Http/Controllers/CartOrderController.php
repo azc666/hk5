@@ -69,7 +69,7 @@ class CartOrderController extends Controller
                         if ($dt_rush == 'ASAP') {
                             $cartOrder .= '<h4 class="move-up">This is a <strong>RUSH order, with expedited production, and delivery ' . $dt_rush . '</strong><br><br>It will be shipped to:</h4>';
                         } else {
-                            $cartOrder .= '<h4 class="move-up">This is a <strong>RUSH order, with an expected delivery date of ' . $dt_rush . '</strong><br><br>It will be shipped to:</h4>';
+                            $cartOrder .= '<h4 class="move-up">This is a <strong>RUSH order, with an expected delivery date by ' . $dt_rush . '</strong><br><br>It will be shipped to:</h4>';
                         }
                     } else {
                         $cartOrder .= '<br><h5 class="move-up">This order will be shipped to:</h5>';

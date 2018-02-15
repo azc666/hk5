@@ -20,9 +20,11 @@
 
       <a href="{{ url('assets/mpdf/temp/' . Auth::user()->username . '/showData.pdf') }}" target="_blank"><img src="{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg') }}" class="zoom img-responsive dropshadow" width="100%" alt="..." data-magnify-src="{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg')}}"></a>
 
-      <h5><small><i>&nbsp;&nbsp;&nbsp;{!! strip_tags($request->prod_name) !!} Proof&nbsp;&nbsp;</i></small></h5>
-
+      <h5><i>&nbsp;&nbsp;&nbsp;{!! strip_tags($request->prod_name) !!} Proof&nbsp;&nbsp;</i></h5>
+      
       <br>
+
+      <button class="btn btn-primary move-right hidden-print" onclick="printImg('{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg') }}')"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;Print the Proof&nbsp;&nbsp;&nbsp;</button>
 
     </div>
 
@@ -363,7 +365,13 @@
         magnifiedHeight: 1000px,
       });
     });
-
+</script>
+<script>
+function printImg(url) {
+  var win = window.open('');
+  win.document.write('<img style="width:600px;" src="' + url + '" onload="window.print();window.close()" />');
+  win.focus();
+}
 </script>
 @endsection
 

@@ -179,7 +179,7 @@ Order Checkout
                             @if (Session::get('dt_rush') == "ASAP")
                                 <h4 class='move-up'>This is a <strong>RUSH order, with expedited production, and delivery ASAP</strong><br><br>It will be shipped to:</h4>
                             @else
-                                <h4 class='move-up'>This is a <strong>RUSH order, with an expected delivery date of {{ Session::get('dt_rush') }}</strong><br><br>It will be shipped to:</h4>
+                                <h4 class='move-up'>This is a <strong>RUSH order, with an expected delivery date by {{ Session::get('dt_rush') }}</strong><br><br>It will be shipped to:</h4>
                             @endif
                         @endif
 
