@@ -273,7 +273,7 @@ class CartOrderController extends Controller
         }  else {
 // dd('hola');
         // return view('/cart/cartConfirm')->withErrorMessage('Please confirm your data entry before placing your order.');
-            return redirect('/cart/cartConfirm')->withErrorMessage('Please affirm that you have reviewed your proofs before placing your order.');
+            return redirect('/cart/cartConfirm')->withErrorMessage('Please affirm that you have reviewed your proof(s) before placing your order.');
         }
     }
 }

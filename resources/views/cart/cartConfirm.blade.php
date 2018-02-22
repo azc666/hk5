@@ -23,13 +23,15 @@ Order Checkout
     </h1>
 
     @if (session()->has('success_message'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         {{ session()->get('success_message') }}
     </div>
     @endif
 
     @if (session()->has('error_message'))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         {{ session()->get('error_message') }}
     </div>
     @endif

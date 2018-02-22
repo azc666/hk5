@@ -3,38 +3,41 @@
 @extends('layouts/main')
 
 @section('title')
-   Titles Maintenance
+   Titles Listing
 @endsection
 
 @section('content')
-   
-    {{-- <div class="container">
-        <div class="row">
-            @include('partials/_navbar')
-        </div>
-    </div> --}}
 
 <div class="container">
   <div class="row">
-    <h2 class="pull-left move-up"> Titles Maintenance </h2>
-    {{-- <div class="form-group row add"> --}}
-    {{-- <div class="col-md-8"> --}}
-        {{-- <input type="text" class="form-control" id="name" name="name" --}}
-            {{-- placeholder="Enter some name" required> --}}
-        {{-- <p class="error text-center alert alert-danger hidden"></p> --}}
-    {{-- </div> --}}
-    {{--  --}}
-        
-    {{-- </div> --}}
-{{-- </div> --}}
-<button class="btn btn-primary move-up" style="margin-left: 630px" type="submit" id="add">
-      Add a Title &nbsp;<span class="glyphicon glyphicon-plus"></span> 
-    </button>&nbsp;&nbsp;&nbsp;
-    {{-- <div class="col-md-7"> --}}
-      <a href="{{ url("/") }}" class="btn btn-primary pull-right move-up" role="button">&nbsp;&nbsp;&nbsp;Return Home&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span></a>
-  {{-- </div> --}}
-    
-    
+
+ @if (session('status'))
+    <div class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{ session('status') }}
+    </div>
+@endif     
+    <h2 class="pull-left move-up"> Titles Listing </h2>
+
+<div class="side-by-side">
+<a href="{{ url("/") }}" class="btn btn-primary pull-right move-up" role="button">&nbsp;&nbsp;&nbsp;Return Home&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span></a>
+
+{{ Form::open(['route' => 'createTitle', 'method' => 'post']) }}
+              {{-- {{ Form::hidden('title_id', $title->id) }}
+              {{ Form::hidden('title_type', $title->type) }}
+              {{ Form::hidden('title_title', $title->title) }} --}}
+             <button class="btn btn-primary move-up pull-right" style="margin-right:10px;" type="submit">Add a Title &nbsp;
+  <span class="glyphicon glyphicon-plus"></span> 
+</button>
+
+              
+{!! Form::close() !!}
+
+
+{{-- <button class="btn btn-primary move-up pull-right" style="margin-right:10px;" type="submit" id="add">Add a Title &nbsp;
+  <span class="glyphicon glyphicon-plus"></span> 
+</button> --}}
+ </div>
   </div>
 {{-- </div> --}}
      
@@ -49,10 +52,11 @@
 
     <thead>
       <tr>
-        {{-- <th>ID</th> --}}
-        <th>Type</th>
-        <th>Title</th>
-        <th class="text-right" width="20%">Action</th>
+        <th>Title ID</th>
+        <th>Title Type</th>
+        <th>Title Description</th>
+        <th>Updated</th>
+        <th style="text-align: center" width="20%">Actions</th>
       </tr>
     </thead>
 
@@ -64,32 +68,42 @@
         @foreach ($titles as $title)
           <tr>
            
-           {{-- <td>{{ $title->id }}</td> --}}
+           <td>{{ $title->id }}</td>
            <td>{{ $title->type }}</td>
            <td>{{ $title->title }}</td>
-           {{-- <td>{{ 'test action' }}</td> --}}
+           {{-- <td>{{ $title->updated_at }}</td> --}}
+           <td>{{ Carbon\Carbon::parse($title->updated_at)->format('m/d/Y') }}
             <td>
-              <span class="pull-right">
-              <button class="edit-modal btn btn-info" data-info="{{$title->id}}, {{$title->type}}, {{$title->title}}">
-              <span class="glyphicon glyphicon-edit"></span> Edit
+            {{-- @php
+          dd('hola');
+        @endphp --}}  
+
+              {{ Form::open(['route' => 'deleteTitle', 'method' => 'delete', 'onsubmit' => 'return ConfirmDelete()']) }}
+              {{ Form::hidden('title_id', $title->id) }}
+              {{ Form::hidden('title_type', $title->type) }}
+              {{ Form::hidden('title_title', $title->title) }}
+              <button type="submit" class="btn btn-danger pull-right">
+                <span class="glyphicon glyphicon-trash"></span> Delete &nbsp;
               </button>
-              <button class="delete-modal btn btn-danger" style="margin-left:10px" data-info="{{$title->id}}, {{$title->type}}, {{$title->title}}">
-              <span class="glyphicon glyphicon-trash"></span> Delete
+              {{-- {{ Form::submit('Delete', ['class' => 'btn btn-danger pull-right']) }} --}}
+              {!! Form::close() !!}
+
+              {{ Form::open(['route' => 'editTitle', 'method' => 'post']) }}
+              {{ Form::hidden('title_id', $title->id) }}
+              {{ Form::hidden('title_type', $title->type) }}
+              {{ Form::hidden('title_title', $title->title) }}
+              <button type="submit" class="btn btn-info">
+                <span class="glyphicon glyphicon-edit"></span> Edit &nbsp;
               </button>
-            </span>
+              {{-- {{ Form::submit('Edit', ['class' => 'btn btn-info pull-right', 'style' => 'margin-right:10px']) }} --}}
+              {!! Form::close() !!}
+              
             </td>
           </tr>
         @endforeach
+
     </tbody>
     </table>
 
-    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --}}
+@endsection
 
-{{-- </div> --}}
-    @endsection
-
-{{-- </div> --}}
-   {{-- @include('partials/_footer')
-</div>
-</body>
-</html> --}}

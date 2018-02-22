@@ -56,6 +56,17 @@ Route::get('myorders', 'MyOrdersController@index')->name('myorders');
 Route::post('showConfirmedOrder', 'MyOrdersController@show')->name('showConfirmedOrder');
 
 Route::get ('titles', 'MyTitlesController@index')->name('titles');
+Route::patch ('showEditTitle', 'MyTitlesController@showEditTitle')->name('showEditTitle');
+Route::post ('editTitle', 'MyTitlesController@editTitle')->name('editTitle');
+Route::delete('deleteTitle', 'MyTitlesController@deleteTitle')->name('deleteTitle');
+Route::post('createTitle','MyTitlesController@createTitle')->name('createTitle');
+Route::post('storeTitle','MyTitlesController@storeTitle')->name('storeTitle');
+
+Route::post ( '/deleteItem', function (Request $request) {
+    Title::find ( $request->id )->delete ();
+    // dd($request->id);
+    return response ()->json ();
+} );
 
 Route::get('carousel', function () {
     return view('carousel');

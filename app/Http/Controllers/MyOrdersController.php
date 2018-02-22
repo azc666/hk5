@@ -41,7 +41,7 @@ class MyOrdersController extends Controller
     {
         $showOrder = $request->confirm;
         $confirmEmail = Order::where('confirmation', $showOrder )->first();
-        
+        // dd($showOrder);
         return view('user.showConfirmedOrder', compact('showOrder', 'orders', 'confirmEmail', 'ordersList'));
     }
 

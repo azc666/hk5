@@ -93,5 +93,14 @@ $(document).ready(function(){
     }
 </script>
 
-
+<script>
+  function ConfirmDelete()
+  {
+  var x = confirm("Are you sure you want to delete this title?");
+  if (x)
+    return true;
+  else
+    return false;
+  }
+</script>
 
