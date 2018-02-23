@@ -6,6 +6,8 @@ use App\Title;
 
 Route::get('/', 'UserController@show')->name('home');
 
+Route::get('browsershot', 'BrowserShotController@index')->name('BrowserShot');
+
 Route::get('testbranch', function (User $user, Order $orders) {
     $users = User::all();
     $orders = Auth::user()->orders;

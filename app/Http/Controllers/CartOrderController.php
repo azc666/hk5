@@ -12,7 +12,8 @@ use App\User;
 use App\Classes\LayoutHelpersClass;
 use File;
 use Carbon\Carbon;
-// use App\Mail;
+use Spatie\Browsershot\Browsershot;
+// use Manipulations;
 use App\Mail\OrderConfirmEmail;
 use App\Mail\OrderProductionEmail;
 use Session;
@@ -257,9 +258,8 @@ class CartOrderController extends Controller
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
         // $showOrder = $request->confirm;
         $confirmOrder = Order::where('confirmation', Session::get('confirmation'))->first();
-        // Post::where('id', $id)->first()
-  // dd($confirmOrder);      
-        // $displayOrder = App\Order::cart->where('confirm', Session::get('confirmation'));
+       
+        Browsershot::html($cartOrderEmail)->fullPage()->save('assets/confPic.png');
 
         \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
        
@@ -271,8 +271,6 @@ class CartOrderController extends Controller
 
         return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder', 'address_s', 'orderItems', 'item', 'cartOrderEmail', 'cartOrderToEmail')); 
         }  else {
-// dd('hola');
-        // return view('/cart/cartConfirm')->withErrorMessage('Please confirm your data entry before placing your order.');
             return redirect('/cart/cartConfirm')->withErrorMessage('Please affirm that you have reviewed your proof(s) before placing your order.');
         }
     }
