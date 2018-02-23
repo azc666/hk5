@@ -8,8 +8,8 @@
     {{-- {!! $showMyOrder !!} --}}
     {{-- {{dd($showMyOrder)}} --}}
     {{-- {!! $cartOrder !!} --}}
-    <img src="{{ url('https://hkorderportal.com/assets/confPic.png') }}" alt="">
-    {{-- <img src="{{ url('assets/confPic.png') }}" alt=""> --}}
+    {{-- <img src="{{ url('https://hkorderportal.com/assets/confPic.png') }}" alt=""> --}}
+    <img src="{{ url('assets/confPic.png') }}" alt="">
     <div class="thumbnail">
         <div class="caption">
             <h3 class="move-up">Questions about this order should be directed to:</h3>
