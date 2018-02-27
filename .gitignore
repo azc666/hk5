@@ -9,3 +9,4 @@ Homestead.yaml
 .env
 /public/assets/mpdf/temp
 /public/assets/proofs
+/public/assets/confPic.png
