@@ -102,10 +102,12 @@ class ProductController extends Controller
         // $categories = App\Category::all();
 
         $HKName = '';
-        if (Auth::user()->loc_num == 32) {
+        if (Auth::user()->loc_num == 35) {
             $HKName = 'Holland & Knight México, SC';
         } elseif (Auth::user()->loc_num == 34) {           
             $HKName = 'Holland & Knight Columbia SAS';
+        } elseif (Auth::user()->loc_num == 46) {           
+            $HKName = 'Holland & Knight (UK) LLP';
         } else {
             $HKName = 'Holland & Knight LLP';
         }
@@ -264,10 +266,12 @@ class ProductController extends Controller
         $request->merge(['cell' => Phone::phoneNumber($numbcell)]); 
 
         $HKName = '';
-        if (Auth::user()->loc_num == 32) {
+        if (Auth::user()->loc_num == 35) {
             $HKName = 'Holland & Knight México, SC';
         } elseif (Auth::user()->loc_num == 34) {           
             $HKName = 'Holland & Knight Columbia SAS';
+        } elseif (Auth::user()->loc_num == 46) {           
+            $HKName = 'Holland & Knight (UK) LLP';
         } else {
             $HKName = 'Holland & Knight LLP';
         }

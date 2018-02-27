@@ -216,7 +216,7 @@
       </span>
     </div>
 
-        <br><span class="move-right" style="margin-left:50px">If "RUSH" is selected, all items in this cart will be produced and shipped on an ASAP expedited basis.</span><br><span class="move-right" style="margin-left:50px">RUSH Partner Business Cards in this cart will have Digital cards produced and shipped while the engraved version is being produced.<br>&nbsp;</span> 
+        <br><span class="move-right" style="margin-left:50px">If "RUSH" is selected, all items in this cart will be produced and shipped on an ASAP expedited basis irrespective of date requested.</span><br><span class="move-right" style="margin-left:50px">RUSH Partner Business Cards in this cart will have Digital cards produced and shipped while the engraved version is being produced.<br>&nbsp;</span> 
                 </div>
             </div>    
         </div>

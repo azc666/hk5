@@ -233,18 +233,18 @@ class CartOrderController extends Controller
                     </tr>
                 </thead>';
             $cartOrderProduction .= 
-            '<tr><td>Location </td><td>' . Auth::User()->loc_name . '</td></tr>
+            '<tr><td>Franchise </td><td>' . Auth::User()->loc_name . '</td></tr>
             <tr><td>Order_Type_o </td><td>' . strip_tags($item_prod->name) . '</tr>
             <tr><td>Quantity_o </td><td>' . $item_prod->qty . '</tr>
             <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
             <tr><td>Title_o </td><td>' . $item_prod->options->title . '</tr>
             <tr><td>Email_o </td><td>' . $item_prod->options->email . '</tr>
-            <tr><td>Phone_o </td><td>' . $item_prod->options->phone . '</tr>
+            <tr><td>Phone_o </td><td>' . strip_tags($item_prod->options->phone) . '</tr>
             <tr><td>Fax_o </td><td>' . $item_prod->options->fax . '</tr>
             <tr><td>Cell_o </td><td>' . $item_prod->options->cell . '</tr>
             <tr><td>Address1_o </td><td>' . $item_prod->options->address1 . '</tr>
             <tr><td>Address2_o </td><td>' . $item_prod->options->address2 . '</tr>
-            <tr><td>City_o </td><td>' . $item_prod->options->city. '</tr>
+            <tr><td>City_o </td><td>' . $item_prod->options->city . '</tr>
             <tr><td>State_o </td><td>' . $item_prod->options->state . '</tr>
             <tr><td>Zip_o </td><td>' . $item_prod->options->zip . '</tr>
             <tr><td>SP_Instructions_o </td><td>' . $item_prod->options->specialInstructions . '</tr>
@@ -254,7 +254,7 @@ class CartOrderController extends Controller
             <tr><td>Proof Image </td><td><a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '">' . substr_replace($item->options->proofPath, 'pdf', -3) . '</a></tr></tbody>';
             $cartOrderProduction .= '</table><br>';
             }
-
+// dd($item_prod->options->phone);
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
         // $showOrder = $request->confirm;
         $confirmOrder = Order::where('confirmation', Session::get('confirmation'))->first();
@@ -265,7 +265,8 @@ class CartOrderController extends Controller
        
         // \Mail::to('support@arhorderportal.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
-        \Mail::to('tmann999@gmail.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
+        \Mail::to('austin@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
+        // \Mail::to('tmann999@gmail.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
         Cart::destroy();
 

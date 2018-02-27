@@ -38,7 +38,7 @@
           <br><br>
          <div class="col-sm-6 col-md-6">     
             @php
-            if (Auth::user()->username == 'HK32') {
+            if (Auth::user()->username == 'HK35') {
               $product->id == 103 ? $imagePath  = '/assets/partner/mexico_pbc.jpg' : '';
               $product->id == 109 ? $imagePath  = '/assets/partner/mexico_pfyi.jpg' : '';
               $product->id == 106 ? $imagePath  = '/assets/partner/mexico_pbcfyi.jpg' : '';
@@ -58,10 +58,20 @@
               $product->id == 101 ? $imagePath  = '/assets/staff/bogota_sbc.jpg' : '';
               $product->id == 107 ? $imagePath  = '/assets/staff/bogota_sfyi.jpg' : '';
               $product->id == 104 ? $imagePath  = '/assets/staff/bogota_sbcfyi.jpg' : '';
+            } elseif (Auth::user()->username == 'HK46') {
+              $product->id == 103 ? $imagePath  = '/assets/partner/london_pbc.jpg' : '';
+              $product->id == 109 ? $imagePath  = '/assets/partner/london_pfyi.jpg' : '';
+              $product->id == 106 ? $imagePath  = '/assets/partner/london_pbcfyi.jpg' : '';
+              $product->id == 102 ? $imagePath  = '/assets/associate/london_abc.jpg' : '';
+              $product->id == 108 ? $imagePath  = '/assets/associate/london_afyi.jpg' : '';
+              $product->id == 105 ? $imagePath  = '/assets/associate/london_abcfyi.jpg' : '';
+              $product->id == 101 ? $imagePath  = '/assets/staff/london_sbc.jpg' : '';
+              $product->id == 107 ? $imagePath  = '/assets/staff/london_sfyi.jpg' : '';
+              $product->id == 104 ? $imagePath  = '/assets/staff/london_sbcfyi.jpg' : '';
             }
             @endphp  
 
-            @if (Auth::user()->username == 'HK32' || Auth::user()->username == 'HK34')
+            @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
               <a href="{{ url(substr_replace($imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $imagePath }}" class="img-responsive dropshadow" alt="..."></a>
            @else
               <a href="{{ url(substr_replace($product->imagePath, 'pdf', -3)) }}" title="Open PDF of Template in new window" target="_blank"><img src="{{ $product->imagePath }}" class="img-responsive dropshadow" alt="..."></a>

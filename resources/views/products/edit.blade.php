@@ -167,7 +167,7 @@
             ]) !!}
 
           {{-- México --}}
-          @elseif (Auth::user()->username == 'HK32')
+          @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
             {!! Form::text('phone', Session::get('phone'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xx.xxxx.xxxx',
@@ -210,7 +210,7 @@
             ]) !!}
           
           {{-- México --}}
-          @elseif (Auth::user()->username == 'HK32')
+          @elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46')
             {!! Form::text('fax', Session::get('fax'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xx.xxxx.xxxx',
@@ -257,7 +257,7 @@
             ]) !!}
           
           {{-- México --}}
-          @elseif (Auth::user()->username == 'HK32')
+          @elseif (Auth::user()->username == 'HK35')
             {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xx.xxxx.xxxx',
@@ -267,6 +267,19 @@
               'data-parsley-maxlength-message'=>'Cell numbers should have exactly 12 digits.',
               'data-parsley-minlength'        =>'12',
               'data-parsley-minlength-message'=>'Cell numbers should have exactly 12 digits.',
+            ]) !!}
+
+          {{-- UK --}}
+          @elseif (Auth::user()->username == 'HK46')
+            {!! Form::text('cell', null, [
+              'class'                         => 'form-control', 
+              'placeholder'                   => 'xx.xxxxx.xxxxxx',
+              'data-parsley-trigger'          => 'input',
+              'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
+              'data-parsley-maxlength'        =>'16',
+              'data-parsley-maxlength-message'=>'Cell numbers should have no more than 14 digits.',
+              'data-parsley-minlength'        =>'13',
+              'data-parsley-minlength-message'=>'Cell numbers should have no less than 13 digits.',
             ]) !!}
             
           @else

@@ -40,10 +40,12 @@
         @if (Auth::check())
             <div class="col-md-6">
                 <div class="thumbnail">
-                    @if (Auth::user()->username == 'HK32')
+                    @if (Auth::user()->username == 'HK35')
                         <img src="assets/partner/mexico_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
                     @elseif (Auth::user()->username == 'HK34')
                         <img src="assets/partner/bogota_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
+                    @elseif (Auth::user()->username == 'HK34')
+                        <img src="assets/partner/london_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
                     @else 
                         <img src="assets/partner/pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
                     @endif    
@@ -60,10 +62,12 @@
         @if (Auth::check())
             <div class="col-md-6">
                 <div class="thumbnail">
-                    @if (Auth::user()->username == 'HK32')
+                    @if (Auth::user()->username == 'HK35')
                         <img src="assets/associate/mexico_abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
                     @elseif (Auth::user()->username == 'HK34')
                         <img src="assets/associate/bogota_abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
+                    @elseif (Auth::user()->username == 'HK46')
+                        <img src="assets/associate/london_abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
                     @else  
                       <img src="assets/associate/abcfyi_display.jpg" class="img-responsive" alt="Associate Stationery Items">
                     @endif  
@@ -80,9 +84,11 @@
         @if (Auth::check())
             <div class="col-md-6">
                 <div class="thumbnail">
-                    @if (Auth::user()->username == 'HK32')
+                    @if (Auth::user()->username == 'HK35')
                         <img src="assets/staff/mexico_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
                     @elseif (Auth::user()->username == 'HK34')
+                        <img src="assets/staff/bogota_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+                    @elseif (Auth::user()->username == 'HK46')
                         <img src="assets/staff/bogota_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
                     @else
                         <img src="assets/staff/sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
