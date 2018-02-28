@@ -25,11 +25,11 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support<span class="caret"></span></a>       
     <ul class="dropdown-menu" role="menu">
-      <li><a href="{{ route('showContactus') }}">Contact Us</a></li>
+      <li><a href="{{ route('showContactus') }}"><i class="fa fa-info-circle" aria-hidden="true" style="font-size:16px"></i>&nbsp;&nbsp;Contact Us</a></li>
       {{-- <li><a href="#">Another action</a></li> --}}
       {{-- <li><a href="#">Something else here</a></li> --}}
       <li class="divider"></li>
-      <li><a href="#">Portal Documentation (Coming Soon!)</a></li>
+      <li><a href="{{ asset('/assets/HK Order Portal User Manual 2018.pdf') }}" target="_blank"><i class="fa fa-book" aria-hidden="true" style="font-size:16px"></i>&nbsp;&nbsp;Order Portal Documentation</a></li>
     </ul>                
   </li>
 @endif
