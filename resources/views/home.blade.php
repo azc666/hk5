@@ -44,7 +44,7 @@
                         <img src="assets/partner/mexico_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
                     @elseif (Auth::user()->username == 'HK34')
                         <img src="assets/partner/bogota_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
-                    @elseif (Auth::user()->username == 'HK34')
+                    @elseif (Auth::user()->username == 'HK46')
                         <img src="assets/partner/london_pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
                     @else 
                         <img src="assets/partner/pbcfyi_display.jpg" class="img-responsive" alt="Partner Stationery Items">
@@ -89,7 +89,7 @@
                     @elseif (Auth::user()->username == 'HK34')
                         <img src="assets/staff/bogota_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
                     @elseif (Auth::user()->username == 'HK46')
-                        <img src="assets/staff/bogota_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
+                        <img src="assets/staff/london_sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
                     @else
                         <img src="assets/staff/sbcfyi_display.jpg" class="img-responsive" alt="Staff Stationery Items">
                     @endif
