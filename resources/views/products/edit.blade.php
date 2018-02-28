@@ -271,12 +271,12 @@
 
           {{-- UK --}}
           @elseif (Auth::user()->username == 'HK46')
-            {!! Form::text('cell', null, [
+            {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xxxxx.xxxxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
-              'data-parsley-maxlength'        =>'16',
+              'data-parsley-maxlength'        =>'17',
               'data-parsley-maxlength-message'=>'Cell numbers should have no more than 14 digits.',
               'data-parsley-minlength'        =>'13',
               'data-parsley-minlength-message'=>'Cell numbers should have no less than 13 digits.',

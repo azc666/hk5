@@ -118,13 +118,24 @@
                     <h4> {{ Auth::user()->loc_name }} </h4>
                     <div class="inner">
                         {{ Auth::user()->username }}<br>
-                        @if (Auth::user()->loc_address2)
-                            {{ Auth::user()->loc_address1 }}<br>
-                            {{ Auth::user()->loc_address2 }}<br>
-                            {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                        @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
+                            @if (Auth::user()->loc_address2)
+                                {{ Auth::user()->loc_address1 }}<br>
+                                {{ Auth::user()->loc_address2 }}<br>
+                                {{ Auth::user()->loc_city }} {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @else
+                                 {{ Auth::user()->loc_address1 }}<br>
+                                 {{ Auth::user()->loc_city }} {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @endif
                         @else
-                             {{ Auth::user()->loc_address1 }}<br>
-                             {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @if (Auth::user()->loc_address2)
+                                {{ Auth::user()->loc_address1 }}<br>
+                                {{ Auth::user()->loc_address2 }}<br>
+                                {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @else
+                                 {{ Auth::user()->loc_address1 }}<br>
+                                 {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @endif
                         @endif
                     </div>
                 </div> 
@@ -162,13 +173,24 @@
                     <h4> Shipping Location </h4>
                     <div class="inner">
                         {{ Auth::user()->loc_name }} <br>  
-                        @if (Auth::user()->address2_s)
-                            {{ Auth::user()->address1_s }}<br>
-                            {{ Auth::user()->address2_s }}<br>
-                            {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br>
+                        @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
+                            @if (Auth::user()->loc_address2)
+                                {{ Auth::user()->loc_address1 }}<br>
+                                {{ Auth::user()->loc_address2 }}<br>
+                                {{ Auth::user()->loc_city }} {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @else
+                                 {{ Auth::user()->loc_address1 }}<br>
+                                 {{ Auth::user()->loc_city }} {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @endif
                         @else
-                             {{ Auth::user()->address1_s }}<br>
-                             {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br>
+                            @if (Auth::user()->loc_address2)
+                                {{ Auth::user()->loc_address1 }}<br>
+                                {{ Auth::user()->loc_address2 }}<br>
+                                {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @else
+                                 {{ Auth::user()->loc_address1 }}<br>
+                                 {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @endif
                         @endif
                     </div>
                 </div>         
