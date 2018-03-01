@@ -245,7 +245,7 @@
 
           {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
-            {!! Form::text('cell', Session::get('cell'), [
+            {!! Form::text('cell', $numbcell, [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xxx.xxx.xxxx',
               'data-parsley-trigger'          => 'input',
@@ -273,13 +273,13 @@
           @elseif (Auth::user()->username == 'HK46')
             {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
-              'placeholder'                   => 'xx.xxxxx.xxxxxx',
+              'placeholder'                   => 'xx.xxxx.xxxxxx',
               'data-parsley-trigger'          => 'input',
               'data-parsley-pattern'          => '^[\d\+\-\.\(\)\/\s]*$',
               'data-parsley-maxlength'        =>'17',
               'data-parsley-maxlength-message'=>'Cell numbers should have no more than 14 digits.',
-              'data-parsley-minlength'        =>'13',
-              'data-parsley-minlength-message'=>'Cell numbers should have no less than 13 digits.',
+              'data-parsley-minlength'        =>'12',
+              'data-parsley-minlength-message'=>'Cell numbers should have no less than 12 digits.',
             ]) !!}
             
           @else

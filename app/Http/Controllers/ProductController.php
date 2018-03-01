@@ -214,7 +214,7 @@ class ProductController extends Controller
 
         Session::put('prod_description', strip_tags($request->prod_description));
         Session::put('address2', $request->address2);
-        // Session::put('qty', $request->qty);
+        // Session::put('cell', Phone::cellNumber($numbcell));
 
         // $titles = Title::pluck('id', 'type', 'title');
         return back()->withInput();
@@ -236,7 +236,7 @@ class ProductController extends Controller
         $numb = $request->phone;
         $numbfax = $request->fax;
         $numbcell = $request->cell;
-
+// dd($numbcell);
 
         $phone = '';
         if (($request->phone) && ($request->fax || $request->cell)) {

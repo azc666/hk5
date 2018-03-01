@@ -193,6 +193,7 @@
 {!! Session::put('phone', $request->phone) !!}
 {!! Session::put('fax', $request->fax) !!}
 {!! Session::put('cell', $request->cell) !!}
+{{-- {!! Session::put('cell', $numbcell) !!} --}}
 {!! Session::put('specialInstructions', $request->specialInstructions) !!}
 {!! Session::put('prod_name', $request->prod_name) !!}
 {!! Session::put('prod_description', $request->prod_description) !!}

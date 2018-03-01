@@ -16,7 +16,7 @@ class Phone
             if (Auth::user()->username == 'HK34') {  // Bogotá
                 $numb = '+' . substr($numb, 0, 2) . '.' . substr($numb, 2, 1) . '.' . substr($numb, 3, 3) . '.' . substr($numb, 6, 4);
             } elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46') { // México UK
-                $numb = '+' . substr($numb, 0, 2) . '.' . substr($numb, 2, 2) . '.' . substr($numb, 3, 4) . '.' . substr($numb, 7, 4);
+                $numb = '+' . substr($numb, 0, 2) . '.' . substr($numb, 2, 2) . '.' . substr($numb, 4, 4) . '.' . substr($numb, 8, 4);
             } else {
                 $numb = substr($numb, 0, 3) . '.' . substr($numb, 3, 3) . '.' . substr($numb, 6, 4); 
             }
@@ -34,9 +34,9 @@ class Phone
             if (Auth::user()->username == 'HK34') {  // Bogotá
                 $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 3) . '.' . substr($numbcell, 5, 3) . '.' . substr($numbcell, 8, 4);
             } elseif (Auth::user()->username == 'HK35') { // México
-                $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 2) . '.' . substr($numbcell, 3, 4) . '.' . substr($numbcell, 7, 4);
+                $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 2) . '.' . substr($numbcell, 4, 4) . '.' . substr($numbcell, 8, 4);
             } elseif (Auth::user()->username == 'HK46') { // UK
-                $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 5) . '.' . substr($numbcell, 7, 6);
+                $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 4) . '.' . substr($numbcell, 6, 6);
             } else {
                 $numbcell = substr($numbcell, 0, 3) . '.' . substr($numbcell, 3, 3) . '.' . substr($numbcell, 6, 4); 
             }
@@ -54,7 +54,7 @@ class Phone
             if (Auth::user()->username == 'HK34') {  // Bogotá
                 $numbfax = '+' . substr($numb, 0, 2) . '.' . substr($numbfax, 2, 1) . '.' . substr($numbfax, 3, 3) . '.' . substr($numb, 6, 4);
             } elseif (Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46') { // México UK
-                $numbfax = '+' . substr($numbfax, 0, 2) . '.' . substr($numbfax, 2, 2) . '.' . substr($numbfax, 3, 4) . '.' . substr($numbfax, 7, 4);
+                $numbfax = '+' . substr($numbfax, 0, 2) . '.' . substr($numbfax, 2, 2) . '.' . substr($numbfax, 4, 4) . '.' . substr($numbfax, 8, 4);
             } else {
                 $numbfax = substr($numbfax, 0, 3) . '.' . substr($numbfax, 3, 3) . '.' . substr($numbfax, 6, 4); 
             }
