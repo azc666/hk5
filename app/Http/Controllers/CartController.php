@@ -130,7 +130,6 @@ class CartController extends Controller
                 'prod_description' => Session::get('prod_description'),
                 'imagePath' => Session::get('imagePath'),
                 ])->associate('App\Product');
-            //dd(Session::get('prod_description'));
 
             Session::put('proofFilePath', $proofFilePath);
             Session::put('opb_imagepath', $product->imagepath);
@@ -180,7 +179,6 @@ class CartController extends Controller
                 }
             }
 
-// dd($request->qty);
           Cart::update($request->rowId, ['qty' => $request->qty]);
  
             if ($_SERVER['HTTP_REFERER'] == 'http://hk5.test/cart/cartConfirm') {
@@ -194,8 +192,7 @@ class CartController extends Controller
             } else {
                 return redirect('cart/')->withErrorMessage('The quantity remained unchanged');
             }
-        }
-        
+        }       
     }
 
     /**

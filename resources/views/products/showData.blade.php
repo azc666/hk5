@@ -30,21 +30,30 @@
         <div class="bc_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}  {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @endif
+            @elseif (Auth::user()->username == 'HK35')
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @else
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @endif    
             @else
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} , {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
             <br>            
             @if ($phone != null)
                 {{ $phone }} <br>
             @endif 
+            {{-- @php
+                dd($phone);
+            @endphp --}}
         </div>   
         <div class="bc_email">
             {{ strtolower($HKEmail) }}
@@ -73,15 +82,21 @@
         <div class="fyi_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}  {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @endif
+            @elseif (Auth::user()->username == 'HK35')
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @else
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @endif    
             @else
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} , {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
             <br>            
@@ -117,15 +132,21 @@
         <div class="bcfyi_bc_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}  {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @endif
+            @elseif (Auth::user()->username == 'HK35')
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @else
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @endif    
             @else
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} , {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
             <br>            
@@ -143,9 +164,6 @@
         {{-- <div class="fyi_title">
             {!! $request->title ?: '<br>' !!}
         </div> --}}
-      {{--  @php
-           dd($phone);
-       @endphp --}}
 
         @if ($request->address2 && $request->email && $phone != null)
             <div class="bcfyi_fyi_address_line1">
@@ -159,15 +177,21 @@
         <div class="bcfyi_fyi_address_line2">
             @if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK46')
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}  {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }} {{ $request->state }} {{ $request->zip }}
                 @endif
+            @elseif (Auth::user()->username == 'HK35')
+                @if ($request->address2)
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @else
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}, {{ $request->zip }}
+                @endif    
             @else
                 @if ($request->address2)
-                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }} , {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->address2 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @else
-                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }}  {{ $request->zip }}
+                    {{ $request->address1 }} <br> {{ $request->city }}, {{ $request->state }} {{ $request->zip }}
                 @endif
             @endif
             <br>           

@@ -127,6 +127,15 @@
                                  {{ Auth::user()->loc_address1 }}<br>
                                  {{ Auth::user()->loc_city }} {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
                             @endif
+                        @elseif (Auth::user()->username == 'HK35')
+                            @if (Auth::user()->loc_address2)
+                                {{ Auth::user()->loc_address1 }}<br>
+                                {{ Auth::user()->loc_address2 }}<br>
+                                {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }}, {{ Auth::user()->loc_zip }}<br>
+                            @else
+                                 {{ Auth::user()->loc_address1 }}<br>
+                                 {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }}, {{ Auth::user()->loc_zip }}<br>
+                            @endif
                         @else
                             @if (Auth::user()->loc_address2)
                                 {{ Auth::user()->loc_address1 }}<br>
@@ -181,6 +190,15 @@
                             @else
                                  {{ Auth::user()->loc_address1 }}<br>
                                  {{ Auth::user()->loc_city }} {{ Auth::user()->loc_state }} {{ Auth::user()->loc_zip }}<br>
+                            @endif
+                        @elseif (Auth::user()->username == 'HK35')
+                            @if (Auth::user()->loc_address2)
+                                {{ Auth::user()->loc_address1 }}<br>
+                                {{ Auth::user()->loc_address2 }}<br>
+                                {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }}, {{ Auth::user()->loc_zip }}<br>
+                            @else
+                                 {{ Auth::user()->loc_address1 }}<br>
+                                 {{ Auth::user()->loc_city }}, {{ Auth::user()->loc_state }}, {{ Auth::user()->loc_zip }}<br>
                             @endif
                         @else
                             @if (Auth::user()->loc_address2)

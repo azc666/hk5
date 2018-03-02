@@ -221,6 +221,7 @@ class ProductController extends Controller
 
     }
 
+//////////////////////////////////////////////////////////////////////////////
     public function showEdit(Request $request, Product $product)
     {   
         if ($request->id == 101 || $request->id == 104 || $request->id == 107) {
@@ -236,7 +237,6 @@ class ProductController extends Controller
         $numb = $request->phone;
         $numbfax = $request->fax;
         $numbcell = $request->cell;
-// dd($numbcell);
 
         $phone = '';
         if (($request->phone) && ($request->fax || $request->cell)) {
@@ -246,9 +246,8 @@ class ProductController extends Controller
         }
 
         if ($request->cell) {
-            $phone .= 'M ' .  Phone::phoneNumber($numbcell);
+            $phone .= 'M ' .  $request->cell;
         }
-
         if (($request->cell) && ($request->fax)) {
             $phone .= ' | F ' . Phone::phoneNumber($numbfax);
         } elseif ($request->fax && ($request->phone)) {
@@ -263,7 +262,7 @@ class ProductController extends Controller
 
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
         $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
-        $request->merge(['cell' => Phone::phoneNumber($numbcell)]); 
+        $request->merge(['cell' => $numbcell]); 
 
         $HKName = '';
         if (Auth::user()->loc_num == 35) {

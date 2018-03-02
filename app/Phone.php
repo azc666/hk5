@@ -31,7 +31,7 @@ class Phone
         $chars = array(' ', '(', ')', '-', '.', '+');
         $numbcell = str_replace($chars, "", $numbcell);
                
-            if (Auth::user()->username == 'HK34') {  // Bogotá
+            if (Auth::user()->username == 'HK34') {  // Bogotá 2-3-3-4
                 $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 3) . '.' . substr($numbcell, 5, 3) . '.' . substr($numbcell, 8, 4);
             } elseif (Auth::user()->username == 'HK35') { // México
                 $numbcell = '+' . substr($numbcell, 0, 2) . '.' . substr($numbcell, 2, 2) . '.' . substr($numbcell, 4, 4) . '.' . substr($numbcell, 8, 4);

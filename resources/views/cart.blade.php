@@ -182,7 +182,6 @@
                             <input type="hidden" name="phone" value="{{$item->options->phone}}">
                             <input type="hidden" name="fax" value="{{$item->options->fax}}">
                             <input type="hidden" name="cell" value="{{$item->options->cell}}">
-                            {{-- <input type="hidden" name="license" value="{{$item->options->license}}"> --}}
                             <input type="hidden" name="specialInstructions" value="{{$item->options->specialInstructions}}">
                             <input type="hidden" name="prod_name" value="{{ $item->options->prod_name }}">
                             {{ Session::put('prod_name', $item->options->prod_name) }}
