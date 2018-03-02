@@ -78,18 +78,43 @@ class CartOrderController extends Controller
                      
                     $cartOrder .= '<strong>' . Auth::user()->loc_name . '</strong><br>
                     Attn: ' . Auth::user()->contact_s . '<br>';
-
-                    if (Auth::user()->address2_s) {
-                       $address_s = 
-                        Auth::user()->address1_s . '<br>' .
-                        Auth::user()->address2_s . '<br>' .
-                        Auth::user()->city_s . ', ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
-                    } else {
-                        $address_s = 
-                        Auth::user()->address1_s . '<br>' .
-                        Auth::user()->city_s . ', ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
+// dd(Auth::user()->username);
+                    if (Auth::user()->username == 'HK35') {
+                        if (Auth::user()->address2_s) {
+                            $address_s = 
+                            Auth::user()->address1_s . '<br>' .
+                            Auth::user()->address2_s . '<br>' .
+                            Auth::user()->city_s . ', ' . Auth::user()->state_s . ', ' . Auth::user()->zip_s . '<br><br>';
+                        } else {
+                            $address_s = 
+                            Auth::user()->address1_s . '<br>' .
+                            Auth::user()->city_s . ', ' . Auth::user()->state_s . ', ' . Auth::user()->zip_s . '<br><br>';
+                        }
+                    } elseif (Auth::user()->username == 'HK46') {
+                        if (Auth::user()->address2_s) {
+                            $address_s = 
+                            Auth::user()->address1_s . '<br>' .
+                            Auth::user()->address2_s . '<br>' .
+                            Auth::user()->city_s . ' ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
+                        } else {
+                            $address_s = 
+                            Auth::user()->address1_s . '<br>' .
+                            Auth::user()->city_s . ' ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
+                        }
                     }
-                    
+                     else {
+                        if (Auth::user()->address2_s) {
+                            $address_s = 
+                            Auth::user()->address1_s . '<br>' .
+                            Auth::user()->address2_s . '<br>' .
+                            Auth::user()->city_s . ', ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
+                        } else {
+                            $address_s = 
+                            Auth::user()->address1_s . '<br>' .
+                            Auth::user()->city_s . ', ' . Auth::user()->state_s . ' ' . Auth::user()->zip_s . '<br><br>';
+                        }
+                    }
+                   
                     $cartOrder .= $address_s;
 
                     $cartOrder .= '<p><small>Most orders ship within 2-3 working days. <br> Please allow 1-2 weeks for engraved Partner Cards.</small></p>';

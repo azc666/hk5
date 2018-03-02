@@ -7,6 +7,6 @@
 Homestead.json
 Homestead.yaml
 .env
+/public/assets/confPic.png
 /public/assets/mpdf/temp
 /public/assets/proofs
-/public/assets/confPic.png

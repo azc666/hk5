@@ -187,13 +187,33 @@ Order Checkout
 
                         <strong>{{ Auth::user()->loc_name }}</strong>&nbsp;&nbsp;<small><a href="{{route('showProfile')}}">(change shipping info)</small></a><br>
                         Attn: {{ Auth::user()->contact_s }}<br>
-                        @if (Auth::user()->address2_s)
-                        {{ Auth::user()->address1_s }}<br>
-                        {{ Auth::user()->address2_s }}<br>
-                        {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
+                        @if (Auth::user()->username == 'HK35')
+                             @if (Auth::user()->address2_s)
+                                {{ Auth::user()->address1_s }}<br>
+                                {{ Auth::user()->address2_s }}<br>
+                                {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }}, {{ Auth::user()->zip_s }}<br><br>
+                            @else
+                                {{ Auth::user()->address1_s }}<br>
+                                {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }}, {{ Auth::user()->zip_s }}<br><br>
+                            @endif
+                        @elseif (Auth::user()->username == 'HK46')
+                             @if (Auth::user()->address2_s)
+                                {{ Auth::user()->address1_s }}<br>
+                                {{ Auth::user()->address2_s }}<br>
+                                {{ Auth::user()->city_s }} {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
+                            @else
+                                {{ Auth::user()->address1_s }}<br>
+                                {{ Auth::user()->city_s }} {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
+                            @endif
                         @else
-                        {{ Auth::user()->address1_s }}<br>
-                        {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
+                            @if (Auth::user()->address2_s)
+                                {{ Auth::user()->address1_s }}<br>
+                                {{ Auth::user()->address2_s }}<br>
+                                {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
+                            @else
+                                {{ Auth::user()->address1_s }}<br>
+                                {{ Auth::user()->city_s }}, {{ Auth::user()->state_s }} {{ Auth::user()->zip_s }}<br><br>
+                            @endif
                         @endif
 
                         <p><small>
