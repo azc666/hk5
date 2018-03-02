@@ -221,19 +221,19 @@
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 114%;
-    font-size: 27pt;
+    font-size: 28.5pt;
 }
 
 .bcfyi_bc_address_line1_1 {
-    /*position: relative;*/
+    position: relative;
     text-align: right;
     margin-right: 105.25mm;
-    /*padding-top: 50mm;*/
+    padding-top: 17mm;
     font-family: helveticaneueltstdlt;
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 114%;
-    font-size: 27pt;
+    font-size: 28.5pt;
 }
 
 .bcfyi_bc_address_line2 {
@@ -245,7 +245,7 @@
     color: rgb(0,63,133);
     /*color: #FF0000FF;*/
     line-height: 114%;
-    font-size: 26pt;
+    font-size: 28.5pt;
 }
 
 .bcfyi_bc_email {
@@ -257,7 +257,7 @@
     line-height: 117%;
     /*padding-top: 20mm;*/
     padding-right: 105.25mm;
-    font-size: 26pt; 
+    font-size: 28.5pt; 
 }
 
 .bcfyi_fyi_name {
@@ -267,7 +267,7 @@
     /*color: #FF0000FF;*/
     line-height: 125%;
     margin-left: 37mm;
-    padding-top: 190mm;
+    padding-top: 183mm;
     font-size: 40pt;
 }
 
