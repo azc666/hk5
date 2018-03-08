@@ -245,7 +245,7 @@
 
           {{-- Bogotá --}}
           @if (Auth::user()->username == 'HK34')
-            {!! Form::text('cell', $request->cell, [
+            {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xxx.xxx.xxxx',
               'data-parsley-trigger'          => 'input',
@@ -258,7 +258,7 @@
           
           {{-- México --}}
           @elseif (Auth::user()->username == 'HK35')
-            {!! Form::text('cell', $request->cell, [
+            {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xx.xxxx.xxxx',
               'data-parsley-trigger'          => 'input',
@@ -271,7 +271,7 @@
 
           {{-- UK --}}
           @elseif (Auth::user()->username == 'HK46')
-            {!! Form::text('cell', $request->cell, [
+            {!! Form::text('cell', Session::get('cell'), [
               'class'                         => 'form-control', 
               'placeholder'                   => 'xx.xxxx.xxxxxx',
               'data-parsley-trigger'          => 'input',
@@ -283,7 +283,10 @@
             ]) !!}
             
           @else
-            {!! Form::text('cell', Session::get('cell'), [
+          @php
+            // exit;
+          @endphp
+            {!! Form::text('cell', $request->cell, [
               'class'                         => 'form-control', 
               'placeholder'                   => '123.123.1234',
               'data-parsley-trigger'          => 'input',

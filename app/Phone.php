@@ -59,6 +59,6 @@ class Phone
                 $numbfax = substr($numbfax, 0, 3) . '.' . substr($numbfax, 3, 3) . '.' . substr($numbfax, 6, 4); 
             }
         
-      return $numb;
+      return $numbfax;
     }
 }

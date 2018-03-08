@@ -9,6 +9,13 @@
 <div class="container">
     <div class="row">
 
+@php
+Session::put('phone', $request->phone);
+Session::put('fax', $request->fax);
+Session::put('cell', $request->cell);
+// dd(Session::get('cell'));
+@endphp
+
 {{-- ////////////////// Business Card //////////////// --}}    
     @if ($request->id == 101 || $request->id == 102 || $request->id == 103)
         <div class="bc_background">
@@ -51,9 +58,7 @@
             @if ($phone != null)
                 {{ $phone }} <br>
             @endif 
-            {{-- @php
-                dd($phone);
-            @endphp --}}
+            
         </div>   
         <div class="bc_email">
             {{ strtolower($HKEmail) }}
@@ -218,9 +223,7 @@
 {!! Session::put('city', $request->city) !!}
 {!! Session::put('state', $request->state) !!}
 {!! Session::put('zip', $request->zip) !!}
-{!! Session::put('phone', $request->phone) !!}
-{!! Session::put('fax', $request->fax) !!}
-{!! Session::put('cell', $request->cell) !!}
+
 {!! Session::put('specialInstructions', $request->specialInstructions) !!}
 {!! Session::put('prod_name', $request->prod_name) !!}
 {!! Session::put('prod_description', $request->prod_description) !!}

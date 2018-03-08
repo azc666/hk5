@@ -9,6 +9,12 @@
 <div class="container">
     <div class="row">
 
+@php
+// Session::put('phone', $request->phone);
+// Session::put('fax', $request->fax);
+// Session::put('cell', $request->cell);
+@endphp        
+
 {{-- ////////////////// Business Card //////////////// --}}    
     @if ($request->prod_id == 101 || $request->prod_id == 102 || $request->prod_id == 103)
         <div class="bc_background">

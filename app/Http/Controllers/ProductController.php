@@ -84,11 +84,11 @@ class ProductController extends Controller
         }
 
         if (($request->cell) && ($request->fax)) {
-            $phone .= ' | F ' . Phone::phoneNumber($numbfax);
+            $phone .= ' | F ' . Phone::faxNumber($numbfax);
         } elseif ($request->fax && ($request->phone)) {
-            $phone .= 'F ' . Phone::phoneNumber($numbfax);
+            $phone .= 'F ' . Phone::faxNumber($numbfax);
         } elseif ($request->fax) {
-            $phone .= 'F ' . Phone::phoneNumber($numbfax);
+            $phone .= 'F ' . Phone::faxNumber($numbfax);
         }
 
         if ((!$request->phone) && (!$request->fax && !$request->cell)) {
@@ -96,7 +96,7 @@ class ProductController extends Controller
         } 
 
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
-        $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
+        $request->merge(['fax' => Phone::faxNumber($numbfax)]);
         $request->merge(['cell' => Phone::cellNumber($numbcell)]);
 
         // $categories = App\Category::all();
@@ -246,14 +246,14 @@ class ProductController extends Controller
         }
 
         if ($request->cell) {
-            $phone .= 'M ' .  $request->cell;
+            $phone .= 'M ' .  Phone::cellNumber($numbcell);
         }
         if (($request->cell) && ($request->fax)) {
-            $phone .= ' | F ' . Phone::phoneNumber($numbfax);
+            $phone .= ' | F ' . Phone::faxNumber($numbfax);
         } elseif ($request->fax && ($request->phone)) {
-            $phone .= 'F ' . Phone::phoneNumber($numbfax);
+            $phone .= 'F ' . Phone::faxNumber($numbfax);
         } elseif ($request->fax) {
-            $phone .= 'F ' . Phone::phoneNumber($numbfax);
+            $phone .= 'F ' . Phone::faxNumber($numbfax);
         }
 
         if ((!$request->phone) && (!$request->fax && !$request->cell)) {
@@ -261,8 +261,8 @@ class ProductController extends Controller
         } 
 
         $request->merge(['phone' => Phone::phoneNumber($numb)]); 
-        $request->merge(['fax' => Phone::phoneNumber($numbfax)]);
-        $request->merge(['cell' => $numbcell]); 
+        $request->merge(['fax' => Phone::faxNumber($numbfax)]);
+        $request->merge(['cell' => Phone::cellNumber($numbcell)]);
 
         $HKName = '';
         if (Auth::user()->loc_num == 35) {
