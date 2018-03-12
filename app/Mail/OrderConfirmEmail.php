@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Auth;
 
 class OrderConfirmEmail extends Mailable
 {
@@ -33,12 +34,24 @@ class OrderConfirmEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.orderConfirm')
+        if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' ) {
+            return $this->view('emails.orderConfirm')
             ->subject('HK Order Portal Email Confirmation')
             ->from('support@g-d.com')
-            //->bcc('support@arhorderportal.com')
+            ->bcc('sheri.testa@hklaw.com')
             ->bcc('output@g-d.com')
             ->bcc('tmann999@gmail.com')
             ;
+        } else {
+            return $this->view('emails.orderConfirm')
+            ->subject('HK Order Portal Email Confirmation')
+            ->from('support@g-d.com')
+            // ->bcc('sheri.testa@hklaw.com')
+            ->bcc('output@g-d.com')
+            ->bcc('tmann999@gmail.com')
+            ;
+        }
+
+        
     }
 }
