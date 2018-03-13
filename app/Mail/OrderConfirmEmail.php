@@ -34,15 +34,15 @@ class OrderConfirmEmail extends Mailable
      */
     public function build()
     {
-        if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' ) {
-            return $this->view('emails.orderConfirm')
-            ->subject('HK Order Portal Email Confirmation')
-            ->from('support@g-d.com')
-            ->bcc('sheri.testa@hklaw.com')
-            ->bcc('output@g-d.com')
-            ->bcc('tmann999@gmail.com')
-            ;
-        } else {
+        // if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' ) {
+        //     return $this->view('emails.orderConfirm')
+        //     ->subject('HK Order Portal Email Confirmation')
+        //     ->from('support@g-d.com')
+        //     ->bcc('sheri.testa@hklaw.com')
+        //     ->bcc('output@g-d.com')
+        //     ->bcc('tmann999@gmail.com')
+        //     ;
+        // } else {
             return $this->view('emails.orderConfirm')
             ->subject('HK Order Portal Email Confirmation')
             ->from('support@g-d.com')
