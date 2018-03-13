@@ -54,4 +54,4 @@ class OrderConfirmEmail extends Mailable
 
         
     }
-}
+
