@@ -283,8 +283,18 @@ class CartOrderController extends Controller
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
         // $showOrder = $request->confirm;
         $confirmOrder = Order::where('confirmation', Session::get('confirmation'))->first();
-       
-        Browsershot::html($cartOrderEmail)->fullPage()->save('assets/confPic.png');
+
+        $confPicPath = "";
+        // dd(Session::get('confirmation'));
+        if (file_exists('assets/conf/' . Auth::user()->username)) {
+            $confPicPath = 'assets/conf/' . Auth::user()->username . '/' . Session::get('confirmation') . '.png';
+        } else {
+            File::makeDirectory('assets/conf/' . Auth::user()->username);
+            $confPicPath = 'assets/conf/' . Auth::user()->username . '/' . Session::get('confirmation') . '.png';
+            // $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
+        }
+       // dd($confPicPath);
+        Browsershot::html($cartOrderEmail)->fullPage()->save($confPicPath);
 
         \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
        
@@ -295,7 +305,7 @@ class CartOrderController extends Controller
 
         Cart::destroy();
 
-        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder', 'address_s', 'orderItems', 'item', 'cartOrderEmail', 'cartOrderToEmail')); 
+        return view('/cart/cartOrder', compact('request', 'order', 'cartOrder','cartOrderWeb', 'cartOrderProduction', 'confirmation', 'confirmOrder', 'displayOrder', 'address_s', 'orderItems', 'item', 'cartOrderEmail', 'cartOrderToEmail', 'confPicPath')); 
         }  else {
             return redirect('/cart/cartConfirm')->withErrorMessage('Please affirm that you have reviewed your proof(s) before placing your order.');
         }
