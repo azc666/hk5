@@ -4,12 +4,7 @@
     <title></title>
 </head>
 <body>
-    {{-- <a href="http://google.com" title="">google</a> --}}
-    {{-- {!! $showMyOrder !!} --}}
-    {{-- {{dd($showMyOrder)}} --}}
-    {{-- {!! $cartOrder !!} --}}
-    {{-- <img src="{{ url('https://hkorderportal.com/assets/confPic.png') }}" alt=""> --}}
-    {{-- $confPicPath = 'assets/conf/' . Auth::user()->username . '/' . Session::get('confirmation') . '.png'; --}}
+
     <img src="{{ url('assets/conf/' . Auth::user()->username . '/' . Session::get('confirmation') . '.png') }}" alt="">
     <div class="thumbnail">
         <div class="caption">

@@ -25,6 +25,8 @@
       <br>
 
       <button class="btn btn-primary move-right hidden-print" onclick="printImg('{{ url('/assets/mpdf/temp/' . Auth::user()->username . '/showData.jpg') }}')"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;Print the Proof&nbsp;&nbsp;&nbsp;</button>
+      <br><br>
+      <p class="description text-muted move-right">{!! nl2br(Session::get('prod_description')) !!}</p>
 
     </div>
 

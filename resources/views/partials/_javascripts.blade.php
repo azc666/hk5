@@ -30,18 +30,26 @@ $(document).ready(function(){
 
  <script>
     $(document).ready(function(){
-      $('#myorders-table').DataTable({
-        "columnDefs": [
-          {
-            "targets": [4],
-            "visible": false,
-          }
-        ],
-        stateSave: true,
-        "order": [[ 1, "asc" ]],
-      // dom: 'Bfrtip',
-      // buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
-    });
+    //   $('#myorders-table').DataTable({
+    //     "columnDefs": [
+    //       {
+    //         "targets": [4],
+    //         "visible": false,
+    //       }
+    //     ],
+    //     stateSave: true,
+    //     "order": [[ 1, "asc" ]],
+    // });
+    var historiektable = $('#myorders-table').DataTable({
+    "stateSave": true,
+    "order": [[ 1, "asc" ]],
+    "paging" : true,
+    "ordering" : true,
+    "scrollCollapse" : true,
+    "searching" : false,
+    "columnDefs" : [{"targets":4,  "visible": false, "type":"date-eu"}],
+    "bInfo": true
+});
 });
 </script>
 
@@ -74,6 +82,7 @@ $(document).ready(function(){
 <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+<script src=//cdn.datatables.net/plug-ins/1.10.11/sorting/date-eu.js></script>
 
 {{-- <script src="/js/Event.js"></script>
 <script src="/js/Magnifier.js"></script>

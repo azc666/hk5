@@ -175,8 +175,10 @@ class CartOrderController extends Controller
             </td>
             <td>';
 // dd($cartOrderToEmail);
-
-            // @php    
+            // $orderArray[] = [
+            //     'prod_descr'    =>  nl2br($item->options->prod_description),
+            // ];    
+             
             $bcfyi_qty = $item->qty;
             if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
                 switch ($item->qty) {
@@ -201,8 +203,25 @@ class CartOrderController extends Controller
                     default: $bcfyi_qty = '250 Business Cards'; 
                 }
             }
-        // Session::put('qty_text', $bcfyi_qty);
-                        // @endphp
+
+            $orderArray[] = [
+                'order_type_o'  =>  strip_tags($item->name),
+                'prod_descr'    =>  nl2br($item->options->prod_description),
+                'bcfyi_qty'     =>  $bcfyi_qty,
+                'quantity_o'    =>  $item->qty,
+                'name_o'        =>  $item->options->name,
+                'title_o'       =>  $item->options->title,
+                'phone_o'       =>  strip_tags($item->options->phone),
+                'fax_o'         =>  $item->options->fax,
+                'cell_o'        =>  $item->options->cell,
+                'address1_o'    =>  $item->options->address1,
+                'address2_o'    =>  $item->options->address2,
+                'city_o'        =>  $item->options->city,
+                'state_o'       =>  $item->options->state,
+                'zip_o'         =>  $item->options->zip,
+                'sp_instr_o'    =>  $item->options->specialInstructions,
+                'proof_path'   =>  $item->options->proofPath,
+            ]; 
 
             $cartOrder .= '<span class = "quantity"><strong>' . $bcfyi_qty . '</strong> &nbsp;&nbsp;&nbsp; ';
 
@@ -240,6 +259,7 @@ class CartOrderController extends Controller
         $order->address_s = $address_s;
         $order->confirmation = $confirmation;
         $order->subtotal = Cart::subtotal();
+        $order->order_array = serialize($orderArray);
         
         Session::put('confirmation', $confirmation);
         Auth::user()->orders()->save($order);
@@ -259,8 +279,38 @@ class CartOrderController extends Controller
                 </thead>';
             $cartOrderProduction .= 
             '<tr><td>Franchise </td><td>' . Auth::User()->loc_name . '</td></tr>
-            <tr><td>Order_Type_o </td><td>' . strip_tags($item_prod->name) . '</tr>
-            <tr><td>Quantity_o </td><td>' . $item_prod->qty . '</tr>
+            <tr><td>Order_Type_o </td><td>' . strip_tags($item_prod->name) . '</tr>';
+
+            $bcfyi_qty = $item_prod->qty;
+            // if ($prod_layout == 'SBCFYI' || $prod_layout == 'ABCFYI' || $prod_layout == 'PBCFYI') {
+            if (strpos($item_prod->name, 'BC + FYI Pads')) {
+                switch ($item_prod->qty) {
+                    case '24': $bcfyi_qty = '250 BCs + 4 FYI Pads'; break;
+                    case '28': $bcfyi_qty = '250 BCs + 8 FYI Pads'; break;
+                    case '54': $bcfyi_qty = '500 BCs + 4 FYI Pads'; break;
+                    case '58': $bcfyi_qty = '500 BCs + 8 FYI Pads'; break;
+                    default: $bcfyi_qty = '250 BCs + 4 FYI Pads'; 
+                }
+            } 
+            // if ($prod_layout == 'SFYI' || $prod_layout == 'AFYI' || $prod_layout == 'PFYI') {
+            if (strpos($item_prod->name, 'FYI') && !strpos($item_prod->name, '+')) {
+                switch ($item_prod->qty) {
+                    case '4': $bcfyi_qty = '4 FYI Pads'; break;
+                    case '8': $bcfyi_qty = '8 FYI Pads'; break;
+                    default: $bcfyi_qty = '4 FYI Pads'; 
+                }
+            }
+            if (strpos($item_prod->name, 'Business Card')) {
+            // if ($prod_layout == 'SBC' || $prod_layout == 'ABC' || $prod_layout == 'PBC') {
+                switch ($item_prod->qty) {
+                    case '250': $bcfyi_qty = '250 Business Cards'; break;
+                    case '500': $bcfyi_qty = '500 Business Cards'; break;
+                    default: $bcfyi_qty = '250 Business Cards'; 
+                }
+            }
+// dd($prod_layout);
+            $cartOrderProduction .= 
+            '<tr><td>Quantity_o </td><td>' . $bcfyi_qty . '</tr>
             <tr><td>Name_o </td><td>' . $item_prod->options->name . '</tr>
             <tr><td>Title_o </td><td>' . $item_prod->options->title . '</tr>
             <tr><td>Email_o </td><td>' . $item_prod->options->email . '</tr>
@@ -276,32 +326,45 @@ class CartOrderController extends Controller
             <tr><td>Admin Contact </td><td>' . Auth::User()->contact_a . '</tr>
             <tr><td>Shipping Contact </td><td>' . Auth::User()->contact_s . '</tr>
             <tr><td>Shipping Address </td><td>' . Auth::User()->address1_s . ' ' . Auth::User()->address2_s . ' ' . Auth::User()->city_s . ' ' . Auth::User()->state_s . ' ' . Auth::User()->zip_s . '</tr>
-            <tr><td>Proof Image </td><td><a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '">' . substr_replace($item->options->proofPath, 'pdf', -3) . '</a></tr></tbody>';
+            <tr><td>Proof Image </td><td><a href="' . url($item_prod->options->proofPath) . '">' . $item_prod->options->proofPath . '</a></tr></tbody>';
             $cartOrderProduction .= '</table><br>';
+          
+ /*
+ <tr><td>Proof Image </td><td><a href="' . url(substr_replace($item->options->proofPath, 'pdf', -3)) . '">' . substr_replace($item->options->proofPath, 'pdf', -3) . '</a></tr></tbody>';
+ */           
+
             }
-// dd($item_prod->options->phone);
+// dd($orderArray);
+             // dd($cartOrderProduction); 
         $cartOrderEmail = $cartOrderEmail . $cartOrder;
-        // $showOrder = $request->confirm;
+
+        
+
+
+
         $confirmOrder = Order::where('confirmation', Session::get('confirmation'))->first();
 
         $confPicPath = "";
-        // dd(Session::get('confirmation'));
+
         if (file_exists('assets/conf/' . Auth::user()->username)) {
             $confPicPath = 'assets/conf/' . Auth::user()->username . '/' . Session::get('confirmation') . '.png';
         } else {
             File::makeDirectory('assets/conf/' . Auth::user()->username);
             $confPicPath = 'assets/conf/' . Auth::user()->username . '/' . Session::get('confirmation') . '.png';
-            // $pathToWhereJpgShouldBeStored = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';
         }
-       // dd($confPicPath);
+
         Browsershot::html($cartOrderEmail)->fullPage()->save($confPicPath);
 
         \Mail::to(Auth::user()->email)->send(new OrderConfirmEmail($cartOrderEmail));
        
+        if (Auth::user()->username == 'HK34' || Auth::user()->username == 'HK35' || Auth::user()->username == 'HK46' ) {
+            \Mail::to('sheri.testa@hklaw.com')->send(new OrderConfirmEmail($cartOrderEmail));
+        }
+
         \Mail::to('output@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
         // \Mail::to('austin@g-d.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
-        \Mail::to('tmann999@gmail.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
+        // \Mail::to('tmann999@gmail.com')->send(new OrderProductionEmail($cartOrderProduction, $order));
 
         Cart::destroy();
 

@@ -30,9 +30,10 @@
             @endif
             <div class="caption">
                 <h3> Business Cards </h3><br>
-                <p>
-                    <a href="{!! url("/categories/10") !!}" class="btn btn-primary btn-block" role="button"> Select Business Cards </a>
-                </p>
+                
+                    <p class="description text-muted">{!! nl2br($product[2]->description) !!}</p>
+                    <p><a href="{!! url("/categories/10") !!}" class="btn btn-primary btn-block" role="button"> Select Business Cards </a></p>
+                
             </div>
         </div>
     </div>
@@ -51,9 +52,10 @@
             @endif
             <div class="caption">
                 <h3> FYI Pads </h3><br>
-                <p>
-                    <a href="{!! url("/categories/11") !!}" class="btn btn-primary btn-block" role="button"> Select FYI Pads </a>
-                </p>
+                <p class="description text-muted">{!! nl2br($product[7]->description) !!}</p>
+                    <p>
+                        <a href="{!! url("/categories/11") !!}" class="btn btn-primary btn-block" role="button"> Select FYI Pads </a>
+                    </p>
             </div>    
         </div>
     </div>
@@ -72,9 +74,8 @@
             @endif
             <div class="caption">
                 <h3> Combo FYI Pads & BCs </h3><br>
-                <p>
-                    <a href="{!! url("/categories/12") !!}" class="btn btn-primary btn-block" role="button"> Select Combo FYI Pads & BCs </a>
-                </p>
+                <p class="description text-muted">{!! nl2br($product[5]->description) !!}</p>
+                    <p><a href="{!! url("/categories/12") !!}" class="btn btn-primary btn-block" role="button"> Select Combo FYI Pads & BCs </a></p>
             </div>
         </div>
     </div>
