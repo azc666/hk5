@@ -46,7 +46,7 @@ $(document).ready(function(){
     "paging" : true,
     "ordering" : true,
     "scrollCollapse" : true,
-    "searching" : false,
+    "searching" : true,
     "columnDefs" : [{"targets":4,  "visible": false, "type":"date-eu"}],
     "bInfo": true
 });

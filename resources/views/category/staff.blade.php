@@ -54,7 +54,7 @@
                 <h3> FYI Pads </h3><br>
                 <p class="description text-muted">{!! nl2br($product[6]->description) !!}</p>
                     <p>
-                        <a href="{!! url("/categories/5") !!}" class="btn btn-primary btn-block" role="button"> Select Combo FYI Pads & BCs </a>
+                        <a href="{!! url("/categories/5") !!}" class="btn btn-primary btn-block" role="button"> Select FYI Pads </a>
                     </p>
             </div>    
         </div>
