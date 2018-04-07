@@ -37,6 +37,7 @@ Route::post('showData', 'ProductController@showData')->name('showData');
 // Route::get('products/{rowId}', 'EditController@show')->name('');
 Route::get('showEditData', 'ProductController@showEdit')->name('showEdit');
 Route::post('showEditData', 'ProductController@showEdit')->name('showEdit');
+Route::get('showEditReorderData/{showOrder}', 'ReorderController@showEdit')->name('showEditReorder');
 
 Route::resource('cart', 'CartController');
 Route::PATCH('cart', 'CartController@update')->name('cart');

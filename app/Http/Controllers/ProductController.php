@@ -105,7 +105,7 @@ class ProductController extends Controller
         if (Auth::user()->loc_num == 35) {
             $HKName = 'Holland & Knight México, SC';
         } elseif (Auth::user()->loc_num == 34) {           
-            $HKName = 'Holland & Knight Columbia SAS';
+            $HKName = 'Holland & Knight Colombia SAS';
         } elseif (Auth::user()->loc_num == 46) {           
             $HKName = 'Holland & Knight (UK) LLP';
         } else {
@@ -268,7 +268,7 @@ class ProductController extends Controller
         if (Auth::user()->loc_num == 35) {
             $HKName = 'Holland & Knight México, SC';
         } elseif (Auth::user()->loc_num == 34) {           
-            $HKName = 'Holland & Knight Columbia SAS';
+            $HKName = 'Holland & Knight Colombia SAS';
         } elseif (Auth::user()->loc_num == 46) {           
             $HKName = 'Holland & Knight (UK) LLP';
         } else {
