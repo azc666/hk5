@@ -32,7 +32,7 @@ class EditController extends Controller
 
     public function update(Request $request, Product $product)
     {
-
+// dd('EditController@update');
         $emailuser = explode("@", Session::get('email'));
         $emailuser = $emailuser[0];
         $filePath = 'assets/mpdf/temp/' . Auth::user()->username  . '/showData.jpg';

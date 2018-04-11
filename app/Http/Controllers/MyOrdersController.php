@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use DB;
 use Yajra\Datatables\Facades\Datatables;
+use Session;
 
 class MyOrdersController extends Controller
 {
@@ -41,7 +42,7 @@ class MyOrdersController extends Controller
     {
         $showOrder = $request->confirm;
         $confirmEmail = Order::where('confirmation', $showOrder )->first();
-        // dd($showOrder);
+        Session::put('showOrder', $showOrder);
         return view('user.showConfirmedOrder', compact('showOrder', 'orders', 'confirmEmail', 'ordersList'));
     }
 

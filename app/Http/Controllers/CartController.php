@@ -108,6 +108,7 @@ class CartController extends Controller
         }
 
         $price = 0;
+        // dd($request->id, $request->name, $quantity, $price);
             Cart::add($request->id, $request->name, $quantity, $price, [
                 'proofPath' => $proofFilePath,
                 'name' => Session::get('name'),

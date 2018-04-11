@@ -203,14 +203,17 @@ class CartOrderController extends Controller
                     default: $bcfyi_qty = '250 Business Cards'; 
                 }
             }
-
+// dd($item->options->email);
             $orderArray[] = [
+                'row_id'        =>  $item->rowId,
                 'order_type_o'  =>  strip_tags($item->name),
+                'prod_layout'   =>  $prod_layout,
                 'prod_descr'    =>  nl2br($item->options->prod_description),
                 'bcfyi_qty'     =>  $bcfyi_qty,
                 'quantity_o'    =>  $item->qty,
                 'name_o'        =>  $item->options->name,
                 'title_o'       =>  $item->options->title,
+                'email_o'       =>  $item->options->email,
                 'phone_o'       =>  strip_tags($item->options->phone),
                 'fax_o'         =>  $item->options->fax,
                 'cell_o'        =>  $item->options->cell,
@@ -220,7 +223,7 @@ class CartOrderController extends Controller
                 'state_o'       =>  $item->options->state,
                 'zip_o'         =>  $item->options->zip,
                 'sp_instr_o'    =>  $item->options->specialInstructions,
-                'proof_path'   =>  $item->options->proofPath,
+                'proof_path'    =>  $item->options->proofPath,
             ]; 
 
             $cartOrder .= '<span class = "quantity"><strong>' . $bcfyi_qty . '</strong> &nbsp;&nbsp;&nbsp; ';
